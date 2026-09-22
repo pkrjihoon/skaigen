@@ -315,13 +315,13 @@ async function init() {
    아래에는 그 5개를 그대로 넣고 나머지 2개는 TODO 자리만 만들어뒀습니다.
    질문/선택지/axis 내용을 채워주세요. axis는 challenger / achiever / seeker 중 하나입니다.
    ========================================================= */
-
+// challenger 실험가 achiever 성취가 seeker 탐구가
 const QUIZ_DATA_FALLBACK = {
   "questions": [
     {
       "question": "늘 쓰던 물건에서 불편함을 발견했습니다.",
       "answers": [
-        { "text": "일단 다 방식대로 고쳐 써본다. 잘 안되면 다른 방법을 다시 시도한다.", "axis": "challenger" },
+        { "text": "일단 내 방식대로 고쳐 써본다. 잘 안되면 다른 방법을 시도한다.", "axis": "challenger" },
         { "text": "새로운 방식으로 만들어 함께 쓰자고 제안한다.", "axis": "achiever" },
         { "text": "왜 같은 불편이 반복되는지 원인부터 살펴본다.", "axis": "seeker" }
       ]
@@ -330,7 +330,7 @@ const QUIZ_DATA_FALLBACK = {
       "question": "여러 사람이 모여 무엇을 할지 논의하고 있지만, 30분째 결론이 나지 않습니다.",
       "answers": [
         { "text": "우선 하나를 정하고 움직이면서 방향을 조정하자고 한다.", "axis": "challenger" },
-        { "text": "내가 먼저 방향을 만들어 구체적인 방향을 제시한다.", "axis": "achiever" },
+        { "text": "내가 먼저 결과물을 만들어 구체적인 방향을 제시한다.", "axis": "achiever" },
         { "text": "무엇을 기준으로 결정할지부터 다시 정하자고 한다.", "axis": "seeker" }
       ]
     },
@@ -343,7 +343,7 @@ const QUIZ_DATA_FALLBACK = {
       ]
     },
     {
-      "question": "몇 달 동안 준비한 일이 결국 무산됐습니다. 다음날,",
+      "question": "몇 달 동안 준비한 일이 결국 무산됐습니다. 다음날, 나는 어떻게 행동할까요?",
       "answers": [
         { "text": "잠시 숨을 고른 뒤 새로운 가능성을 찾아 다시 움직인다.", "axis": "challenger" },
         { "text": "이번 경험을 정리해 다음 도전에 활용할 수 있는 결과물로 남긴다.", "axis": "achiever" },
@@ -353,23 +353,23 @@ const QUIZ_DATA_FALLBACK = {
     {
       "question": "같은 실수를 두 번째로 반복했습니다.",
       "answers": [
-        { "text": "오늘과 자책하기보다 방법을 다시 시도하며 방법을 찾는다.", "axis": "challenger" },
+        { "text": "오래 자책하기보다 바로 다시 시도하며 방법을 바뀌본다.", "axis": "challenger" },
         { "text": "같은 실수를 막을 수 있도록 체크리스트나 장치를 마련한다.", "axis": "achiever" },
         { "text": "두 번의 실수가 어떤 상황에서 발생했는지 공통점을 찾아본다.", "axis": "seeker" }
       ]
     },
     {
-      "question": "해보고 싶은 일이 생겼지만, 검색해도 정보가 잘 나오지 않습니다.",
+      "question": "해보고 싶은 일이 생겼지만, 검색해도 참고할 만한 자료가 나오지 않습니다.",
       "answers": [
-        { "text": "자료가 부족해도 일단 직접 시작하며 방법을 찾아간다.", "axis": "challenger" },
-        { "text": "직접 결과물을 몇 가지 만들며 실행 가능한 방법을 찾아낸다.", "axis": "achiever" },
+        { "text": "자료가 부족해도 일단 직접 시작하면서 방법을 찾아간다.", "axis": "challenger" },
+        { "text": "직접 결과물을 만들어보며 실행 가능한 방법을 찾아본다.", "axis": "achiever" },
         { "text": "비슷한 사례를 찾아 비교하고, 실행 순서를 먼저 정리한다.", "axis": "seeker" }
       ]
     },
     {
       "question": "오랫동안 사실이라고 믿었던 내용이 틀렸다는 이야기를 들었습니다.",
       "answers": [
-        { "text": "새로운 내용이 맞다면 바로 받아들이고 생각을 바꾼다.", "axis": "challenger" },
+        { "text": "새로운 내용이 맞다면 빠르게 받아들이고 생각을 바꾼다.", "axis": "challenger" },
         { "text": "사실인지 직접 확인할 방법을 만들어 검증한다.", "axis": "achiever" },
         { "text": "신뢰할 만한 자료를 찾아 사실관계와 근거를 확인한다.", "axis": "seeker" }
       ]
