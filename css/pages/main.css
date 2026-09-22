@@ -1,0 +1,94 @@
+/* PC */
+/* sec_kv */
+.sec_kv {background-color:#030712;}
+.sec_kv .bg_box {max-width:192rem; height:90rem; margin:0 auto;}
+.sec_kv .txt_box {display:flex; flex-direction:column; align-items:center; gap:2.4rem; position:absolute; top:26.3rem; left:50%; transform:translateX(-50%); width:100%; text-align:center;}
+.sec_kv .txt_box .pre_txt {color:#E5E7EB; font-size:2rem; line-height:1.5;}
+.sec_kv .txt_box h2 {color:#fff; font-size:4.8rem; font-weight:600; line-height:1.3;}
+.sec_kv .txt_box h2 > strong {padding-top:.8rem; font-size:6.4rem; font-weight:inherit;}
+.sec_kv .txt_box .sub_txt {color:#E5E7EB; font-size:3.2rem; font-weight:500; line-height:1.2;}
+
+/* sec_explore */
+.sec_explore {padding:12rem 0; background-color:#F9FAFB;}
+.sec_explore .title_box {margin-bottom:4.8rem;}
+.sec_explore .title_box .eyebrow {display:block; padding-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600;}
+.sec_explore .title_box h2 {font-size:4.8rem; font-weight:700; line-height:1.3;}
+
+.sec_explore .explore_list {display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;}
+.sec_explore .explore_list li {position:relative; width:calc(50% - 1rem); padding:3.2rem; border:1px solid #D1D5DB;}
+.sec_explore .explore_list li .card_label {display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;}
+.sec_explore .explore_list li .card_eyebrow {color:#155DFC; font-size:1.4rem; font-weight:600; line-height:3.1rem;}
+.sec_explore .explore_list li .card_tag {color:#D1D5DB; font-size:2.4rem; font-weight:600; line-height:3.1rem;}
+.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.04em;}
+.sec_explore .explore_list li .card_txt {padding-bottom:6rem; color:#4A5565; font-size:1.6rem; line-height:1.6; letter-spacing:-.04em; word-break:keep-all;}
+.sec_explore .explore_list li .card_link {display:inline-flex; align-items:center; gap:.8rem; font-size:1.4rem; font-weight:600; line-height:2rem;}
+.sec_explore .explore_list li .card_link .ico_arrow {width:2rem; height:2rem; flex-shrink:0;}
+
+/* 호버스타일 */
+.sec_explore .explore_list li {transition:background-color .25s ease, border-color .25s ease;}
+.sec_explore .explore_list li .card_eyebrow,
+.sec_explore .explore_list li h3,
+.sec_explore .explore_list li .card_txt,
+.sec_explore .explore_list li .card_link,
+.sec_explore .explore_list li .card_tag {transition:color .25s ease, opacity .25s ease;}
+
+/* 카드별 hover(PC) / is-tapped(모바일 JS 제어) 배경색 */
+.sec_explore .explore_list li:nth-child(1):hover,
+.sec_explore .explore_list li:nth-child(1).is-tapped {background-color:#030712; border-color:#D1D5DB;}
+
+.sec_explore .explore_list li:nth-child(2):hover,
+.sec_explore .explore_list li:nth-child(2).is-tapped {background-color:#51A2FF; border-color:#D1D5DB;}
+
+.sec_explore .explore_list li:nth-child(3):hover,
+.sec_explore .explore_list li:nth-child(3).is-tapped {background-color:#155DFC; border-color:#D1D5DB;}
+
+.sec_explore .explore_list li:nth-child(4):hover,
+.sec_explore .explore_list li:nth-child(4).is-tapped {background-color:#FF466E; border-color:#D1D5DB;}
+
+/* hover / is-tapped 상태일 때 텍스트·아이콘 색상 전환 */
+.sec_explore .explore_list li:hover .card_eyebrow,
+.sec_explore .explore_list li.is-tapped .card_eyebrow {color:#fff; opacity:.7;}
+
+.sec_explore .explore_list li:hover h3,
+.sec_explore .explore_list li.is-tapped h3 {color:#fff;}
+
+.sec_explore .explore_list li:hover .card_tag,
+.sec_explore .explore_list li.is-tapped .card_tag {color:#fff; opacity:.25;}
+
+.sec_explore .explore_list li:hover .card_txt,
+.sec_explore .explore_list li.is-tapped .card_txt {color:#E5E7EB;}
+
+.sec_explore .explore_list li:hover .card_link,
+.sec_explore .explore_list li.is-tapped .card_link {color:#fff;}
+
+.sec_explore .explore_list li:hover .card_link .ico_arrow img,
+.sec_explore .explore_list li.is-tapped .card_link .ico_arrow img {filter:brightness(0) invert(1);}
+
+/* MOBILE */
+/* SIZE 360 기준 */
+@media all and (max-width:768px) {
+	/* sec_kv */
+	.sec_kv .bg_box {height:75.2rem;}
+	.sec_kv .txt_box {top:16rem; gap:2rem; left:0; transform:none;}
+	.sec_kv .txt_box .pre_txt {font-size:1.8rem;}
+	.sec_kv .txt_box h2 {font-size:2.8rem;}
+	.sec_kv .txt_box h2 > strong {padding-top:.8rem; font-size:3.6rem;}
+	.sec_kv .txt_box .sub_txt {font-size:1.8rem; font-weight:400;}
+
+	/* sec_explore */
+	.sec_explore {padding:7.6rem 0 6rem;}
+	.sec_explore .title_box {margin-bottom:3.2rem;}
+	.sec_explore .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem;}
+	.sec_explore .title_box h2 {font-size:2.8rem;}
+
+	.sec_explore .explore_list {gap:1.6rem;}
+	.sec_explore .explore_list li {width:100%; padding:2.4rem;}
+	.sec_explore .explore_list li .card_label {margin-bottom:1rem;}
+	.sec_explore .explore_list li .card_eyebrow {font-size:1.3rem;}
+	.sec_explore .explore_list li .card_tag {font-size:1.8rem; line-height:2.3rem; text-align:right;}
+	.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:2.4rem;}
+	.sec_explore .explore_list li .card_sub {padding-bottom:.8rem; font-size:1.8rem;}
+	.sec_explore .explore_list li .card_txt {padding-bottom:3.6rem; font-size:1.6rem;}
+	.sec_explore .explore_list li .card_link {gap:.4rem; font-size:1.4rem;}
+	.sec_explore .explore_list li .card_link .ico_arrow {width:2re m; height:2rem;}
+}

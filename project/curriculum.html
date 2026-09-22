@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURRICULUM</title>
+	<link rel="icon" href="../img/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/pages/curriculum.css">
+</head>
+
+<body>
+    <div class="wrap">
+		<!-- header -->
+		<header class="header">
+			<div class="inner_1720">
+				<a href="./main.html" class="header_logo">
+					<img src="../img/header_sk_logo.svg" alt="AIGEN">
+				</a>
+				<nav class="header_nav">
+					<a href="./about.html">ABOUT</a>
+					<a href="./curriculum.html" class="active">CURRICULUM</a>
+					<a href="./aigen_test.html">AIGEN TEST</a>
+					<a href="./support.html">SUPPORT</a>
+				</nav>
+				<a href="https://www.skcareers.com/" target="_blank" class="header_apply">
+					APPLY <span class="ico_arrow"><img src="../img/header_nav_arrow.svg" alt=""></span>
+				</a>
+				<button type="button" class="header_toggle" aria-expanded="false">
+					<span class="img_box ico_hamburger">
+						<img src="../img/header_menu_icon.svg" alt="">
+					</span>
+					<span class="img_box ico_close">
+						<img src="../img/header_menu_close_icon.svg" alt="">
+					</span>
+					<span class="blind">메뉴 열기</span>
+				</button>
+			</div>
+
+			<!-- 모바일 드롭다운 메뉴 -->
+			<div class="header_mobile_nav" backdrop>
+				<nav>
+					<a href="./about.html">ABOUT</a>
+					<a href="./curriculum.html" class="active">CURRICULUM</a>
+					<a href="./aigen_test.html">AIGEN TEST</a>
+					<a href="./support.html">SUPPORT</a>
+				</nav>
+				<a href="https://www.skcareers.com/" target="_blank" class="header_apply">
+					APPLY <span class="ico_arrow"><img src="../img/header_nav_arrow.svg" alt=""></span>
+				</a>
+			</div>
+		</header>
+
+		<!-- sec_kv -->
+       	<section class="sec_kv">
+			<picture class="bg_box">
+				<source srcset="../img/kv_bg_mo.jpg" media="(max-width: 768px)">
+				<source srcset="../img/kv_bg_pc.webp" media="(min-width: 769px)">
+				<img src="../img/kv_bg_pc.webp" alt="">
+			</picture>
+
+			<div class="inner_1280 txt_box">
+				<span class="eyebrow">THE CURRICULUM</span>
+				<h2>
+					AI를 소비하는 데 <br class="mo_show">머물지 않습니다. <br>
+					AI와 함께 문제를 정의하고, <br>
+					해결의 방식과 가치의 <br class="mo_show">기준을 다시 세웁니다.
+				</h2>
+				<p class="sub_txt">창업 지원부터 계열사 인턴, 해외 필드트립까지 24개월의 성장을 뒷받침합니다.</p>
+			</div>
+		</section>
+
+		<!-- sec_curriculum -->
+		<section class="sec_curriculum">
+			<div class="title_box">
+				<div class="inner_1280">
+					<span class="eyebrow">CURRICULUM</span>
+					<h2>
+						10개의 경험으로 <br>
+						24개월을 완성합니다
+					</h2>
+					<p class="sub_txt">1년차는 문제의 범위를 넓혀가고, 2년차는 스스로 선택한 트랙에서 실전 성과를 만듭니다.</p>
+				</div>
+			</div>
+
+			<div class="year_box year01">
+				<div class="inner_1280">
+					<div class="sub_title_box">
+						<p class="eyebrow">1년차,</p>
+						<h3>다양한 문제 속에서 <br class="mo_show">나를 발견합니다.</h3>
+						<p class="sub_txt">1년차는 문제의 범위를 넓혀가고, 2년차는 스스로 선택한 트랙에서 실전 성과를 만듭니다.</p>
+					</div>
+
+					<!-- 모바일 전용: 현재 스텝 라벨 + 이전/다음 -->
+					<div class="mobile_stepper_bar mo_show">
+						<button class="mobile_arrow prev" type="button" aria-label="이전 모듈">
+							<img src="../img/curriculum_prev_arrow_blue_icon.svg" alt="">
+						</button>
+						<span class="mobile_active_label">AI Fluency 역량 강화</span>
+						<button class="mobile_arrow next" type="button" aria-label="다음 모듈">
+							<img src="../img/curriculum_next_arrow_blue_icon.svg" alt="">
+						</button>
+					</div>
+
+					<!-- step_box -->
+					<div class="step_box" data-stepper="year1" role="tablist" aria-label="1년차 모듈 선택">
+						<button class="btn_step" data-step="0" data-label="AI Fluency 역량 강화" type="button" id="year1-tab-0" role="tab" aria-controls="year1-panel-0" aria-selected="false" tabindex="-1">
+							<span class="step_num">M0</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title pc_show">AI Fluency<br>역량 강화</span>
+						</button>
+						<button class="btn_step" data-step="1" data-label="내 주변의 문제 탐색" type="button" id="year1-tab-1" role="tab" aria-controls="year1-panel-1" aria-selected="false" tabindex="-1">
+							<span class="step_num">M1</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title pc_show">내 주변의<br>문제 탐색</span>
+						</button>
+						<button class="btn_step" data-step="2" data-label="지역사회와 공공 문제 해결" type="button" id="year1-tab-2" role="tab" aria-controls="year1-panel-2" aria-selected="false" tabindex="-1">
+							<span class="step_num">M2</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title pc_show">지역사회와<br>공공 문제 해결</span>
+						</button>
+						<button class="btn_step" data-step="3" data-label="미래·기술·산업" type="button" id="year1-tab-3" role="tab" aria-controls="year1-panel-3" aria-selected="false" tabindex="-1">
+							<span class="step_num">M3</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title pc_show">서울대<br>협력 과정</span>
+						</button>
+						<button class="btn_step" data-step="4" data-label="기업 현장 과제 수행" type="button" id="year1-tab-4" role="tab" aria-controls="year1-panel-4" aria-selected="false" tabindex="-1">
+							<span class="step_num">M4</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title pc_show">기업 현장<br>과제 수행</span>
+						</button>
+						<button class="btn_step" data-step="5" data-label="창업 아이디어 실행" type="button" id="year1-tab-5" role="tab" aria-controls="year1-panel-5" aria-selected="false" tabindex="-1">
+							<span class="step_num">M5</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title pc_show">창업<br>아이디어 실행</span>
+						</button>
+						<button class="btn_step" data-step="6" data-label="2년차 설계" type="button" id="year1-tab-6" role="tab" aria-controls="year1-panel-6" aria-selected="false" tabindex="-1">
+							<span class="step_num">M6</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title pc_show">2년차<br>설계</span>
+						</button>
+					</div>
+
+					<!-- detail_box -->
+					<div class="detail_box">
+						<button type="button" class="btn_arrow prev pc_show" aria-label="이전 모듈">
+							<img src="../img/curriculum_prev_arrow_blue_icon.svg" alt="">
+						</button>
+
+						<div class="detail_panels">
+							<div class="detail_panel active" id="year1-panel-0" role="tabpanel" aria-labelledby="year1-tab-0">
+								<p class="detail_num">M0</p>
+								<h4 class="detail_title">AI 기본역량</h4>
+								<p class="detail_txt">AI를 도구로 다루고 생각을 빠르게 현실로 만드는 기본 감각을 익힙니다.</p>
+								<ul class="meta_box">
+									<li>
+										<span class="eyebrow">MISSION</span>
+										<p class="meta_txt">AI Solution Build 및 운영</p>
+									</li>
+									<li>
+										<span class="eyebrow">PARTNER</span>
+										<p class="meta_txt">스코프랩스 · 2027.1–2</p>
+									</li>
+								</ul>
+							</div>
+							<div class="detail_panel" id="year1-panel-1" role="tabpanel" aria-labelledby="year1-tab-1" hidden>
+								<p class="detail_num">M1</p>
+								<h4 class="detail_title">내 주변의 문제 해결</h4>
+								<p class="detail_txt">내 주변의 문제를 구조화하고 해결의 사이클을 반복하며 자기 것으로 만듭니다.</p>
+								<ul class="meta_box">
+									<li>
+										<span class="eyebrow">MISSION</span>
+										<p class="meta_txt">구조화된 문제 해결</p>
+									</li>
+									<li>
+										<span class="eyebrow">PARTNER</span>
+										<p class="meta_txt">스코프랩스 · 자라나는 씨앗 · 2027.3–4</p>
+									</li>
+								</ul>
+							</div>
+							<div class="detail_panel" id="year1-panel-2" role="tabpanel" aria-labelledby="year1-tab-2" hidden>
+								<p class="detail_num">M2</p>
+								<h4 class="detail_title">지역사회·공공</h4>
+								<p class="detail_txt">사람의 신호를 읽고, 현장 속에 숨은 진짜 문제를 발견하고 정의합니다.</p>
+								<ul class="meta_box">
+									<li>
+										<span class="eyebrow">MISSION</span>
+										<p class="meta_txt">비구조화된 문제 발견·정의</p>
+									</li>
+									<li>
+										<span class="eyebrow">PARTNER</span>
+										<p class="meta_txt">임팩트스퀘어 · 폴앤마크 · 2027.5–6</p>
+									</li>
+								</ul>
+							</div>
+							<div class="detail_panel" id="year1-panel-3" role="tabpanel" aria-labelledby="year1-tab-3" hidden>
+								<p class="detail_num">M3</p>
+								<h4 class="detail_title">미래·기술·산업</h4>
+								<p class="detail_txt">익숙한 관점에서 벗어나 아직 답이 명확하지 않은 새로운 문제에 도전합니다.</p>
+								<ul class="meta_box">
+									<li>
+										<span class="eyebrow">MISSION</span>
+										<p class="meta_txt">창업가로서의 시야 확장</p>
+									</li>
+									<li>
+										<span class="eyebrow">PARTNER</span>
+										<p class="meta_txt">서울대학교 AI연구원 · 2027.7</p>
+									</li>
+								</ul>
+							</div>
+							<div class="detail_panel" id="year1-panel-4" role="tabpanel" aria-labelledby="year1-tab-4" hidden>
+								<p class="detail_num">M4</p>
+								<h4 class="detail_title">기업의 실제 문제</h4>
+								<p class="detail_txt">멤버사, 스타트업 등 실제 조직이 마주한 문제에 도전하고, 제약 조건 속에서 비즈니스가 작동하는 구조를 체득합니다.</p>
+								<ul class="meta_box">
+									<li>
+										<span class="eyebrow">MISSION</span>
+										<p class="meta_txt">Biz 문제 해결</p>
+									</li>
+									<li>
+										<span class="eyebrow">PARTNER</span>
+										<p class="meta_txt">렛서 · DY&Company · 2027.8–10</p>
+									</li>
+								</ul>
+							</div>
+							<div class="detail_panel" id="year1-panel-5" role="tabpanel" aria-labelledby="year1-tab-5" hidden>
+								<p class="detail_num">M5</p>
+								<h4 class="detail_title">내가 선택한 문제</h4>
+								<p class="detail_txt">지금까지의 경험을 바탕으로 새로운 가치를 실제 창업 아이템으로 구현합니다.</p>
+								<ul class="meta_box">
+									<li>
+										<span class="eyebrow">MISSION</span>
+										<p class="meta_txt">창업 아이템 발굴 및 구현</p>
+									</li>
+									<li>
+										<span class="eyebrow">PARTNER</span>
+										<p class="meta_txt">UD Impact · SKT Startup Lab · 2027.11–12</p>
+									</li>
+								</ul>
+							</div>
+							<div class="detail_panel" id="year1-panel-6" role="tabpanel" aria-labelledby="year1-tab-6" hidden>
+								<p class="detail_num">M6</p>
+								<h4 class="detail_title">2년차 설계</h4>
+								<p class="detail_txt">1년의 경험을 돌아보고, 누구도 정해주지 않은 다음 도전을 스스로 설계합니다.</p>
+								<ul class="meta_box">
+									<li>
+										<span class="eyebrow">MISSION</span>
+										<p class="meta_txt">1년 Review · 2년 Planning</p>
+									</li>
+									<li>
+										<span class="eyebrow">PARTNER</span>
+										<p class="meta_txt">서울대학교 AI연구원 · 2028.1–2</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<button type="button" class="btn_arrow next pc_show" aria-label="다음 모듈">
+							<img src="../img/curriculum_next_arrow_blue_icon.svg" alt="">
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- sec_route -->
+		<section class="sec_route">
+			<div class="inner_1280">
+				<div class="sub_title_box">
+					<p class="eyebrow">2년차,</p>
+					<h3>자신의 길을 <br class="mo_show">실제 현장에서 시험합니다.</h3>
+					<p class="sub_txt">
+						1년 동안 다양한 문제를 경험하며 발견한 관심과 강점을 실제 현장에서 더 깊이 검증하는 1년입니다. <br>
+						스스로 선택한 영역에서 더 큰 문제에 도전합니다.
+					</p>
+				</div>
+
+				<!-- CHOOSE YOUR ROUTE -->
+				<div class="route_box box01">
+					<div class="route_title_box">
+						<span class="eyebrow">CHOOSE YOUR ROUTE</span>
+					</div>
+
+					<div class="route_content_box step_box">
+						<div class="step_item">
+							<span class="step_num">M7</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title">
+								시작·실행 착수<br>
+								2028.03-05
+							</span>
+						</div>
+						<div class="step_item">
+							<span class="step_num">M8</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title">
+								검증·고도화<br>
+								2028.06-08
+							</span>
+						</div>
+						<div class="step_item">
+							<span class="step_num">M9</span>
+							<span class="step_track">
+								<span class="step_dot"></span>
+								<span class="track_line"></span>
+							</span>
+							<span class="step_title">
+								적용·성과 확인<br>
+								2028.09-11
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- PIONEER ROUTE -->
+				<div class="route_box route_step_box box02">
+					<div class="route_title_box">
+						<span class="eyebrow">PIONEER ROUTE</span>
+						<h4>창업</h4>
+						<p class="sub_txt">직접 아이디어를 실험하고 <br class="pc_show">사업으로 발전시키는 경로</p>
+					</div>
+
+					<div class="route_content_box">
+						<!-- 모바일 전용: 미니 스텝(M7/M8/M9) -->
+						<div class="route_mini_stepper mo_show" data-route="pioneer">
+							<button class="mini_step" data-step="0" data-label="시작·실행 착수" type="button">
+								<span class="mini_step_num">M7</span>
+								<span class="mini_step_track">
+									<span class="mini_track_line"></span>
+									<span class="mini_step_dot"></span>
+									<span class="mini_track_line"></span>
+								</span>
+							</button>
+							<button class="mini_step" data-step="1" data-label="검증·고도화" type="button">
+								<span class="mini_step_num">M8</span>
+								<span class="mini_step_track">
+									<span class="mini_track_line"></span>
+									<span class="mini_step_dot"></span>
+									<span class="mini_track_line"></span>
+								</span>
+							</button>
+							<button class="mini_step" data-step="2" data-label="적용·성과 확인" type="button">
+								<span class="mini_step_num">M9</span>
+								<span class="mini_step_track">
+									<span class="mini_track_line"></span>
+									<span class="mini_step_dot"></span>
+									<span class="mini_track_line"></span>
+								</span>
+							</button>
+						</div>
+
+						<!-- 모바일 전용: 현재 카드 라벨 + 이전/다음 -->
+						<div class="route_mobile_bar mo_show">
+							<button class="route_arrow prev" type="button" aria-label="이전 카드">
+								<img src="../img/curriculum_prev_arrow_blue_icon.svg" alt="">
+							</button>
+							<span class="route_active_label">시작·실행 착수</span>
+							<button class="route_arrow next" type="button" aria-label="다음 카드">
+								<img src="../img/curriculum_next_arrow_blue_icon.svg" alt="">
+							</button>
+						</div>
+
+						<ul class="card_list">
+							<li class="card_item active">
+								<p class="card_num">M7</p>
+								<h5>아이템 사업화</h5>
+								<p class="card_txt">창업 트랙을 선택하고, 직접 아이디어를 <br class="pc_show">실험하며 사업화에 착수합니다.</p>
+								<p class="card_txt">
+									주요 활동 <br>
+									아이디어 실험 · 아이템 구체화 <br class="pc_show">선택한 창업 트랙의 실행
+								</p>
+								<p class="goal_txt">목표 : <br>아이디어를 실행으로 전환</p>
+							</li>
+
+							<li class="card_item" hidden>
+								<p class="card_num">M8</p>
+								<h5>사업의 고도화</h5>
+								<p class="card_txt">시장에서 아이템의 가능성을 검증하고, <br class="pc_show">선택한 사업을 더 구체적으로 발전시킵니다.</p>
+								<div class="card_txt">
+									주요 활동 <br>
+									시장 반응 확인 · 아이템 검증 <br class="pc_show">검증 결과를 바탕으로 사업 고도화
+								</div>
+								<p class="goal_txt">목표 : <br>시장에서 사업 가능성 확인</p>
+							</li>
+
+							<li class="card_item" hidden>
+								<p class="card_num">M9</p>
+								<h5>투자 유치 · 사업화</h5>
+								<p class="card_txt">법인 설립, 투자 유치, 독립 등 <br class="pc_show">자신이 설정한 창업 목표를 향해 나아갑니다.</p>
+								<div class="card_txt">
+									주요 활동 <br>
+									투자 유치 · 사업화 활동 <br class="pc_show">Demo Day를 통한 성과 발표
+								</div>
+								<p class="goal_txt">목표 : <br>다음 단계로 이어질 사업 기반</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- SCOUT ROUTE -->
+				<div class="route_box route_step_box box03">
+					<div class="route_title_box">
+						<span class="eyebrow">SCOUT ROUTE</span>
+						<h4>현장 경험</h4>
+						<p class="sub_txt">조직의 실제 문제를 발견하고 <br class="pc_show">해결하며 성과를 쌓는 경로</p>
+					</div>
+
+					<div class="route_content_box">
+						<div class="route_mini_stepper mo_show" data-route="scout">
+							<button class="mini_step" data-step="0" data-label="시작·실행 착수" type="button">
+								<span class="mini_step_num">M7</span>
+								<span class="mini_step_track">
+									<span class="mini_track_line"></span>
+									<span class="mini_step_dot"></span>
+									<span class="mini_track_line"></span>
+								</span>
+							</button>
+							<button class="mini_step" data-step="1" data-label="검증·고도화" type="button">
+								<span class="mini_step_num">M8</span>
+								<span class="mini_step_track">
+									<span class="mini_track_line"></span>
+									<span class="mini_step_dot"></span>
+									<span class="mini_track_line"></span>
+								</span>
+							</button>
+							<button class="mini_step" data-step="2" data-label="적용·성과 확인" type="button">
+								<span class="mini_step_num">M9</span>
+								<span class="mini_step_track">
+									<span class="mini_track_line"></span>
+									<span class="mini_step_dot"></span>
+									<span class="mini_track_line"></span>
+								</span>
+							</button>
+						</div>
+
+						<div class="route_mobile_bar mo_show">
+							<button class="route_arrow prev" type="button" aria-label="이전 카드">
+								<img src="../img/curriculum_prev_arrow_blue_icon.svg" alt="">
+							</button>
+							<span class="route_active_label">시작·실행 착수</span>
+							<button class="route_arrow next" type="button" aria-label="다음 카드">
+								<img src="../img/curriculum_next_arrow_blue_icon.svg" alt="">
+							</button>
+						</div>
+
+						<div class="card_list">
+							<li class="card_item active">
+								<p class="card_num">M7</p>
+								<h5>현장 배치 · 실무 수행</h5>
+								<p class="card_txt">계열사 또는 스타트업 인턴 트랙에서 <br>실제 조직의 문제를 풀며 도전을 시작합니다.</p>
+								<div class="card_txt">
+									경험의 현장<br>
+									계열사 인턴  /  실제 조직의 문제 해결 <br>
+									스타트업 인턴  /  빠른 실행 경험
+								</div>
+								<p class="goal_txt">목표 : <br>선택한 현장에서 실행 착수</p>
+							</li>
+
+							<li class="card_item" hidden>
+								<p class="card_num">M8</p>
+								<h5>문제 인지 · 솔루션 개발</h5>
+								<p class="card_txt">선택한 현장에서 실무를 이어가며, <br>발견한 문제를 해결할 솔루션을 개발합니다.</p>
+								<div class="card_txt">
+									주요 활동 <br>
+									현장 문제 인지 · 해결 방향 구체화 <br>
+									문제에 맞는 솔루션 개발
+								</div>
+								<p class="goal_txt">목표 : <br>현장 문제를 해결안으로 연결</p>
+							</li>
+
+							<li class="card_item" hidden>
+								<p class="card_num">M9</p>
+								<h5>적용 · 성과 검증</h5>
+								<p class="card_txt">개발한 솔루션을 현장에 적용하고, <br>실제 성과를 확인하며 경험을 정리합니다.</p>
+								<div class="card_txt">
+									주요 활동 <br>
+									솔루션 현장 적용 · 성과 검증 <br>
+									Demo Day를 통한 성과 발표
+								</div>
+								<p class="goal_txt">목표 : <br>실행 결과를 성과로 확인</p>
+							</li>
+						</div>
+					</div>
+				</div>
+
+				<div class="chance_box">
+					<h4>선택은 달라도, 도전을 확장하는 <br class="mo_show">기회는 함께합니다.</h4>
+					<ul class="chance_list">
+						<li>
+							<strong class="chance_title">SHOWCASE / 성과 평가</strong>
+							<p class="chance_txt">트랙 수행 후 쇼케이스로 평가받고, <br>평가 결과에 따라 인센티브가 지급됩니다.</p>
+						</li>
+						<li>
+							<strong class="chance_title">FIELD TRIP / 해외 탐색</strong>
+							<p class="chance_txt">M8에서 상위 20%에게 주어지는 기회, <br>해외 필드트립을 직접 계획하고 다녀옵니다.</p>
+						</li>
+						<li>
+							<strong class="chance_title">DEMO DAY / 성과 발표</strong>
+							<p class="chance_txt">M9의 Demo Day에서 <br>선택한 트랙의 실행 결과와 성과를 발표합니다.</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- sec_banner -->
+		<section class="sec_banner">
+			<div class="inner_1720">
+				<div class="title_box">
+					<span class="eyebrow">AIGEN / EXPLORE ANOTHER POSSIBILITY</span>
+					<h2>
+						가능성을 생각하는 데서 <br class="mo_show">멈추지 마세요.<br>
+						이제, 24개월의 경험으로 <br class="mo_show">만들어보세요.
+					</h2>
+				</div>
+
+				<a href="https://www.skcareers.com/" target="_blank" class="btn_apply">
+					<span class="btn_txt">APPLY NOW</span>
+					<span class="ico_arrow"><img src="../img/banner_arrow_up.svg" alt=""></span>
+				</a>
+			</div>
+		</section>
+
+		<!-- sec_footer -->
+		<footer class="footer">
+			<div class="inner_1720">
+				<div class="footer_inner">
+					<div class="footer_top">
+						<div class="footer_logo">
+							<img src="../img/footer_sk.svg" alt="SK AIGEN">
+						</div>
+						<div class="footer_ci">
+							<div class="img_box ci_sk">
+								<img src="../img/footer_sk_logo.svg" alt="">
+							</div>
+							<div class="img_box ci_01">
+								<img src="../img/footer_school_logo.svg" alt="">
+							</div>
+						</div>
+						<ul class="footer_info">
+							<li>
+								<span class="info_label">문의처</span>
+								<span class="info_value">skaigen@gmail.com</span>
+							</li>
+							<li>
+								<span class="info_label">주소</span>
+								<span class="info_value">서울 강남구 테헤란로 415 3층</span>
+							</li>
+						</ul>
+					</div>
+					<div class="footer_bottom">
+						<p class="footer_text">EXPLORE MORE POSSIBILITIES</p>
+						<p class="footer_copy">© 2026 SK AIGEN</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+    </div>
+	<script src="../js/common.js"></script>
+	<script src="../js/curriculum.js"></script>
+</body>
+</html>
+

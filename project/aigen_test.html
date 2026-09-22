@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIGEN TEST</title>
+	<link rel="icon" href="../img/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/pages/aigen_test.css">
+</head>
+
+<body>
+    <div class="wrap">
+		<!-- header -->
+		<header class="header">
+			<div class="inner_1720">
+				<a href="./main.html" class="header_logo">
+					<img src="../img/header_sk_logo.svg" alt="AIGEN">
+				</a>
+				<nav class="header_nav">
+					<a href="./about.html">ABOUT</a>
+					<a href="./curriculum.html">CURRICULUM</a>
+					<a href="./aigen_test.html" class="active">AIGEN TEST</a>
+					<a href="./support.html">SUPPORT</a>
+				</nav>
+				<a href="https://www.skcareers.com/" target="_blank" class="header_apply">
+					APPLY <span class="ico_arrow"><img src="../img/header_nav_arrow.svg" alt=""></span>
+				</a>
+				<button type="button" class="header_toggle" aria-expanded="false">
+					<span class="img_box ico_hamburger">
+						<img src="../img/header_menu_icon.svg" alt="">
+					</span>
+					<span class="img_box ico_close">
+						<img src="../img/header_menu_close_icon.svg" alt="">
+					</span>
+					<span class="blind">메뉴 열기</span>
+				</button>
+			</div>
+
+			<!-- 모바일 드롭다운 메뉴 -->
+			<div class="header_mobile_nav" backdrop>
+				<nav>
+					<a href="./about.html">ABOUT</a>
+					<a href="./curriculum.html">CURRICULUM</a>
+					<a href="./aigen_test.html" class="active">AIGEN TEST</a>
+					<a href="./support.html">SUPPORT</a>
+				</nav>
+				<a href="https://www.skcareers.com/" target="_blank" class="header_apply">
+					APPLY <span class="ico_arrow"><img src="../img/header_nav_arrow.svg" alt=""></span>
+				</a>
+			</div>
+		</header>
+
+		<!-- sec_kv -->
+       	<section class="sec_kv">
+			<picture class="bg_box pc_show">
+				<source srcset="../img/kv_bg_mo.jpg" media="(max-width: 768px)">
+				<source srcset="../img/kv_bg_pc.webp" media="(min-width: 769px)">
+				<img src="../img/kv_bg_pc.webp" alt="">
+			</picture>
+
+			<div class="inner_1720">
+				<div class="txt_box">
+					<span class="eyebrow">YOUR EXPLORER SIGNAL</span>
+					<h2>WHAT KIND OF <br>EXPLORER ARE YOU?</h2>
+					<p class="sub_txt">나는 어떤 방식으로 가능성을 탐색하는 사람일까? <br>열두 가지 질문으로 나를 움직이는 방식을 확인해 보세요.</p>
+				</div>
+
+				<div class="quiz_box">
+					<div class="quiz" id="detailQuiz">
+						<!-- 질문 화면 -->
+						<div class="quiz_question" id="quizQuestion">
+							<p class="quiz_progress" id="quizProgress" style="display: none;">01 / 12</p>
+							<p class="quiz_eyebrow">YOUR AIGEN TYPE</p>
+							<h3 class="quiz_q_text" id="quizQText" tabindex="-1"></h3>
+
+							<div class="quiz_answers" id="quizAnswers">
+								<button class="quiz_answer" type="button" data-slot="0">
+									<span class="answer_text"></span>
+								</button>
+								<button class="quiz_answer" type="button" data-slot="1">
+									<span class="answer_text"></span>
+								</button>
+								<button class="quiz_answer" type="button" data-slot="2">
+									<span class="answer_text"></span>
+								</button>
+								<button class="quiz_answer" type="button" data-slot="3">
+									<span class="answer_text"></span>
+								</button>
+							</div>
+						</div>
+
+						<!-- 결과 화면 -->
+						<div class="quiz_result" id="quizResult" hidden>
+							<p class="quiz_eyebrow">YOUR AIGEN TYPE</p>
+							<div class="result_name" id="resultName" tabindex="-1"></div>
+							<p class="result_tag" id="resultTag"></p>
+							<h3 class="result_lead" id="resultLead"></h3>
+							<p class="result_secondary" id="resultSecondary"></p>
+
+							<div class="result_bars">
+								<div class="result_bar_row" data-persona="experimenter">
+									<span class="bar_label">실험가</span>
+									<div class="result_bar_track"><div class="result_bar_fill"></div></div>
+									<span class="bar_pct">0%</span>
+								</div>
+								<div class="result_bar_row" data-persona="achiever">
+									<span class="bar_label">성취가</span>
+									<div class="result_bar_track"><div class="result_bar_fill"></div></div>
+									<span class="bar_pct">0%</span>
+								</div>
+								<div class="result_bar_row" data-persona="seeker">
+									<span class="bar_label">탐구가</span>
+									<div class="result_bar_track"><div class="result_bar_fill"></div></div>
+									<span class="bar_pct">0%</span>
+								</div>
+							</div>
+
+							<div class="result_copy">
+								<p id="resultCopy1"></p>
+								<p id="resultCopy2"></p>
+							</div>
+
+							<div class="result_actions">
+								<button class="btn_reset" id="testRetry" type="button">다시 하기</button>
+								<a class="btn_apply" href="https://www.skcareers.com" target="_blank" rel="noreferrer">SK AIGEN 지원하기</a>
+							</div>
+
+							<p class="result_status" role="status" id="resultStatus"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- sec_who -->
+		<section class="sec_who" hidden>
+			<div class="inner_1720">
+				<div class="title_box">
+				<span class="eyebrow">WE ARE LOOKING FOR</span>
+				<h2>우리가 찾는 사람</h2>
+				<p class="sub_txt">
+					완성된 사람보다 변화 속에서 더 빠르게 배우고,<br>
+					문제를 새롭게 정의하며, 함께 실행하는 사람을 찾습니다.
+				</p>
+				</div>
+
+				<ul class="who_list">
+					<li>
+						<span class="ico_who">
+							<img src="../img/aigen_test_b cup_icon.svg" alt="">
+						</span>
+						<div class="who_content">
+							<strong class="who_title">실험가</strong>
+							<div class="who_more">
+								<p class="who_desc">
+									새로운 기술을 가장 먼저 배우고<br>
+									즐기며 빠르게 시도합니다.
+								</p>
+								<p class="who_tags">GitHub · Kaggle · 게임/창작 플랫폼 활동</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<span class="ico_who">
+							<img src="../img/aigen_test_trophy_icon.svg" alt="">
+						</span>
+						<div class="who_content">
+							<strong class="who_title">성취가</strong>
+							<div class="who_more">
+								<p class="who_desc">
+									자신의 분야에서 최고 수준에 도전하고<br>
+									끝까지 실행해 성과를 만듭니다.
+								</p>
+								<p class="who_tags">창업동아리 · 공모전 · 경진대회 성과</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<span class="ico_who">
+							<img src="../img/aigen_test_compass_Icon.svg" alt="">
+						</span>
+						<div class="who_content">
+							<strong class="who_title">탐구가</strong>
+							<div class="who_more">
+								<p class="who_desc">
+									사람과 사회를 깊이 이해하고<br>
+									새로운 질문으로 미래를 탐구합니다.
+								</p>
+								<p class="who_tags">사회혁신 · 커뮤니티 · 현장인터뷰/리서치</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- sec_banner -->
+		<section class="sec_banner">
+			<div class="inner_1720">
+				<div class="title_box">
+					<span class="eyebrow">AIGEN / EXPLORE ANOTHER POSSIBILITY</span>
+					<h2>
+						가능성을 생각하는 데서 <br class="mo_show">멈추지 마세요.<br>
+						이제, 24개월의 경험으로 <br class="mo_show">만들어보세요.
+					</h2>
+				</div>
+
+				<a href="https://www.skcareers.com/" target="_blank" class="btn_apply">
+					<span class="btn_txt">APPLY NOW</span>
+					<span class="ico_arrow"><img src="../img/banner_arrow_up.svg" alt=""></span>
+				</a>
+			</div>
+		</section>
+
+		<!-- sec_footer -->
+		<footer class="footer">
+			<div class="inner_1720">
+				<div class="footer_inner">
+					<div class="footer_top">
+						<div class="footer_logo">
+							<img src="../img/footer_sk.svg" alt="SK AIGEN">
+						</div>
+						<div class="footer_ci">
+							<div class="img_box ci_sk">
+								<img src="../img/footer_sk_logo.svg" alt="">
+							</div>
+							<div class="img_box ci_01">
+								<img src="../img/footer_school_logo.svg" alt="">
+							</div>
+						</div>
+						<ul class="footer_info">
+							<li>
+								<span class="info_label">문의처</span>
+								<span class="info_value">skaigen@gmail.com</span>
+							</li>
+							<li>
+								<span class="info_label">주소</span>
+								<span class="info_value">서울 강남구 테헤란로 415 3층</span>
+							</li>
+						</ul>
+					</div>
+					<div class="footer_bottom">
+						<p class="footer_text">EXPLORE MORE POSSIBILITIES</p>
+						<p class="footer_copy">© 2026 SK AIGEN</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+    </div>
+	<script src="../js/common.js"></script>
+	<script src="../js/aigen_test.js"></script>
+</body>
+</html>
