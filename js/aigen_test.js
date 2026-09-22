@@ -1,21 +1,27 @@
 /* =========================================================
    AIGEN TEST 퀴즈 스크립트
+   7문항 · 3지선다 · 문항별 가중치 적용 버전
    ========================================================= */
 
 let questions = [];
 let personas = {};
 
 let currentIndex = 0;
-// 4가지 성향별로 몇 점 쌓였는지 저장
-const score = { think: 0, adapt: 0, empathy: 0, body: 0 };
 
-let answerHistory = []; // 뒤로가기용: 각 문항에서 선택했던 axis와 화면에 보였던 순서를 기록
+// 3가지 유형(축)의 점수를 저장. 가중치가 적용되므로 소수점 값이 됩니다.
+const score = { challenger: 0, achiever: 0, seeker: 0 };
+
+// 문항별 가중치 (판별력이 높은 문항일수록 값이 큼)
+// ⚠️ 임의로 확장한 값입니다. 실제 기획 확정값으로 교체해주세요.
+const QUESTION_WEIGHTS = [1.00, 1.06, 1.13, 1.21, 1.30, 1.40, 1.51];
+
+let answerHistory = []; // 뒤로가기용: 각 문항에서 선택했던 axis / 가중치 / 화면 순서 기록
 let isAnimating = false; // 애니메이션 중 중복 클릭/뒤로가기 방지
 
 const questionBox = document.getElementById('quizQuestion');
 const progressText = document.getElementById('quizProgress');
 const questionText = document.getElementById('quizQText');
-const answerButtons = [...document.querySelectorAll('.quiz_answer')];
+const answerButtons = [...document.querySelectorAll('.quiz_answer')]; // HTML에서 3개로 구성되어야 함
 const resultBox = document.getElementById('quizResult');
 const prevButton = document.getElementById('quizPrev');
 
@@ -24,7 +30,7 @@ const RESULT_SECTION_SELECTORS = ['.sec_banner', '.sec_who']; // TODO: 실제 �
 const HERO_SELECTOR = '.scan-hero'; // TODO: 실제 클래스명으로 교체
 
 
-// 배열 순서를 무작위로 섞는 함수 (답변 4개가 매번 다른 순서로 보이게 함)
+// 배열 순서를 무작위로 섞는 함수 (답변 3개가 매번 다른 순서로 보이게 함)
 function shuffle(array) {
   const result = [...array];
   for (let i = result.length - 1; i > 0; i--) {
@@ -48,7 +54,7 @@ function showQuestion(snapshot) {
   const question = questions[currentIndex];
   const shuffledAnswers = snapshot || shuffle(question.answers);
 
-  progressText.textContent = `${currentIndex + 1}`.padStart(2, '0') + ' / ' + questions.length;
+  progressText.textContent = `${currentIndex + 1}`.padStart(2, '0') + ' / ' + `${questions.length}`.padStart(2, '0');
   questionText.textContent = question.question;
 
   answerButtons.forEach((button, i) => {
@@ -78,22 +84,23 @@ function goToNextQuestion(renderNext) {
 }
 
 
-// 답변 버튼을 클릭했을 때 실행: 점수 반영 후 다음 문항, 마지막이면 결과 화면으로
+// 답변 버튼을 클릭했을 때 실행: 가중치 점수 반영 후 다음 문항, 마지막이면 결과 화면으로
 function selectAnswer(button) {
   if (isAnimating) return;
   answerButtons.forEach((b) => (b.disabled = true));
   button.classList.add('is-selected');
 
   const axis = button.dataset.axis;
+  const weight = QUESTION_WEIGHTS[currentIndex];
 
-  // 뒤로가기를 위해, 지금 화면에 보였던 답변 순서와 선택한 axis를 저장
+  // 뒤로가기를 위해, 지금 화면에 보였던 답변 순서와 선택 정보를 저장
   const snapshot = answerButtons.map((b) => ({
     text: b.querySelector('.answer_text').textContent,
     axis: b.dataset.axis,
   }));
-  answerHistory.push({ axis, snapshot });
+  answerHistory.push({ axis, weight, snapshot });
 
-  score[axis] += 1;
+  score[axis] += weight;
   currentIndex += 1;
 
   isAnimating = true;
@@ -113,7 +120,7 @@ function goToPrevQuestion() {
   if (isAnimating || currentIndex === 0 || answerHistory.length === 0) return;
 
   const last = answerHistory.pop(); // 마지막으로 답했던 기록 꺼내기
-  score[last.axis] -= 1; // 그때 더했던 점수 되돌리기
+  score[last.axis] -= last.weight; // 그때 더했던 가중치 점수 되돌리기
   currentIndex -= 1;
 
   isAnimating = true;
@@ -124,22 +131,34 @@ function goToPrevQuestion() {
 }
 
 
-// 4개 성향(think/adapt/empathy/body) 점수를 3개 유형 점수로 변환하고,
+// 동점 처리: 가중치가 높은 문항에서 선택한 유형을 우선한다.
+// (기존 기획: "5번 문항 우선 → 3번 문항 우선" = "가중치 큰 문항 우선"을 일반화한 버전)
+function resolveTie(candidates) {
+  // answerHistory를 가중치 내림차순으로 훑으면서, candidates 중 하나를 고른 문항을 찾으면 그걸로 확정
+  const byWeightDesc = [...answerHistory].sort((a, b) => b.weight - a.weight);
+  for (const entry of byWeightDesc) {
+    if (candidates.includes(entry.axis)) return entry.axis;
+  }
+  return candidates[0]; // 이론상 도달하지 않음 (안전장치)
+}
+
+
+// 3개 유형(challenger/achiever/seeker)의 점수를 바탕으로
 // 순위(mainType/subType)와 퍼센트(percent)를 계산하는 함수
 function calculateResult() {
-  const totalScores = {
-    experimenter: score.adapt * 2,
-    achiever: score.body * 2,
-    seeker: score.think + score.empathy,
-  };
+  const keys = ['challenger', 'achiever', 'seeker'];
+  const total = keys.reduce((sum, k) => sum + score[k], 0);
 
-  const order = ['seeker', 'achiever', 'experimenter'];
-  const ranked = order.slice().sort((a, b) => totalScores[b] - totalScores[a] || order.indexOf(a) - order.indexOf(b));
-
-  const total = totalScores.seeker + totalScores.achiever + totalScores.experimenter;
   const percent = {};
-  order.forEach((key) => {
-    percent[key] = Math.round((totalScores[key] * 100) / total);
+  keys.forEach((k) => {
+    percent[k] = total > 0 ? Math.round((score[k] * 100) / total) : 0;
+  });
+
+  // 점수 내림차순 정렬, 동점이면 resolveTie로 우선순위 결정
+  const ranked = [...keys].sort((a, b) => {
+    if (score[b] !== score[a]) return score[b] - score[a];
+    // 동점인 두 유형만 놓고 우선순위를 물어봄
+    return resolveTie([a, b]) === a ? -1 : 1;
   });
 
   return { percent, mainType: ranked[0], subType: ranked[1] };
@@ -179,7 +198,10 @@ function showResult() {
   });
 
   document.getElementById('resultCopy1').textContent = mainPersona.body[0];
-  document.getElementById('resultCopy2').textContent = mainPersona.body[1];
+  document.getElementById('resultCopy2').textContent =
+    percent[subType] > 0
+      ? `${mainPersona.name}의 성향이 가장 두드러지며, ${subPersona.trait} ${subPersona.name}의 성향(${percent[subType]}%)도 함께 가지고 있습니다.`
+      : `${mainPersona.name}의 성향이 가장 두드러집니다.`;
 
   document.getElementById('resultName').focus({ preventScroll: true });
 }
@@ -211,16 +233,55 @@ function startQuiz(data) {
   document.getElementById('testRetry').addEventListener('click', resetQuiz);
   prevButton?.addEventListener('click', goToPrevQuestion);
 
+  // 공유 URL은 원점수 대신 "퍼센트"를 그대로 인코딩합니다. (challenger-achiever-seeker, 합계 100)
+  // 가중치가 붙어 원점수가 소수점이 되기 때문에, 정수인 퍼센트로 공유하는 편이 URL도 짧고 안전합니다.
   const shared = new URLSearchParams(location.search).get('result');
-  const parsed = shared && /^\d{1,2}-\d{1,2}-\d{1,2}-\d{1,2}$/.test(shared) ? shared.split('-').map(Number) : null;
-  const isValidShare = parsed && parsed.every((n) => n <= 12) && parsed.reduce((a, b) => a + b, 0) === 12;
+  const parsed = shared && /^\d{1,3}-\d{1,3}-\d{1,3}$/.test(shared) ? shared.split('-').map(Number) : null;
+  const isValidShare = parsed && parsed.every((n) => n <= 100) && parsed.reduce((a, b) => a + b, 0) === 100;
 
   if (isValidShare) {
-    [score.think, score.adapt, score.empathy, score.body] = parsed;
-    showResult();
+    showSharedResult(parsed); // [challenger%, achiever%, seeker%]
   } else {
     showQuestion();
   }
+}
+
+
+// 공유 링크로 들어왔을 때: 직접 계산하지 않고 URL의 퍼센트 값을 그대로 표시
+function showSharedResult(parsedPercents) {
+  const keys = ['challenger', 'achiever', 'seeker'];
+  const percent = {};
+  keys.forEach((k, i) => (percent[k] = parsedPercents[i]));
+
+  const ranked = [...keys].sort((a, b) => percent[b] - percent[a]);
+  const mainType = ranked[0];
+  const subType = ranked[1];
+
+  questionBox.hidden = true;
+  resultBox.hidden = false;
+  toggleResultSections(true);
+
+  const mainPersona = personas[mainType];
+  const subPersona = personas[subType];
+
+  document.getElementById('resultName').textContent = mainPersona.name;
+  document.getElementById('resultTag').textContent = mainPersona.tag;
+  document.getElementById('resultLead').textContent = mainPersona.lead;
+  document.getElementById('resultSecondary').textContent =
+    percent[subType] > 0 ? `${subPersona.name}(${percent[subType]}%) 기질도 함께 갖고 있어요` : '';
+
+  document.querySelectorAll('.result_bar_row').forEach((row) => {
+    const key = row.dataset.persona;
+    row.classList.toggle('is-top', key === mainType);
+    row.querySelector('.result_bar_fill').style.width = percent[key] + '%';
+    row.querySelector('.bar_pct').textContent = percent[key] + '%';
+  });
+
+  document.getElementById('resultCopy1').textContent = mainPersona.body[0];
+  document.getElementById('resultCopy2').textContent =
+    percent[subType] > 0
+      ? `${mainPersona.name}의 성향이 가장 두드러지며, ${subPersona.trait} ${subPersona.name}의 성향(${percent[subType]}%)도 함께 가지고 있습니다.`
+      : `${mainPersona.name}의 성향이 가장 두드러집니다.`;
 }
 
 
@@ -235,7 +296,6 @@ function startQuiz(data) {
       startQuiz(QUIZ_DATA_FALLBACK); 를 대신 호출하면 됩니다.
    ========================================================= */
 
-// 퀴즈 시작점: 데이터를 불러온 뒤 startQuiz()를 호출
 async function init() {
   //  const response = await fetch('../json/main.json');
   //  const data = await response.json();
@@ -249,147 +309,101 @@ async function init() {
 
 /* =========================================================
    백업용 데이터 (평소엔 사용 안 함, 위 안내대로 필요할 때만 주석 해제)
-   json/main.json과 내용이 완전히 동일합니다.
+   json/main.json과 내용이 완전히 동일해야 합니다.
+
+   ⚠️ 기획서(문서1)에는 5문항 내용만 확정되어 있어서,
+   아래에는 그 5개를 그대로 넣고 나머지 2개는 TODO 자리만 만들어뒀습니다.
+   질문/선택지/axis 내용을 채워주세요. axis는 challenger / achiever / seeker 중 하나입니다.
    ========================================================= */
 
-// file://로 바로 열 때를 대비한 백업 데이터 (json/main.json과 동일 내용)
 const QUIZ_DATA_FALLBACK = {
   "questions": [
     {
-      "question": "늘 쓰던 것에서 불편한 점이 눈에 들어왔습니다. 다들 그냥 쓰고 있습니다.",
+      "question": "늘 쓰던 물건에서 불편함을 발견했습니다.",
       "answers": [
-        { "text": "다른 사람들도 불편한지 물어본다", "axis": "empathy" },
-        { "text": "왜 자꾸 같은 문제가 나오는지 생각해본다", "axis": "think" },
-        { "text": "내 나름대로 고쳐 써본다. 안 되면 마는 거다", "axis": "adapt" },
-        { "text": "아예 다르게 만들어서 다음부턴 이걸 쓰자고 내놓는다", "axis": "body" }
+        { "text": "일단 다 방식대로 고쳐 써본다. 잘 안되면 다른 방법을 다시 시도한다.", "axis": "challenger" },
+        { "text": "새로운 방식으로 만들어 함께 쓰자고 제안한다.", "axis": "achiever" },
+        { "text": "왜 같은 불편이 반복되는지 원인부터 살펴본다.", "axis": "seeker" }
       ]
     },
     {
-      "question": "여럿이 모여 뭘 할지 30분째 결론이 안 납니다.",
+      "question": "여러 사람이 모여 무엇을 할지 논의하고 있지만, 30분째 결론이 나지 않습니다.",
       "answers": [
-        { "text": "고르는 기준부터 다시 정하자고 한다", "axis": "think" },
-        { "text": "일단 아무거나 정하고 움직이자고 한다", "axis": "adapt" },
-        { "text": "각자 뭘 원하는지 듣고 겹치는 지점을 찾는다", "axis": "empathy" },
-        { "text": "그냥 내가 먼저 하나 만들어서 이걸로 하자고 보여준다", "axis": "body" }
+        { "text": "우선 하나를 정하고 움직이면서 방향을 조정하자고 한다.", "axis": "challenger" },
+        { "text": "내가 먼저 방향을 만들어 구체적인 방향을 제시한다.", "axis": "achiever" },
+        { "text": "무엇을 기준으로 결정할지부터 다시 정하자고 한다.", "axis": "seeker" }
       ]
     },
     {
-      "question": "새로 깐 앱을 처음 켰습니다.",
+      "question": "새로 설치한 앱을 처음 실행했습니다.",
       "answers": [
-        { "text": "튜토리얼 건너뛰고 아무거나 눌러본다", "axis": "adapt" },
-        { "text": "써보고 괜찮으면 주변에도 알려주고 같이 써보자고 한다", "axis": "empathy" },
-        { "text": "설정이랑 메뉴부터 하나씩 열어본다", "axis": "think" },
-        { "text": "익힌 기능으로 뭘 만들 수 있을지 바로 테스트해본다", "axis": "body" }
+        { "text": "튜토리얼을 건너뛰고 여러 기능을 직접 눌러본다.", "axis": "challenger" },
+        { "text": "기능을 빠르게 익힌 뒤 무엇을 만들 수 있을지 바로 시험해본다.", "axis": "achiever" },
+        { "text": "설정과 메뉴를 하나씩 살펴보며 앱의 구조부터 파악한다.", "axis": "seeker" }
       ]
     },
     {
-      "question": "몇 달 준비한 일이 결국 엎어졌습니다. 다음 날,",
+      "question": "몇 달 동안 준비한 일이 결국 무산됐습니다. 다음날,",
       "answers": [
-        { "text": "같이 했던 사람들한테 먼저 연락한다", "axis": "empathy" },
-        { "text": "하루만 쉬고 다른 걸 찾아본다", "axis": "adapt" },
-        { "text": "다들 이유를 말하는데, 내가 보기엔 다른 게 문제였다", "axis": "think" },
-        { "text": "그 경험을 바로 정리해서 다음에 쓸 수 있는 형태로 만들어둔다", "axis": "body" }
+        { "text": "잠시 숨을 고른 뒤 새로운 가능성을 찾아 다시 움직인다.", "axis": "challenger" },
+        { "text": "이번 경험을 정리해 다음 도전에 활용할 수 있는 결과물로 남긴다.", "axis": "achiever" },
+        { "text": "일이 무산된 진짜 이유가 무엇인지 다시 분석해본다.", "axis": "seeker" }
       ]
     },
     {
-      "question": "다들 좋다는 걸 샀는데 나한테는 안 맞습니다.",
+      "question": "같은 실수를 두 번째로 반복했습니다.",
       "answers": [
-        { "text": "바로 정리하고 다른 걸 알아본다", "axis": "adapt" },
-        { "text": "후기를 다시 읽어본다. 광고였나 싶어서", "axis": "think" },
-        { "text": "후기에 내가 겪은 그대로 남긴다", "axis": "empathy" },
-        { "text": "나한테 맞게 직접 뜯어고쳐서 쓴다", "axis": "body" }
+        { "text": "오늘과 자책하기보다 방법을 다시 시도하며 방법을 찾는다.", "axis": "challenger" },
+        { "text": "같은 실수를 막을 수 있도록 체크리스트나 장치를 마련한다.", "axis": "achiever" },
+        { "text": "두 번의 실수가 어떤 상황에서 발생했는지 공통점을 찾아본다.", "axis": "seeker" }
       ]
     },
     {
-      "question": "친했던 사람이랑 대화가 예전 같지 않습니다.",
+      "question": "해보고 싶은 일이 생겼지만, 검색해도 정보가 잘 나오지 않습니다.",
       "answers": [
-        { "text": "내가 뭐 잘못했나 그동안 대화를 떠올려본다", "axis": "empathy" },
-        { "text": "사이가 변한 건지, 상황이 바뀐 건지 생각해본다", "axis": "think" },
-        { "text": "예전처럼 안 되면 지금 사이에 맞춰간다", "axis": "adapt" },
-        { "text": "같이 할 거리를 만들어서 다시 가까워질 계기를 만든다", "axis": "body" }
+        { "text": "자료가 부족해도 일단 직접 시작하며 방법을 찾아간다.", "axis": "challenger" },
+        { "text": "직접 결과물을 몇 가지 만들며 실행 가능한 방법을 찾아낸다.", "axis": "achiever" },
+        { "text": "비슷한 사례를 찾아 비교하고, 실행 순서를 먼저 정리한다.", "axis": "seeker" }
       ]
     },
     {
-      "question": "같은 실수를 두 번째 했습니다.",
+      "question": "오랫동안 사실이라고 믿었던 내용이 틀렸다는 이야기를 들었습니다.",
       "answers": [
-        { "text": "두 번 다 어떤 상황이었는지 되짚어본다", "axis": "think" },
-        { "text": "나 때문에 곤란해진 사람부터 찾는다", "axis": "empathy" },
-        { "text": "한숨 한 번 쉬고 바로 다시 한다", "axis": "adapt" },
-        { "text": "다시 안 그러도록 체크리스트나 장치를 만들어둔다", "axis": "body" }
-      ]
-    },
-    {
-      "question": "하고 싶은 게 생겼는데 주변에서 다들 말립니다.",
-      "answers": [
-        { "text": "일단 해보고 아니면 그때 접는다", "axis": "adapt" },
-        { "text": "말리는 이유 들어보고 걸리는 것만 고친다", "axis": "empathy" },
-        { "text": "들을 건 듣고, 결정은 원래대로 한다", "axis": "think" },
-        { "text": "일단 뭐라도 만들어서 보여준다", "axis": "body" }
-      ]
-    },
-    {
-      "question": "오래 사실이라 믿었던 게 아니라는 얘기를 들었습니다.",
-      "answers": [
-        { "text": "진짜인지 검색해본다", "axis": "think" },
-        { "text": "그동안 이걸로 누구한테 뭐라 한 적 있나 떠올린다", "axis": "empathy" },
-        { "text": "\"아 그래?\" 하고 바로 바꿔서 기억한다", "axis": "adapt" },
-        { "text": "진짜인지 직접 확인해볼 방법부터 만든다", "axis": "body" }
-      ]
-    },
-    {
-      "question": "약속 두 시간 전에 취소 연락이 왔습니다.",
-      "answers": [
-        { "text": "그럼 혼자 할 거 하고 온다", "axis": "adapt" },
-        { "text": "무슨 일 있나 싶어서 먼저 물어본다", "axis": "empathy" },
-        { "text": "오늘 뭘 하면 좋을지 처음부터 다시 짠다", "axis": "think" },
-        { "text": "남는 시간에 뭐 하나라도 만들어놓는다", "axis": "body" }
-      ]
-    },
-    {
-      "question": "해보고 싶은 게 있는데 검색해도 자료가 안 나옵니다.",
-      "answers": [
-        { "text": "같이 할 사람부터 구해본다", "axis": "empathy" },
-        { "text": "비슷한 거라도 찾아서 순서를 짜본다", "axis": "think" },
-        { "text": "자료 없으면 없는 대로 그냥 시작한다", "axis": "adapt" },
-        { "text": "일단 손으로 만들어보면서 방법을 찾는다", "axis": "body" }
-      ]
-    },
-    {
-      "question": "다 같이 정한 방향인데 하다 보니 아닌 것 같습니다.",
-      "answers": [
-        { "text": "일단 해보다가 아니면 그때 바꾼다", "axis": "adapt" },
-        { "text": "지금이라도 얘기 꺼낸다", "axis": "empathy" },
-        { "text": "내 몫은 내 방식대로 해본다", "axis": "think" },
-        { "text": "내가 생각한 대안을 직접 만들어서 제시한다", "axis": "body" }
+        { "text": "새로운 내용이 맞다면 바로 받아들이고 생각을 바꾼다.", "axis": "challenger" },
+        { "text": "사실인지 직접 확인할 방법을 만들어 검증한다.", "axis": "achiever" },
+        { "text": "신뢰할 만한 자료를 찾아 사실관계와 근거를 확인한다.", "axis": "seeker" }
       ]
     }
   ],
   "personas": {
-    "experimenter": {
-      "name": "실험가",
-      "tag": "TRY · BUILD · LEARN",
-      "lead": "궁금하면 먼저 시도해보는 사람",
+    "challenger": {
+      "name": "도전가",
+      "tag": "DARE · ACT · GROW",
+      "lead": "낯선 가능성에 먼저 뛰어드는 사람",
+      "trait": "새로운 방법을 먼저 시도하는",
       "body": [
-        "새로운 기술이나 방법을 마주하면 설명을 다 읽기 전에 일단 만져봅니다. 처음 보는 도구도 금방 손에 익히고, 그 과정에서 남들이 못 본 가능성을 먼저 발견합니다.",
-        "이 성향은 아직 정답이 없는 곳에서 가장 크게 빛납니다. 아무도 안 가본 길일수록, 먼저 발을 디뎌본 사람의 경험이 가장 큰 자산이 됩니다."
+        "불확실해도 작은 행동부터 시작합니다. 익숙한 방식보다 새로운 가능성을 선택합니다.",
+        "실패에 머무르지 않고 다시 도전합니다."
       ]
     },
     "achiever": {
       "name": "성취가",
-      "tag": "SET · CHALLENGE · MAKE IT HAPPEN",
-      "lead": "정한 목표는 끝까지 만들어내는 사람",
+      "tag": "AIM · ACT · ACHIEVE",
+      "lead": "목표를 결과로 완성하는 사람",
+      "trait": "목표를 끝까지 완성하는",
       "body": [
-        "어려운 목표일수록 오히려 몰입합니다. 중간에 막혀도 포기 대신 다른 방법을 찾고, 결국 눈에 보이는 성과로 끝을 맺습니다.",
-        "방향이 정해졌는데 아무도 안 움직일 때, 먼저 끝까지 가보는 사람이 나머지를 움직이게 합니다."
+        "목표와 우선순위를 명확히 정합니다. 실행 과정과 역할을 구체적으로 설계합니다.",
+        "시작한 일을 끝까지 완성합니다."
       ]
     },
     "seeker": {
       "name": "탐구가",
       "tag": "ASK · EXPLORE · GO DEEP",
       "lead": "질문을 깊게 파고드는 사람",
+      "trait": "질문의 본질을 깊이 파고드는",
       "body": [
-        "표면적인 답에서 멈추지 않고, 그 뒤에 있는 사람과 맥락을 이해하려 합니다. 다른 사람이 지나친 질문 하나를 붙잡고 오래 들여다봅니다.",
-        "기술이나 방법보다 그걸 쓰는 사람을 먼저 이해해야 진짜 문제가 풀립니다."
+       "표면적인 답에서 멈추지 않고 그 뒤에 있는 이유와 맥락을 이해하려 합니다. \n다른 사람이 지나친 질문 하나를 붙잡고 문제의 본질에 닿을 때까지 깊이 탐색합니다.",
+        "문제의 표면보다 본질을 깊이 탐색합니다."
       ]
     }
   }
@@ -399,15 +413,15 @@ init();
 
 
 function initWhoCardTap() {
-    const cards = document.querySelectorAll('.sec_who .who_list > li');
+  const cards = document.querySelectorAll('.sec_who .who_list > li');
 
-    cards.forEach((card) => {
-        card.addEventListener('click', () => {
-            card.classList.add('is-tapped');
-            setTimeout(() => {
-                card.classList.remove('is-tapped');
-            }, 300);
-        });
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      card.classList.add('is-tapped');
+      setTimeout(() => {
+        card.classList.remove('is-tapped');
+      }, 300);
     });
+  });
 }
 initWhoCardTap();
