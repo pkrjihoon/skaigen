@@ -9,11 +9,15 @@ let currentIndex = 0;
 // 4가지 성향별로 몇 점 쌓였는지 저장
 const score = { think: 0, adapt: 0, empathy: 0, body: 0 };
 
+let answerHistory = []; // 뒤로가기용: 각 문항에서 선택했던 axis와 화면에 보였던 순서를 기록
+let isAnimating = false; // 애니메이션 중 중복 클릭/뒤로가기 방지
+
 const questionBox = document.getElementById('quizQuestion');
 const progressText = document.getElementById('quizProgress');
 const questionText = document.getElementById('quizQText');
 const answerButtons = [...document.querySelectorAll('.quiz_answer')];
 const resultBox = document.getElementById('quizResult');
+const prevButton = document.getElementById('quizPrev');
 
 // 결과가 나왔을 때 같이 보여줄 하단 섹션들 (실제 클래스명 정해지면 여기만 수정)
 const RESULT_SECTION_SELECTORS = ['.sec_banner', '.sec_who']; // TODO: 실제 클래스명으로 교체
@@ -31,10 +35,18 @@ function shuffle(array) {
 }
 
 
+// 이전 버튼 활성/비활성 상태 관리
+function updatePrevButtonState() {
+  if (!prevButton) return;
+  prevButton.disabled = currentIndex === 0;
+}
+
+
 // 지금 순서(currentIndex)에 맞는 문항을 화면에 채워 넣는 함수
-function showQuestion() {
+// snapshot이 있으면(=뒤로가기로 온 경우) 그 순서 그대로 복원, 없으면 새로 셔플
+function showQuestion(snapshot) {
   const question = questions[currentIndex];
-  const shuffledAnswers = shuffle(question.answers);
+  const shuffledAnswers = snapshot || shuffle(question.answers);
 
   progressText.textContent = `${currentIndex + 1}`.padStart(2, '0') + ' / ' + questions.length;
   questionText.textContent = question.question;
@@ -48,6 +60,7 @@ function showQuestion() {
   });
 
   if (currentIndex > 0) questionText.focus({ preventScroll: true });
+  updatePrevButtonState();
 }
 
 
@@ -67,19 +80,46 @@ function goToNextQuestion(renderNext) {
 
 // 답변 버튼을 클릭했을 때 실행: 점수 반영 후 다음 문항, 마지막이면 결과 화면으로
 function selectAnswer(button) {
+  if (isAnimating) return;
   answerButtons.forEach((b) => (b.disabled = true));
   button.classList.add('is-selected');
 
   const axis = button.dataset.axis;
+
+  // 뒤로가기를 위해, 지금 화면에 보였던 답변 순서와 선택한 axis를 저장
+  const snapshot = answerButtons.map((b) => ({
+    text: b.querySelector('.answer_text').textContent,
+    axis: b.dataset.axis,
+  }));
+  answerHistory.push({ axis, snapshot });
+
   score[axis] += 1;
   currentIndex += 1;
 
+  isAnimating = true;
   goToNextQuestion(() => {
+    isAnimating = false;
     if (currentIndex < questions.length) {
       showQuestion();
     } else {
       showResult();
     }
+  });
+}
+
+
+// 이전 버튼 클릭 시: 마지막 선택을 취소하고 그 문항을 그대로 복원
+function goToPrevQuestion() {
+  if (isAnimating || currentIndex === 0 || answerHistory.length === 0) return;
+
+  const last = answerHistory.pop(); // 마지막으로 답했던 기록 꺼내기
+  score[last.axis] -= 1; // 그때 더했던 점수 되돌리기
+  currentIndex -= 1;
+
+  isAnimating = true;
+  goToNextQuestion(() => {
+    isAnimating = false;
+    showQuestion(last.snapshot); // 그때 봤던 순서 그대로 복원
   });
 }
 
@@ -149,6 +189,7 @@ function showResult() {
 function resetQuiz() {
   currentIndex = 0;
   Object.keys(score).forEach((key) => (score[key] = 0));
+  answerHistory = [];
   history.replaceState(null, '', location.pathname);
 
   resultBox.hidden = true;
@@ -168,6 +209,7 @@ function startQuiz(data) {
     button.addEventListener('click', () => selectAnswer(button));
   });
   document.getElementById('testRetry').addEventListener('click', resetQuiz);
+  prevButton?.addEventListener('click', goToPrevQuestion);
 
   const shared = new URLSearchParams(location.search).get('result');
   const parsed = shared && /^\d{1,2}-\d{1,2}-\d{1,2}-\d{1,2}$/.test(shared) ? shared.split('-').map(Number) : null;

@@ -34,6 +34,8 @@
 .sec_kv .quiz_answers .quiz_answer.is-selected {background:#9ee8ff; border-color:#9ee8ff; color:#0b0d12; transform:scale(1.01);}
 .sec_kv .quiz_answers .quiz_answer:disabled {cursor:default;}
 .sec_kv .quiz_answers .quiz_answer:disabled:not(.is-selected) {opacity:.35;}
+.sec_kv .quiz_prev  {display: flex; align-items: center; gap: .8rem; padding-top: 1.8rem; color: #E5E7EB; font-size: 1.4rem; line-height: 2rem; font-weight: 700;}
+.sec_kv .quiz_prev .left_icon {width: 1.6rem; height: 1.6rem;}
 
 /* 결과 화면 */
 .sec_kv .quiz_result .result_name {padding-bottom:1.6rem; color:#8EC5FF; font-size:8.4rem; font-weight:800; line-height:1.3;}
