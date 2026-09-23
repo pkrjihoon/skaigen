@@ -94,16 +94,27 @@ function initFaqSection() {
         items.forEach((item) => {
             item.hidden = item.dataset.cat !== category;
         });
+
+        // 카테고리 전환으로 다시 보이게 된 항목 중 열려있는 게 있으면 높이 재계산
+        // (숨겨진(hidden) 동안엔 scrollHeight가 부정확하게 잡히기 때문)
+        items.forEach((item) => {
+            if (!item.hidden && item.classList.contains('open')) {
+                const answer = item.querySelector('.faq_answer');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
     }
 
     function openItem(item) {
+        const answer = item.querySelector('.faq_answer');
         item.classList.add('open');
-        item.querySelector('.faq_answer').hidden = false;
+        answer.style.maxHeight = answer.scrollHeight + 'px';
     }
 
     function closeItem(item) {
+        const answer = item.querySelector('.faq_answer');
+        answer.style.maxHeight = '0px';
         item.classList.remove('open');
-        item.querySelector('.faq_answer').hidden = true;
     }
 
     function toggleItem(item) {
@@ -140,6 +151,16 @@ function initFaqSection() {
     // 전부열게하기
     // const firstCategoryItems = items.filter((item) => item.dataset.cat === firstCategory);
     // firstCategoryItems.forEach((item) => openItem(item));
+
+    // 창 크기 변경 시, 열려있는 항목의 높이를 다시 계산 (benefit_list와 동일한 처리)
+    window.addEventListener('resize', () => {
+        items.forEach((item) => {
+            if (item.classList.contains('open')) {
+                const answer = item.querySelector('.faq_answer');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
 }
 
 initBenefitAccordion();

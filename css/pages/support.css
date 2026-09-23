@@ -108,7 +108,7 @@
 .sec_faq .faq_item {border-bottom:1px solid #E5E7EB;}
 .sec_faq .faq_item[hidden] {display:none;}
 
-.sec_faq .faq_question {display:flex; align-items:center; justify-content:space-between; width:100%; padding:3.2rem 0; text-align:left;}
+.sec_faq .faq_question {display:flex; align-items:start; justify-content:space-between; width:100%; padding:3.2rem 0 0 0; text-align:left;}
 .sec_faq .faq_question span {font-size:2.4rem; font-weight:700;}
 .sec_faq .faq_num {display:inline-block; margin-right:1rem; color:#9CA3AF;}
 .sec_faq .faq_icon {position:relative; flex-shrink:0; width:2.4rem; height:2.4rem;}
@@ -118,9 +118,8 @@
 .sec_faq .faq_item.open .faq_icon .ico_plus {opacity:0;}
 .sec_faq .faq_item.open .faq_icon .ico_minus {opacity:1;}
 
-.sec_faq .faq_answer {margin-top:-1.6rem; padding-bottom:3.2rem;}
-.sec_faq .faq_answer[hidden] {display:none;}
-.sec_faq .faq_answer p {padding:0 6rem 0 4rem; font-size:1.6rem; line-height:1.4; color:#4A5565;}
+.sec_faq .faq_answer {margin-bottom:3.2rem; max-height:0; overflow:hidden; padding-bottom:0;  transition: max-height .4s ease}
+.sec_faq .faq_answer p {margin-top: 1.6rem; padding:0 6rem 0 4rem; font-size:1.6rem; line-height:1.4;}
 
 /* MOBILE */
 /* SIZE 360 기준 */
@@ -209,7 +208,7 @@
 	.sec_offline .offline_note {margin-top:1.2rem; font-size:1rem;}
 
     /* sec_faq */
-    .sec_faq {padding:6rem 0;}
+	.sec_faq {padding:6rem 0;}
 	.sec_faq .title_box {margin-bottom:3.2rem;}
 	.sec_faq .title_box .eyebrow {margin-bottom:1.2rem; font-size:1.4rem;}
 	.sec_faq .title_box h2 {font-size:3rem;}
@@ -217,11 +216,12 @@
 	.sec_faq .faq_tabs {flex-wrap:wrap; gap:.8rem; margin-bottom:3.2rem;}
 	.sec_faq .faq_tab {padding:.8rem 1.2rem; font-size:1.4rem; font-weight:600;}
 
-	.sec_faq .faq_question {padding:2.4rem 0;}
+	.sec_faq .faq_question {padding:2.4rem 0 0 0;}
 	.sec_faq .faq_question span {font-size:1.8rem;}
 	.sec_faq .faq_num {margin-right:1.2rem;}
 	.sec_faq .faq_icon {width:2rem; height:2rem;}
 
-	.sec_faq .faq_answer {margin-top:-.8rem; padding-bottom:2.4rem;}
-	.sec_faq .faq_answer p {padding:0; font-size:1.6rem; line-height:1.6;}
+	.sec_faq .faq_answer {margin-bottom:2.4rem; padding-bottom:0;}
+	.sec_faq .faq_answer p {margin-top: 1.6rem; padding:0; font-size:1.6rem; line-height:1.6;}
+
 }
