@@ -11,7 +11,7 @@
 .sec_kv .txt_box .sub_txt {color:#E5E7EB; font-size:1.8rem; line-height:1.5;}
 
 /* 질문 화면 */
-.sec_kv .quiz_box {flex:1; min-width:0; max-width:87.4rem; padding:4.2rem; border:.2rem solid #8EC5FF; background:rgba(3, 7, 18, 0.6); backdrop-filter:blur(1rem); overflow:hidden;}
+.sec_kv .quiz_box {flex:1; min-width:0; max-width:87.4rem; padding:4.2rem; border:.2rem solid #8EC5FF; background:rgba(3, 7, 18, 0.6); overflow:hidden;}
 .sec_kv .quiz_question {opacity:1; transform:translateY(0); transition:opacity .3s ease, transform .3s ease; animation:quizIn .38s cubic-bezier(.2, .7, .3, 1) both;}
 .sec_kv .quiz_question.is-leaving {opacity:0; transform:translateY(-14px); animation:quizOut .22s ease both;}
 .sec_kv .quiz_box .quiz_progress,
