@@ -49,6 +49,7 @@ function shuffle(array) {
 function updatePrevButtonState() {
   if (!prevButton) return;
   prevButton.disabled = currentIndex === 0;
+  prevButton.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
 }
 
 
@@ -491,16 +492,61 @@ const QUIZ_DATA_FALLBACK = {
 init();
 
 
-function initWhoCardTap() {
-  const cards = document.querySelectorAll('.sec_who .who_list > li');
+function initWhoAccordion() {
+    const list = document.querySelector('.sec_who .who_list');
+    if (!list) return;
 
-  cards.forEach((card) => {
-    card.addEventListener('click', () => {
-      card.classList.add('is-tapped');
-      setTimeout(() => {
-        card.classList.remove('is-tapped');
-      }, 300);
+    const MODE = 'single'; // 3개 중 하나만 열리게
+    const mq = window.matchMedia('(max-width: 768px)');
+    const items = [...list.querySelectorAll('.who_item')];
+
+    function openItem(item) {
+        const more = item.querySelector('.who_more');
+        item.classList.add('open');
+        more.style.maxHeight = more.scrollHeight + 'px';
+    }
+
+    function closeItem(item) {
+        const more = item.querySelector('.who_more');
+        item.classList.remove('open');
+        more.style.maxHeight = '';
+    }
+
+    function toggleItem(item) {
+        const isOpen = item.classList.contains('open');
+        if (MODE === 'single' && !isOpen) {
+            items.forEach((other) => {
+                if (other !== item && other.classList.contains('open')) closeItem(other);
+            });
+        }
+        isOpen ? closeItem(item) : openItem(item);
+    }
+
+    function teardownDesktop() {
+        items.forEach((item) => {
+            item.classList.remove('open');
+            item.querySelector('.who_more').style.maxHeight = '';
+        });
+    }
+
+    items.forEach((item) => {
+        const btn = item.querySelector('.who_title_btn');
+        btn.addEventListener('click', () => {
+            if (mq.matches) toggleItem(item);
+        });
     });
-  });
+
+    mq.addEventListener('change', (e) => {
+        if (!e.matches) teardownDesktop();
+    });
+
+    window.addEventListener('resize', () => {
+        items.forEach((item) => {
+            if (item.classList.contains('open')) {
+                const more = item.querySelector('.who_more');
+                more.style.maxHeight = more.scrollHeight + 'px';
+            }
+        });
+    });
 }
-initWhoCardTap();
+initWhoAccordion();

@@ -1,7 +1,9 @@
 /* PC */
 /* sec_kv */
 .sec_kv {background-color:#030712;}
-.sec_kv .bg_box {max-width:192rem; height:90rem; margin:0 auto;}
+.sec_kv .bg_box {
+	max-width:192rem;
+	height:90rem; margin:0 auto;}
 .sec_kv .txt_box {display:flex; flex-direction:column; align-items:center; gap:2.4rem; position:absolute; top:26.3rem; left:50%; transform:translateX(-50%); width:100%; text-align:center;}
 .sec_kv .txt_box .pre_txt {color:#E5E7EB; font-size:2rem; line-height:1.5;}
 .sec_kv .txt_box h2 {color:#fff; font-size:4.8rem; font-weight:600; line-height:1.3;}

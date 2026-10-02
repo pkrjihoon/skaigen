@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAIN</title>
+	<!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KVDJJLCG');</script>
+    <!-- End Google Tag Manager -->
 	<link rel="icon" href="./img/favicon.ico" type="image/png">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/pages/main.css">
 </head>
 
+
 <body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="..." height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
     <div class="wrap">
 		<!-- header -->
 		<header class="header">
 			<div class="inner_1720">
-				<a href="./main.html" class="header_logo">
+				<a href="../main.html" class="header_logo">
 					<img src="./img/header_sk_logo.svg" alt="AIGEN">
 				</a>
 				<nav class="header_nav">
@@ -24,9 +36,10 @@
 					<a href="../skaigen/project/aigen_test.html">AIGEN TEST</a>
 					<a href="../skaigen/project/support.html">SUPPORT</a>
 				</nav>
-				<a href="https://www.skcareers.com/" target="_blank" class="header_apply">
+				<button type="button" class="btn_popup_open header_apply" data-popup-open="temp">APPLY<img src="./img/header_nav_arrow.svg" alt=""></button>
+				<!-- <a href="https://www.skcareers.com/" target="_blank" class="header_apply">
 					APPLY <span class="ico_arrow"><img src="./img/header_nav_arrow.svg" alt=""></span>
-				</a>
+				</a> -->
 				<button type="button" class="header_toggle" aria-expanded="false">
 					<span class="img_box ico_hamburger">
 						<img src="./img/header_menu_icon.svg" alt="">
@@ -46,7 +59,7 @@
 					<a href="../skaigen/project/aigen_test.html">AIGEN TEST</a>
 					<a href="../skaigen/project/support.html">SUPPORT</a>
 				</nav>
-				<a href="https://www.skcareers.com/" target="_blank" class="header_apply">
+				<a href="#" class="header_apply" data-popup-open="temp">
 					APPLY <span class="ico_arrow"><img src="./img/header_nav_arrow.svg" alt=""></span>
 				</a>
 			</div>
@@ -56,7 +69,7 @@
        	<section class="sec_kv">
 			<picture class="bg_box">
 				<source srcset="./img/kv_bg_mo.jpg" media="(max-width: 768px)">
-				<source srcset="./img/kv_bg_pc.webp" media="(min-width: 769px)">
+				<source srcset="./img/kv_bg_pc_v2.jpg" media="(min-width: 769px)">
 				<img src="./img/kv_bg_pc.webp" alt="">
 			</picture>
 
@@ -156,7 +169,7 @@
 					</h2>
 				</div>
 
-				<a href="https://www.skcareers.com/" target="_blank" class="btn_apply">
+				<a href="#" data-popup-open="temp" class="btn_apply">
 					<span class="btn_txt">APPLY NOW</span>
 					<span class="ico_arrow"><img src="./img/banner_arrow_up.svg" alt=""></span>
 				</a>
@@ -197,6 +210,20 @@
 				</div>
 			</div>
 		</footer>
+
+
+		<div class="popup" data-popup="temp" role="dialog" aria-hidden="true">
+			<div class="popup_dim" data-popup-close></div>
+			<div class="popup_inner">
+				<button type="button" class="btn_popup_close" data-popup-close>
+					<span class="blind">팝업 닫기</span>
+				</button>
+				<div class="popup_content">
+					<h2 class="popup_title" id="popup-temp-title">팝업 제목</h2>
+					<p class="popup_txt">팝업 내용이 들어갑니다. <br>디자인이 나오면 이 영역을 교체해 주세요.</p>
+				</div>
+			</div>
+		</div>
     </div>
 	<script src="./js/common.js"></script>
 	<script src="./js/main.js"></script>

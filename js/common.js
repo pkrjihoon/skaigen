@@ -51,9 +51,71 @@ function initExploreCardTap() {
     });
 }
 
+let isPopupInitialized = false;
+
+function initPopup() {
+    const popups = document.querySelectorAll('[data-popup]');
+    if (!popups.length) return;
+
+    // 뒤로가기로 복원됐을 때 열려 있던 팝업은 닫힌 상태로 리셋
+    popups.forEach((popup) => {
+        popup.classList.remove('is-active');
+        popup.setAttribute('aria-hidden', 'true');
+    });
+    document.body.classList.remove('is-popup-open');
+
+    if (isPopupInitialized) return;
+    isPopupInitialized = true;
+
+    let lastFocusedElement = null;
+
+    function openPopup(popup) {
+        lastFocusedElement = document.activeElement;
+        popup.classList.add('is-active');
+        popup.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('is-popup-open');
+
+        const closeButton = popup.querySelector('.btn_popup_close');
+        if (closeButton) closeButton.focus();
+    }
+
+    function closePopup(popup) {
+        if (!popup) return;
+        popup.classList.remove('is-active');
+        popup.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('is-popup-open');
+
+        if (lastFocusedElement) lastFocusedElement.focus();
+    }
+
+    // 버튼이 나중에 추가돼도 동작하도록 document에 한 번만 위임
+    document.addEventListener('click', (e) => {
+        const openButton = e.target.closest('[data-popup-open]');
+        if (openButton) {
+            e.preventDefault();
+            const popup = document.querySelector(`[data-popup="${openButton.dataset.popupOpen}"]`);
+            if (popup) openPopup(popup);
+            return;
+        }
+
+        // X 버튼, 딤 클릭 시 닫기
+        const closeTarget = e.target.closest('[data-popup-close]');
+        if (closeTarget) closePopup(closeTarget.closest('[data-popup]'));
+    });
+
+    // ESC 키로 닫기
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        closePopup(document.querySelector('[data-popup].is-active'));
+    });
+}
+
+
+
 function initApp() {
     initHeaderToggle();
     initExploreCardTap();
+    initPopup()
 }
 
 // 일반 페이지 로드
