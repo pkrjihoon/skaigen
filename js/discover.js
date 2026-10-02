@@ -334,23 +334,7 @@ function showSharedResult(sharedAnswers) {
 }
 
 
-/* =========================================================
-   데이터 불러오기
-
-   기본: json/main.json을 fetch로 불러옵니다. (로컬 서버 필요, file://는 안 됨)
-
-   만약 로컬 서버 없이 file://로 바로 열어야 하는 상황이면:
-   1) 아래 init() 안의 fetch 부분을 주석 처리
-   2) 맨 아래 QUIZ_DATA_FALLBACK 블록의 주석 표시를 해제하고
-      startQuiz(QUIZ_DATA_FALLBACK); 를 대신 호출하면 됩니다.
-   ========================================================= */
-
 async function init() {
-  //  const response = await fetch('../json/main.json');
-  //  const data = await response.json();
-  //  startQuiz(data);
-
-  //  ↓ fetch가 막히는 환경이면, 위 3줄을 주석 처리하고 아래 2줄을 살리세요.
   const data = QUIZ_DATA_FALLBACK;
   startQuiz(data);
 }
