@@ -53,10 +53,10 @@ function updatePrevButtonState() {
 }
 
 
-// 진행 상태 텍스트(01 / 05)와 프로그레스 바를 현재 위치에 맞게 갱신
+// 진행 상태 텍스트(01 | 05)와 프로그레스 바를 현재 위치에 맞게 갱신
 function updateProgress() {
   progressText.textContent =
-    `${currentIndex + 1}`.padStart(2, '0') + ' / ' + `${questions.length}`.padStart(2, '0');
+    `${currentIndex + 1}`.padStart(2, '0') + ' | ' + `${questions.length}`.padStart(2, '0');
 
   if (progressBarFill) {
     progressBarFill.style.width = `${((currentIndex + 1) / questions.length) * 100}%`;

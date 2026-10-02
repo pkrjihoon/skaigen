@@ -3,7 +3,7 @@ function initBenefitAccordion() {
     if (!lists.length) return;
 
     const MODE = 'multiple';       // 'single' 또는 'multiple'
-    const DEFAULT_OPEN_INDEX = []; // 모바일 진입 시 기본으로 열릴 항목 인덱스, 카드별로 공통 적용됨
+    const DEFAULT_OPEN_INDEX = [0]; // 모바일 진입 시 기본으로 열릴 항목 인덱스, 카드별로 공통 적용됨
 
     const mq = window.matchMedia('(max-width: 768px)');
 

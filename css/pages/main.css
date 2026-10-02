@@ -10,19 +10,42 @@
 .sec_kv .txt_box h2 > strong {padding-top:.8rem; font-size:6.4rem; font-weight:inherit;}
 .sec_kv .txt_box .sub_txt {color:#E5E7EB; font-size:3.2rem; font-weight:500; line-height:1.2;}
 
+/* sec_offline */
+.sec_offline {padding:10rem 0; background-color:#E6F1FF;}
+.sec_offline .title_box {margin-bottom:4.8rem;}
+.sec_offline .title_box .eyebrow {display:block; margin-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
+.sec_offline .title_box h2 {padding-bottom:2rem; font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
+.sec_offline .title_box .sub_txt {color:#64748B; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
+
+.sec_offline .offline_card {padding:4rem; background-color:#fff;}
+.sec_offline .card_list {display:flex; justify-content:space-between; gap:2rem;}
+.sec_offline .card_list > li {flex:1;}
+.sec_offline .card_list > li .offline_label {display:block; margin-bottom:.8rem; font-size:1.6rem; font-weight:700; line-height:1; letter-spacing:-.025em;}
+.sec_offline .card_list > li .offline_desc {color:#0F172A; font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
+
+.sec_offline .offline_actions {display:flex; justify-content:flex-end; align-items:center; gap:2rem; margin-top:4rem;}
+.sec_offline .offline_actions .status_pill,
+.sec_offline .offline_actions .offline_apply {display:flex; justify-content:center; align-items:center; gap:1.6rem; padding:1.6rem 4rem; border-radius:10rem; font-size:1.8rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
+
+.sec_offline .status_pill {border:1px solid #EFF6FF; background-color:#EFF6FF;}
+.sec_offline .offline_apply {color:#fff; background-color:#155DFC;}
+.sec_offline .offline_apply:after {content:''; display:inline-block; width:2.4rem; height:2.4rem; background:url('../../img/aigen_test_quiz_apply_icon.svg') no-repeat center/cover;}
+.sec_offline .offline_apply:hover {filter:brightness(1.08);}
+
+.sec_offline .offline_note {margin-top:1.6rem; color:#99A1AF; font-size:1.2rem; line-height:1.5; letter-spacing:-.025em; text-align:right;}
+
 /* sec_explore */
-.sec_explore {padding:12rem 0; background-color:#F9FAFB;}
+.sec_explore {padding:14rem 0 12rem; background-color:#F9FAFB;}
 .sec_explore .title_box {margin-bottom:4.8rem;}
-.sec_explore .title_box .eyebrow {display:block; padding-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600;}
-.sec_explore .title_box h2 {font-size:4.8rem; font-weight:700; line-height:1.3;}
+.sec_explore .title_box .eyebrow {display:block; padding-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
+.sec_explore .title_box h2 {font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
 
 .sec_explore .explore_list {display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;}
 .sec_explore .explore_list li {position:relative; width:calc(50% - 1rem); padding:3.2rem; border:1px solid #BEDBFF; background-color:#fff;}
 .sec_explore .explore_list li .card_label {display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;}
-.sec_explore .explore_list li .card_eyebrow {color:#155DFC; font-size:1.4rem; font-weight:600; line-height:3.1rem;}
-.sec_explore .explore_list li .card_tag {color:#D1D5DB; font-size:2.4rem; font-weight:600; line-height:3.1rem;}
-.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.04em;}
-.sec_explore .explore_list li .card_txt {padding-bottom:6rem; color:#4A5565; font-size:1.6rem; line-height:1.6; letter-spacing:-.04em; word-break:keep-all;}
+.sec_explore .explore_list li .card_eyebrow {color:#155DFC; font-size:1.4rem; font-weight:600; line-height:1; letter-spacing:.1em;}
+.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em;}
+.sec_explore .explore_list li .card_txt {padding-bottom:6rem; color:#4A5565; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em; word-break:keep-all;}
 .sec_explore .explore_list li .card_link {display:inline-flex; align-items:center; gap:.8rem; font-size:1.4rem; font-weight:600; line-height:2rem;}
 .sec_explore .explore_list li .card_link .ico_arrow {width:2rem; height:2rem; flex-shrink:0;}
 
@@ -31,8 +54,7 @@
 .sec_explore .explore_list li .card_eyebrow,
 .sec_explore .explore_list li h3,
 .sec_explore .explore_list li .card_txt,
-.sec_explore .explore_list li .card_link,
-.sec_explore .explore_list li .card_tag {transition:color .25s ease, opacity .25s ease;}
+.sec_explore .explore_list li .card_link {transition:color .25s ease, opacity .25s ease;}
 
 /* 카드별 hover(PC) / is-tapped(모바일 JS 제어) 배경색 */
 .sec_explore .explore_list li:nth-child(1):hover,
@@ -54,9 +76,6 @@
 .sec_explore .explore_list li:hover h3,
 .sec_explore .explore_list li.is-tapped h3 {color:#fff;}
 
-.sec_explore .explore_list li:hover .card_tag,
-.sec_explore .explore_list li.is-tapped .card_tag {color:#fff; opacity:.25;}
-
 .sec_explore .explore_list li:hover .card_txt,
 .sec_explore .explore_list li.is-tapped .card_txt {color:#E5E7EB;}
 
@@ -77,6 +96,23 @@
 	.sec_kv .txt_box h2 > strong {padding-top:.8rem; font-size:3.6rem;}
 	.sec_kv .txt_box .sub_txt {font-size:1.8rem; font-weight:400;}
 
+	/* sec_offline */
+	.sec_offline {padding:8rem 0;}
+	.sec_offline .title_box {margin-bottom:3.2rem;}
+	.sec_offline .title_box .eyebrow {margin-bottom:1.2rem; font-size:1.4rem;}
+	.sec_offline .title_box h2 {padding-bottom:1.6rem; font-size:3rem;}
+
+	.sec_offline .offline_card {padding:2.8rem 2rem;}
+	.sec_offline .card_list {flex-direction:column; gap:1.6rem;}
+	.sec_offline .card_list > li .offline_label {margin-bottom:.4rem; font-size:1.4rem;}
+	.sec_offline .card_list > li .offline_desc {font-size:1.8rem;}
+
+	.sec_offline .offline_actions {flex-direction:column; gap:1.6rem; margin-top:2rem;}
+	.sec_offline .offline_actions .status_pill,
+	.sec_offline .offline_actions .offline_apply {gap:1.2rem; width:100%; padding:1.2rem 0; font-size:1.6rem;}
+
+	.sec_offline .offline_note {margin-top:1.2rem; font-size:1rem;}
+
 	/* sec_explore */
 	.sec_explore {padding:7.6rem 0 6rem;}
 	.sec_explore .title_box {margin-bottom:3.2rem;}
@@ -86,10 +122,8 @@
 	.sec_explore .explore_list {gap:1.6rem;}
 	.sec_explore .explore_list li {width:100%; padding:2.4rem;}
 	.sec_explore .explore_list li .card_label {margin-bottom:1rem;}
-	.sec_explore .explore_list li .card_tag {display:none;}
 	.sec_explore .explore_list li .card_eyebrow {font-size:1.3rem; line-height:1; letter-spacing:.1em;}
 	.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:2.4rem; letter-spacing:-.025em;}
-	.sec_explore .explore_list li .card_sub {padding-bottom:.8rem; font-size:1.8rem;}
 	.sec_explore .explore_list li .card_txt {padding-bottom:3.6rem; font-size:1.6rem; letter-spacing:-.025em;}
 	.sec_explore .explore_list li .card_link {gap:.8rem; font-size:1.4rem;}
 	.sec_explore .explore_list li .card_link .ico_arrow {width:2rem; height:2rem;}

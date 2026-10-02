@@ -66,7 +66,7 @@
 .sec_kv .result_actions .btn_apply:after {content:''; display:inline-block; width:2rem; height:2rem; background-repeat:no-repeat; background-position:center; background-size:cover;}
 .sec_kv .result_actions .btn_reset:after {background-image:url('../../img/aigen_test_quiz_reset_icon.svg');}
 .sec_kv .result_actions .btn_apply:after {background-image:url('../../img/aigen_test_quiz_apply_icon.svg');}
-.sec_kv .result_actions .text_desc {font-size: 1.4rem; line-height: 1.6; color: #99A1AF; white-space:nowrap;}
+.sec_kv .result_actions .text_desc {font-size: 1.4rem; line-height: 1.6; letter-spacing:-.025em; color: #99A1AF; white-space:nowrap;}
 
 /* sec_who */
 .sec_who {padding: 12rem 0; background-color: #E0E3E8;}
