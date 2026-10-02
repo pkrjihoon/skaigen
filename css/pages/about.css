@@ -1,14 +1,14 @@
 /* PC */
 /* sec_kv */
-.sec_kv {background-color:#030712;}
+.sec_kv {background-color:#EFF6FF;}
 .sec_kv .bg_box {max-width:192rem; height:90rem; margin:0 auto;}
 .sec_kv .txt_box {display:flex; flex-direction:column; justify-content:center; gap:4rem; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; height:100%;}
-.sec_kv .txt_box .eyebrow {display:block; font-size:1.6rem; font-weight:600;}
-.sec_kv .txt_box h2 {color:#fff; font-size:4.8rem; font-weight:700; line-height:1.3;}
-.sec_kv .txt_box .sub_txt {color:#E5E7EB; font-size:2rem; line-height:1.5;}
+.sec_kv .txt_box .eyebrow {display:block; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
+.sec_kv .txt_box h2 {color:#030712; font-size:4.8rem; font-weight:700; line-height:1.3; letter-spacing:-.025em;}
+.sec_kv .txt_box .sub_txt {color:#364153; font-size:2rem; line-height:1.5; letter-spacing:-.025em;}
 
 /* sec_what */
-.sec_what {padding:12rem 0;}
+.sec_what {padding:12rem 0; background-color:#F9FAFB;}
 .sec_what .inner_1720 {display:flex; gap:8rem;}
 .sec_what .what_img {flex-shrink:0; width:80rem;}
 .sec_what .what_content {flex:1;}
@@ -19,11 +19,11 @@
 .sec_what .info_list > li {display:flex; align-items:center; justify-content:space-between; padding:3.2rem 0; border-top:1px solid #D1D5DB;}
 .sec_what .info_list > li .eyebrow {display:block; color:#151515; font-size:2rem; font-weight:600; line-height:1.3;}
 .sec_what .info_list > li .info_value {display:inline-block; padding-bottom:1.6rem; font-size:4.8rem; font-weight:700; line-height:1.3;}
-.sec_what .info_list > li .info_txt {color:#364153; font-size:1.6rem; line-height:1.6;}
+.sec_what .info_list > li .info_txt {color:#364153; opacity:.6; font-size:1.6rem; line-height:1.6;}
 .sec_what .info_list > li .ico_info {flex-shrink:0; width:6.4rem; height:6.4rem;}
 
 /* sec_compare */
-.sec_compare {padding:12rem 0; background-color:#E0E3E8;}
+.sec_compare {padding:12rem 0; background-color:#E6F1FF;}
 .sec_compare .title_box {margin-bottom:8rem;}
 .sec_compare .title_box .eyebrow {display:block; padding-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600;}
 .sec_compare .title_box h2 {padding-bottom:2rem; font-size:4.8rem; font-weight:700; line-height:1.2;}
@@ -47,7 +47,7 @@
 .sec_compare .ico_arrow {flex-shrink:0; width:4rem; height:4rem;}
 
 /* sec_message */
-.sec_message {padding:14rem 0 16rem;}
+.sec_message {padding:14rem 0 16rem; background-color:#F9FAFB;}
 .sec_message .inner_1720 {position:relative;}
 .sec_message .title_box {margin-bottom:8rem;}
 .sec_message .title_box .eyebrow {display:block; padding-bottom:1.6rem; font-size:1.6rem; font-weight:600;}
@@ -67,7 +67,7 @@
 .sec_message .message_img .caption {display:block; margin-top:1rem; color:#99A1AF; font-size:1.6rem; line-height:1.6;}
 
 /* sec_who */
-.sec_who {padding:12rem 0; background-color:#E0E3E8;}
+.sec_who {padding:12rem 0; background-color:#E6F1FF;}
 .sec_who .title_box {margin-bottom:8rem;}
 .sec_who .title_box .eyebrow {display:block; padding-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600;}
 .sec_who .title_box h2 {padding-bottom:2rem; font-size:4.8rem; font-weight:700; line-height:1.2;}
@@ -106,89 +106,91 @@
 /* SIZE 360 기준 */
 @media all and (max-width:768px) {
 	/* sec_kv */
+	.sec_kv {background-color:#E6F1FF;}
 	.sec_kv .bg_box {height:75.2rem;}
 	.sec_kv .txt_box {justify-content:start; gap:2.4rem; top:12.1rem; left:0; transform:none; padding:0 2rem;}
 	.sec_kv .txt_box .eyebrow {font-size:1.4rem;}
 	.sec_kv .txt_box h2 {font-size:3rem;}
-	.sec_kv .txt_box .sub_txt {font-size:1.8rem;}
+	.sec_kv .txt_box .sub_txt {font-size:1.8rem; line-height:1.6;}
 
 	/* sec_what */
-    .sec_what {padding:6rem 0;}
+	.sec_what {padding:6rem 0;}
 	.sec_what .inner_1720 {flex-direction:column; gap:4rem;}
 	.sec_what .what_img {width:100%;}
-	.sec_what .title_box {margin-bottom:4rem;}
-	.sec_what .title_box .eyebrow {padding-bottom:2rem; font-size:3.6rem; font-weight:600;}
-	.sec_what .title_box h2 {padding-bottom:1.2rem; font-size:4rem; font-weight:800;}
-	.sec_what .title_box .sub_txt {font-size:1.8rem;}
+	.sec_what .title_box {margin-bottom:4.7rem;}
+	.sec_what .title_box .eyebrow {padding-bottom:2rem; font-size:3.6rem; font-weight:600; line-height:1;}
+	.sec_what .title_box h2 {padding-bottom:1.2rem; font-size:4rem; font-weight:800; letter-spacing:-0.05em;}
+	.sec_what .title_box .sub_txt {font-size:1.8rem; letter-spacing:-0.025em;}
 	.sec_what .info_list > li {padding:2rem 0;}
 	.sec_what .info_list > li + li {margin-top:.8rem;}
-	.sec_what .info_list > li .eyebrow {padding-bottom:.8rem; font-size:1.8rem;}
-	.sec_what .info_list > li .info_value {padding-bottom:1.2rem; font-size:3rem;}
-	.sec_what .info_list > li .info_txt {font-size:1.6rem;}
+	.sec_what .info_list > li .eyebrow {padding-bottom:.8rem; font-size:1.8rem; letter-spacing:-0.025em;}
+	.sec_what .info_list > li .info_value {padding-bottom:1.2rem; color:#151515; font-size:3rem; letter-spacing:-0.025em;}
+	.sec_what .info_list > li .info_txt {font-size:1.6rem; letter-spacing:-0.025em;}
 	.sec_what .info_list > li .ico_info {width:6.4rem; height:6.4rem;}
 
-   	/* sec_compare */
-	.sec_compare {padding:8rem 0;}
+	/* sec_compare */
+	.sec_compare {padding:8rem 0 6rem;}
 	.sec_compare .title_box {margin-bottom:4.8rem;}
-	.sec_compare .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem;}
-	.sec_compare .title_box h2 {padding-bottom:1.6rem; font-size:3rem;}
-	.sec_compare .title_box .sub_txt {font-size:1.6rem;}
+	.sec_compare .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem; line-height:1;}
+	.sec_compare .title_box h2 {padding-bottom:1.6rem; font-size:3rem; letter-spacing:-0.025em;}
+	.sec_compare .title_box .sub_txt {font-size:1.6rem; letter-spacing:-0.025em;}
 
 	.sec_compare .compare_wrap {display:flex; flex-direction:column; gap:1.2rem;}
 	.sec_compare .compare_head {display:none;}
-	.sec_compare .compare_head {padding-bottom:0;}
-	.sec_compare .compare_head .compare_title {font-size:2.4rem;}
-	.sec_compare .compare_head .compare_title.point {margin-top:.8rem;}
 	.sec_compare .compare_list li {gap:0.8rem; align-items:stretch;}
 	.sec_compare .compare_list li + li {margin-top:1.2rem;}
 
-	.sec_compare .compare_box {padding:2.4rem 1.2rem;}
-	.sec_compare .compare_box > span {display:block; padding-bottom:.8rem; font-size:1.2rem; font-weight:600; letter-spacing:-0.03em; line-height:1.; color:#4A5565;}
+	.sec_compare .compare_box {padding:2rem 1.2rem;}
+	.sec_compare .compare_box > span {display:block; padding-bottom:.8rem; color:#4A5565; font-size:1.2rem; font-weight:600; line-height:1.2; letter-spacing:-0.025em;}
 	.sec_compare .compare_box.point > span {color:#fff;}
-	.sec_compare .compare_box > strong {padding-bottom:.8rem; font-size:2rem;}
-	.sec_compare .compare_box > p {font-size:1.4rem; letter-spacing:-0.04em; line-height:1.6;}
-	.sec_compare .ico_arrow {flex-shrink:0; width:1.6rem; height:1.6rem;  align-self:center; }
+	.sec_compare .compare_box > strong {padding-bottom:.8rem; font-size:2rem; font-weight:600; line-height:1.3; letter-spacing:-0.025em;}
+	.sec_compare .compare_box.white > strong {color:#030712;}
+	.sec_compare .compare_box > p {font-size:1.4rem; line-height:1.6; letter-spacing:-0.025em;}
+	.sec_compare .ico_arrow {flex-shrink:0; width:1.6rem; height:1.6rem; align-self:center;}
 
 	/* sec_message */
-	.sec_message {padding:8rem 0;}
-	.sec_message .title_box {margin-bottom:6.8rem;}
-	.sec_message .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem;}
-	.sec_message .title_box h2 {padding-bottom:1.6rem; font-size:3rem;}
+	.sec_message {padding:8rem 0 6rem;}
+	.sec_message .title_box {margin-bottom:4.8rem;}
+	.sec_message .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem; line-height:1;}
+	.sec_message .title_box h2 {padding-bottom:0; font-size:3rem; letter-spacing:-0.025em;}
 	.sec_message .title_box .sub_txt {font-size:1.6rem;}
 
 	.sec_message .message_list {width:100%;}
-	.sec_message .message_list li {flex-direction:column; gap:0; border-top:1px solid #E5E7EB;}
-	.sec_message .message_list li + li {margin-top:0; }
-	.sec_message .message_list li:last-child {border-bottom:1px solid #E5E7EB;}
+	.sec_message .message_list li {flex-direction:column; gap:0; border-top:1px solid #D1D5DB;}
+	.sec_message .message_list li + li {margin-top:0;}
+	.sec_message .message_list li:last-child {border-bottom:1px solid #D1D5DB;}
 
-	.sec_message .message_list .message_title {display:flex; align-items:center; justify-content:space-between; gap:1.6rem; width:100%; padding:2.4rem 0; font-size:2.4rem; text-align:left; cursor:pointer; pointer-events:auto;}
+	.sec_message .message_list .message_title {display:flex; align-items:center; justify-content:space-between; gap:1.2rem; width:100%; padding:2.4rem 0; font-size:2.4rem; font-weight:600; line-height:1.2; letter-spacing:-0.025em; text-align:left; cursor:pointer; pointer-events:auto; transition:padding .4s ease;}
+	.sec_message .message_list .message_item.open .message_title {padding-bottom:1.6rem;}
 	.sec_message .message_list .message_title_txt {flex:1;}
-	.sec_message .message_list .message_icon {display:flex;flex-shrink:0;width:2rem;height:2rem;}
+	.sec_message .message_list .message_icon {display:flex; flex-shrink:0; width:2rem; height:2rem;}
 	.sec_message .message_list .message_icon img {width:100%; height:100%;}
 	.sec_message .message_list .ico_minus {display:none;}
 	.sec_message .message_list .message_item.open .ico_plus {display:none;}
 	.sec_message .message_list .message_item.open .ico_minus {display:block;}
 
-	.sec_message .message_list .message_content {max-height:0 ;overflow:hidden;transition:max-height .4s ease;}
-	.sec_message .message_list .message_txt {padding-bottom:2.4rem;font-size:1.6rem;line-height:1.6;}
+	.sec_message .message_list .message_content {max-height:0; overflow:hidden; transition:max-height .4s ease;}
+	.sec_message .message_list .message_txt {padding-bottom:2.4rem; font-size:1.6rem; line-height:1.6; letter-spacing:-0.025em;}
 
 	.sec_message .message_img {position:static; width:20rem; margin:2rem 0 0 auto;}
-	.sec_message .message_img .caption {margin-top:.6rem; font-size:1.4rem;}
+	.sec_message .message_img img {width:17.4rem;}
+	.sec_message .message_img .caption {margin-top:.6rem; font-size:1.4rem; letter-spacing:-0.025em;}
 
 	/* sec_who */
 	.sec_who {padding:8rem 0;}
 	.sec_who .title_box {margin-bottom:6.8rem;}
-	.sec_who .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem;}
-	.sec_who .title_box h2 {padding-bottom:1.6rem; font-size:3rem;}
-	.sec_who .title_box .sub_txt {font-size:1.6rem;}
+	.sec_who .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem; line-height:1;}
+	.sec_who .title_box h2 {padding-bottom:1.6rem; font-size:3rem; letter-spacing:-0.025em;}
+	.sec_who .title_box .sub_txt {font-size:1.6rem; letter-spacing:-0.025em;}
 
 	.sec_who .who_list {flex-direction:column; gap:1.6rem; width:100%;}
 	.sec_who .who_list > li {flex:auto; width:100%; height:17.2rem;}
 	.sec_who .who_list .ico_who {top:1.6rem; left:1.6rem; width:4rem; height:4rem;}
 	.sec_who .who_content {bottom:0; padding-bottom:1.6rem; right:1.6rem;}
-	.sec_who .who_content h3 {font-size:1.8rem;}
+	.sec_who .who_content h3 {font-size:1.8rem; line-height:1.3; letter-spacing:-0.025em;}
 	.sec_who .who_content h3 .who_title {padding-bottom:.4rem; font-size:2.8rem;}
-	.sec_who .who_desc {font-size:1.4rem; line-height:1.3;}
+	.sec_who .who_more {padding-top:.4rem;}
+	.sec_who .who_desc {font-size:1.4rem; font-weight:400; line-height:1.6; letter-spacing:-0.025em;}
 
 	/* 카드 높이에 맞게 이동값 축소 (데스크톱 -12.5rem → 모바일용으로 조정) */
 	.sec_who .who_list > li:hover .who_content,

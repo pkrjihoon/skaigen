@@ -17,7 +17,7 @@
 .sec_explore .title_box h2 {font-size:4.8rem; font-weight:700; line-height:1.3;}
 
 .sec_explore .explore_list {display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;}
-.sec_explore .explore_list li {position:relative; width:calc(50% - 1rem); padding:3.2rem; border:1px solid #D1D5DB;}
+.sec_explore .explore_list li {position:relative; width:calc(50% - 1rem); padding:3.2rem; border:1px solid #BEDBFF; background-color:#fff;}
 .sec_explore .explore_list li .card_label {display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;}
 .sec_explore .explore_list li .card_eyebrow {color:#155DFC; font-size:1.4rem; font-weight:600; line-height:3.1rem;}
 .sec_explore .explore_list li .card_tag {color:#D1D5DB; font-size:2.4rem; font-weight:600; line-height:3.1rem;}
@@ -80,17 +80,17 @@
 	/* sec_explore */
 	.sec_explore {padding:7.6rem 0 6rem;}
 	.sec_explore .title_box {margin-bottom:3.2rem;}
-	.sec_explore .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem;}
-	.sec_explore .title_box h2 {font-size:2.8rem;}
+	.sec_explore .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem; line-height:1; letter-spacing:.1em;}
+	.sec_explore .title_box h2 {font-size:2.8rem; line-height:1.2; letter-spacing:-.025em;}
 
 	.sec_explore .explore_list {gap:1.6rem;}
 	.sec_explore .explore_list li {width:100%; padding:2.4rem;}
 	.sec_explore .explore_list li .card_label {margin-bottom:1rem;}
-	.sec_explore .explore_list li .card_eyebrow {font-size:1.3rem;}
-	.sec_explore .explore_list li .card_tag {font-size:1.8rem; line-height:2.3rem; text-align:right;}
-	.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:2.4rem;}
+	.sec_explore .explore_list li .card_tag {display:none;}
+	.sec_explore .explore_list li .card_eyebrow {font-size:1.3rem; line-height:1; letter-spacing:.1em;}
+	.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:2.4rem; letter-spacing:-.025em;}
 	.sec_explore .explore_list li .card_sub {padding-bottom:.8rem; font-size:1.8rem;}
-	.sec_explore .explore_list li .card_txt {padding-bottom:3.6rem; font-size:1.6rem;}
-	.sec_explore .explore_list li .card_link {gap:.4rem; font-size:1.4rem;}
-	.sec_explore .explore_list li .card_link .ico_arrow {width:2re m; height:2rem;}
+	.sec_explore .explore_list li .card_txt {padding-bottom:3.6rem; font-size:1.6rem; letter-spacing:-.025em;}
+	.sec_explore .explore_list li .card_link {gap:.8rem; font-size:1.4rem;}
+	.sec_explore .explore_list li .card_link .ico_arrow {width:2rem; height:2rem;}
 }
