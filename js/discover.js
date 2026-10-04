@@ -240,7 +240,13 @@ function fillResultScreen({ weighted, percent, mainType, subType }) {
   });
 
   // 본문(리드 아래 설명 2단락)
-  document.getElementById('resultCopy1').textContent = mainPersona.body[0];
+  // 첫 단락은 \n 기준으로 나눠 줄마다 <p>로 넣음
+  const copy1 = document.getElementById('resultCopy1');
+  copy1.replaceChildren(...mainPersona.body[0].split('\n').map((line) => {
+    const p = document.createElement('p');
+    p.textContent = line;
+    return p;
+  }));
   document.getElementById('resultCopy2').textContent =
     weighted[subType] > 0
       ? `${mainPersona.name}의 성향이 가장 두드러지며, ${subPersona.trait} ${subPersona.name}의 성향(${percent[subType]}%)도 함께 가지고 있습니다.`
@@ -394,7 +400,7 @@ const QUIZ_DATA_FALLBACK = {
   "personas": {
     "challenger": {
       "name": "도전가",
-      "tag": "DARE · ACT · GROW",
+      "tag": "CHALLENGER\nDARE · ACT · GROW",
       "lead": "낯선 가능성에 먼저 뛰어드는 사람",
       "trait": "새로운 가능성에 먼저 뛰어드는",
       "body": [
@@ -407,7 +413,7 @@ const QUIZ_DATA_FALLBACK = {
     },
     "achiever": {
       "name": "성취가",
-      "tag": "AIM · ACT · ACHIEVE",
+      "tag": "ACHIEVER\nAIM · ACT · ACHIEVE",
       "lead": "목표를 끝까지 현실로 만드는 사람",
       "trait": "목표를 끝까지 완성하는",
       "body": [
@@ -420,7 +426,7 @@ const QUIZ_DATA_FALLBACK = {
     },
     "seeker": {
       "name": "탐구가",
-      "tag": "ASK · EXPLORE · GO DEEP",
+      "tag": "INNOVATOR\nASK · EXPLORE · GO DEEP",
       "lead": "질문을 깊이 파고드는 사람",
       "trait": "질문의 본질을 깊이 파고드는",
       "body": [

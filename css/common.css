@@ -123,4 +123,6 @@ html:has(.popup.is-active) {overflow:hidden;}
 	/* popup */
 	.popup .popup_inner {padding:5.2rem 1.6rem 2rem;}
 	.popup .btn_popup_close {top:1.2rem; right:1.6rem;}
+	.popup .popup_title {padding-bottom:.8rem; font-size:1.8rem;}
+	.popup .btn_popup_confirm {margin-top:2.4rem; padding:1.2rem 2.8rem;}
 }

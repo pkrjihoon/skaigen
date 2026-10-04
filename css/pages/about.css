@@ -1,7 +1,7 @@
 /* PC */
 /* sec_kv */
 .sec_kv {background-color:#EFF6FF;}
-.sec_kv .bg_box {max-width:192rem; height:90rem; margin:0 auto;}
+.sec_kv .bg_box {width: 100%; height:90rem; margin:0 auto;}
 .sec_kv .txt_box {display:flex; flex-direction:column; justify-content:center; gap:4rem; position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; height:100%;}
 .sec_kv .txt_box .eyebrow {display:block; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_kv .txt_box h2 {color:#030712; font-size:4.8rem; font-weight:700; line-height:1.3; letter-spacing:-.025em;}
@@ -33,7 +33,7 @@
 .sec_compare .compare_head {display:flex; align-items:center; gap:4.5rem; padding-bottom:4rem;}
 .sec_compare .compare_head .compare_title {flex:1; font-size:3.2rem; line-height:1.2; font-weight:600; letter-spacing:-.025em; color:#4A5565;}
 .sec_compare .compare_head .compare_title.point {color:#155DFC;}
-.sec_compare .compare_head .compare_spacer {width:4rem; flex-shrink:0;}
+.sec_compare .compare_head .compare_spacer {width:4.8rem; flex-shrink:0;}
 
 .sec_compare .compare_list li {display:flex; align-items:center; gap:4.5rem;}
 .sec_compare .compare_list li + li {margin-top:1.6rem;}
@@ -117,7 +117,7 @@
 	.sec_what .info_list > li {gap:1.6rem; padding:2rem 0;}
 	.sec_what .info_list > li + li {margin-top:.8rem;}
 	.sec_what .info_list > li .eyebrow {padding-bottom:.8rem; font-size:1.8rem; letter-spacing:-0.025em;}
-	.sec_what .info_list > li .info_value {padding-bottom:1.2rem; color:#151515; font-size:3rem; letter-spacing:-0.025em;}
+	.sec_what .info_list > li .info_value {padding-bottom:1.2rem; font-size:3rem; letter-spacing:-0.025em;}
 	.sec_what .info_list > li .info_txt {font-size:1.6rem; letter-spacing:-0.025em;}
 	.sec_what .info_list > li .ico_info {width:6.4rem; height:6.4rem;}
 
