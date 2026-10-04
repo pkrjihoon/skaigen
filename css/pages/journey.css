@@ -19,10 +19,13 @@
 .sec_program .value_head {margin-bottom:2.4rem;}
 .sec_program .value_head .value_num {display:block; margin-bottom:1rem; color:#155DFC; font-size:1.4rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_program .value_head h3 {padding-bottom:1rem; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em;}
-.sec_program .value_head .value_sub {font-size:1.8rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
+.sec_program .value_head .value_sub {font-size:1.8rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; word-break:keep-all;}
 .sec_program .value_list li {display:flex; gap:.8rem; color:#4A5565; font-size:1.4rem; line-height:1.6; letter-spacing:-.025em; word-break:keep-all;}
 .sec_program .value_list li + li {margin-top:.4rem;}
 .sec_program .value_list li:before {content:'-'; flex-shrink:0;}
+.sec_program .value_card.point {background-color:#155DFC; color:#fff;}
+.sec_program .value_card.point .value_head .value_num {color:#fff;}
+.sec_program .value_card.point .value_list li {color:#D1D5DB;}
 
 .sec_program .timeline_row {display:flex;}
 .sec_program .timeline_row + .timeline_row {margin-top:5.2rem;}
@@ -36,10 +39,6 @@
 .sec_program .timeline_title {color:#364153; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 .sec_program .timeline_badge {padding:0 1.2rem; background-color:#E6F1FF; font-size:1.6rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
 .sec_program .timeline_caption {color:#99A1AF; font-size:1.3rem; line-height:1.6; letter-spacing:-.025em;}
-
-
-
-
 
 /* MOBILE */
 /* SIZE 360 기준 */
