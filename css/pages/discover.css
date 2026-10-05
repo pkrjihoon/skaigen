@@ -2,14 +2,13 @@
 [hidden] {display:none !important;}
 
 /* sec_kv */
-.sec_kv {height:calc(100dvh - 6.6rem); background-color:#EFF6FF;}
-.sec_kv .bg_box {width: 100%; height:100%; margin:0 auto; object-position:bottom;}
-/* 질문 화면: 박스 높이가 바뀌어도 텍스트가 움직이지 않도록 고정 위치 */
-.sec_kv .inner_1720 {display:flex; justify-content:space-between; align-items:flex-start; gap:2rem; position:absolute; top:50%; left:50%; transform:translate(-50%,-23.5rem);}
-/* 마무리 화면: 내용만큼 섹션이 늘어나고, 안내문 아래 11rem 여백 확보 */
-.sec_kv:has(.quiz_result:not([hidden])) {height:auto; min-height:calc(100dvh - 6.6rem); padding-top:11.2rem;}
-.sec_kv:has(.quiz_result:not([hidden])) .bg_box {position:absolute; top:0; left:0;}
-.sec_kv:has(.quiz_result:not([hidden])) .inner_1720 {position:relative; top:auto; left:auto; transform:none;}
+/* 최소 화면 높이, 정답·마무리 화면이 길어지면 섹션은 아래쪽으로 늘어남 */
+.sec_kv {overflow:hidden; min-height:calc(100dvh - 6.6rem); padding:23rem 0 11rem; background-color:#EFF6FF;}
+/* 이미지는 처음부터 가장 긴 정답 화면 높이로 위쪽 고정 렌더 → 섹션이 늘어나도 크기·위치 변화 없이 아래쪽만 더 보임 : 상단 23rem + 정답 화면 박스 73rem + 하단 11rem */
+.sec_kv .bg_box {position:absolute; top:0; left:0; width:100%; height:max(calc(100dvh - 6.6rem), 107rem);}
+.sec_kv .bg_box img {object-position:center bottom;}
+/* 위쪽 정렬이라 박스 높이가 바뀌어도 텍스트는 움직이지 않음 */
+.sec_kv .inner_1720 {position:relative; display:flex; justify-content:space-between; align-items:flex-start; gap:2rem;}
 .sec_kv .txt_box {flex:1; display:flex; flex-direction:column; justify-content:flex-start; gap:1.6rem;}
 .sec_kv .txt_box .eyebrow {display:block; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_kv .txt_box h2 {color:#030712; font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
@@ -17,84 +16,86 @@
 
 /* 질문 화면 */
 .sec_kv .quiz_box {position:relative; flex:0 1 88rem; min-width:0; padding:4.8rem; border:1px solid #D1D5DB; background:rgba(255, 255, 255, 0.6); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);}
-.sec_kv .quiz_box:has(.quiz_result:not([hidden])) {flex-basis:97.2rem; margin-bottom:20.6rem;}
-.sec_kv .quiz_question {opacity:1; transform:translateY(0); transition:opacity .3s ease, transform .3s ease;}
+.sec_kv .quiz_question {display:flex; flex-direction:column; gap:4rem; opacity:1; transform:translateY(0); transition:opacity .3s ease, transform .3s ease;}
 .sec_kv .quiz_question.is-leaving {opacity:0; transform:translateY(-14px);}
-.sec_kv .quiz_box .quiz_progress {padding-bottom:1.6rem; color:#51A2FF; font-size:1.8rem; font-weight:600; line-height:1; letter-spacing:.1em;}
-.sec_kv .quiz_question .quiz_q_text {padding-bottom:4rem; color:#030712; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em; word-break:keep-all; white-space:pre-line;}
+.sec_kv .quiz_title {display:flex; flex-direction:column; gap:1.6rem;}
+.sec_kv .quiz_progress {display:flex; justify-content:space-between; align-items:center; color:#155DFC; font-size:1.8rem; font-weight:600; line-height:1; letter-spacing:.1em;}
+.sec_kv .quiz_progress .progress_count {display:flex; align-items:center; gap:1rem; color:#4A5565;}
+.sec_kv .quiz_progress .progress_count .current {color:#155DFC;}
+.sec_kv .quiz_q_text {color:#030712; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em; white-space:pre-line;}
+.sec_kv .quiz_q_text:focus {outline:none;}
 
 /* O/X 버튼 */
 .sec_kv .quiz_answers {display:flex; gap:1rem;}
-.sec_kv .quiz_answers .quiz_answer {flex:1; display:flex; justify-content:center; align-items:center; padding:2rem; border:1px solid #D1D5DB; border-radius:1.2rem; color:#364153; transition:background .2s, border-color .2s, color .2s, transform .2s;}
-.sec_kv .quiz_answers .quiz_answer .answer_text {font-size:3.2rem; font-weight:700; line-height:1.2;}
-.sec_kv .quiz_answers .quiz_answer:hover {color:#FFF; border-color:#155DFC; background-color:#155DFC; transform:translateX(.6rem);}
-.sec_kv .quiz_answers .quiz_answer.is-selected {background:#155DFC; border-color:#155DFC; color:#fff; transform:scale(1.01);}
+.sec_kv .quiz_answers .quiz_answer {flex:1; display:flex; justify-content:center; align-items:center; padding:6rem 2rem; border:1px solid #D1D5DB; border-radius:1.2rem; transition:background .2s, border-color .2s;}
+.sec_kv .quiz_answers .quiz_answer img {width:14rem; height:14rem; transition:filter .2s;}
+.sec_kv .quiz_answers .quiz_answer:hover,
+.sec_kv .quiz_answers .quiz_answer.is-selected {border-color:#155DFC; background-color:#155DFC;}
+.sec_kv .quiz_answers .quiz_answer:hover img,
+.sec_kv .quiz_answers .quiz_answer.is-selected img {filter:brightness(0) invert(1);}
 .sec_kv .quiz_answers .quiz_answer:disabled {cursor:default;}
-.sec_kv .quiz_answers .quiz_answer:disabled:not(.is-selected) {opacity:.35;}
-.sec_kv .quiz_answers .quiz_answer:disabled:not(.is-selected):hover {color:#364153; border-color:#D1D5DB; background-color:transparent; transform:none;}
+.sec_kv .quiz_answers .quiz_answer:disabled:not(.is-selected):hover {border-color:#D1D5DB; background-color:transparent;}
+.sec_kv .quiz_answers .quiz_answer:disabled:not(.is-selected):hover img {filter:none;}
 
 /* 정답·해설 */
-.sec_kv .quiz_feedback {margin-top:2.4rem; padding:2.4rem 3.2rem; border-radius:1.2rem; background-color:#EFF6FF;}
-.sec_kv .quiz_feedback .feedback_answer {padding-bottom:.8rem; color:#155DFC; font-size:1.8rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
-.sec_kv .quiz_feedback .feedback_desc {color:#364153; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
-.sec_kv .quiz_next {display:flex; align-items:center; margin:2.4rem 0 0 auto; padding:.8rem 2rem; border:1px solid #155DFC; border-radius:99.9rem; background-color:#155DFC; color:#fff; font-size:1.4rem; font-weight:600; line-height:2rem;}
+.sec_kv .quiz_feedback {display:flex; flex-direction:column; color:#030712;}
+.sec_kv .quiz_feedback .feedback_answer {font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
+.sec_kv .quiz_feedback .feedback_desc {margin-top:1.6rem; font-size:2rem; line-height:1.5; letter-spacing:-.025em;}
+.sec_kv .quiz_next {display:flex; align-items:center; gap:.8rem; margin:4rem 0 0 auto; padding:1.2rem 2.4rem; border:1px solid #030712; border-radius:99.9rem; background-color:#030712; color:#fff; font-size:1.8rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
+.sec_kv .quiz_next:after {content:''; flex-shrink:0; width:2rem; height:2rem; background:url('../../img/aigen_test_quiz_arrow_right_hover.svg') no-repeat center/cover;}
 
 /* 마무리 화면 */
-.sec_kv .quiz_result .result_lead {padding-bottom:1.6rem; color:#030712; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em; word-break:keep-all;}
+.sec_kv .quiz_result .result_lead {color:#030712; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em;}
 .sec_kv .quiz_result .result_lead:focus {outline:none;}
-.sec_kv .quiz_result .result_secondary {color:#364153; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
-
-.sec_kv .result_actions {display:flex; flex-direction:column; justify-content:flex-end; align-items:end; gap:1.6rem; position:absolute; top:calc(100% + 2rem); right:-1px;}
-.sec_kv .result_actions .result_btn_box {display: flex; align-items: center; justify-content: center; gap: 2rem;}
-.sec_kv .result_actions .btn_line,
-.sec_kv .result_actions .btn_apply {display:flex; justify-content:center; align-items:center; gap:.8rem; padding:.8rem 2rem; border-radius:99.9rem; font-size:1.4rem; font-weight:600; line-height:2rem;}
-.sec_kv .result_actions .btn_line {border:1px solid #99A1AF; color:#364153; background-color:#fff;}
-.sec_kv .result_actions .btn_apply {border:1px solid #155DFC; color:#fff; background-color:#155DFC;}
-.sec_kv .result_actions .btn_line:after,
-.sec_kv .result_actions .btn_apply:after {content:''; display:inline-block; width:2rem; height:2rem; background-repeat:no-repeat; background-position:center; background-size:cover;}
-.sec_kv .result_actions .btn_line:after {background-image:url('../../img/main_arrow_up.svg');}
-.sec_kv .result_actions .btn_apply:after {background-image:url('../../img/aigen_test_quiz_apply_icon.svg');}
-.sec_kv .result_actions .text_desc {font-size: 1.4rem; line-height: 1.6; letter-spacing:-.025em; color: #99A1AF; white-space:nowrap;}
+.sec_kv .quiz_result .result_secondary {margin-top:1.6rem; color:#364153; font-size:2rem; line-height:1.5; letter-spacing:-.025em;}
+.sec_kv .quiz_result .result_btn_box {display:flex; gap:1rem; margin-top:4rem;}
+.sec_kv .quiz_result .btn_dark,
+.sec_kv .quiz_result .btn_blue {flex:1; display:flex; justify-content:center; align-items:center; gap:1.2rem; padding:1.5rem 2rem; border-radius:1.2rem; color:#fff; font-size:2rem; font-weight:600; line-height:1.5; letter-spacing:-.025em;}
+.sec_kv .quiz_result .btn_dark {border:1px solid #1E2939; background-color:#1E2939;}
+.sec_kv .quiz_result .btn_blue {border:1px solid #155DFC; background-color:#155DFC;}
+.sec_kv .quiz_result .btn_dark:after,
+.sec_kv .quiz_result .btn_blue:after {content:''; flex-shrink:0; width:2.4rem; height:2.4rem; background:url('../../img/aigen_test_quiz_arrow_right_hover.svg') no-repeat center/cover;}
+/* 안내문은 박스 바깥 아래 오른쪽 */
+.sec_kv .quiz_result .text_desc {position:absolute; top:calc(100% + 2rem); right:0; color:#99A1AF; font-size:1.4rem; line-height:1.6; letter-spacing:-.025em; text-align:right; white-space:nowrap;}
 
 /* MOBILE */
 /* SIZE 360 기준 */
 @media all and (max-width:768px) {
 	/* sec_kv */
-	.sec_kv {height:auto; padding:4.8rem 0 6rem; background: #e6f1ff url('../../img/discover_kv_mo.jpg') no-repeat center top /cover;}
-	.sec_kv:has(.quiz_result:not([hidden])) {min-height:0; padding:4.8rem 0; background-color:#E6F1FF; background-position:center bottom;}
-	.sec_kv .inner_1720,
-	.sec_kv:has(.quiz_result:not([hidden])) .inner_1720 {position:static; flex-direction:column; gap:3.2rem; transform:none;}
+	.sec_kv {min-height:0; padding:4.8rem 0 6rem; background: #e6f1ff url('../../img/discover_kv_mo.jpg') no-repeat center top /cover;}
+	.sec_kv .inner_1720 {flex-direction:column; gap:3.2rem;}
 	.sec_kv .txt_box {gap:1.2rem; left:0; transform:none; width:100%;}
 	.sec_kv .txt_box .eyebrow {font-size:1.4rem;}
 	.sec_kv .txt_box h2 {font-size:2.4rem; font-weight:600;}
 	.sec_kv .txt_box .sub_txt {font-size:1.4rem; line-height:1.6; margin-top: .4rem;}
 
 	/* 질문 화면 */
-	.sec_kv .quiz_box,
-	.sec_kv .quiz_box:has(.quiz_result:not([hidden])) {flex:none; width:100%;}
-	.sec_kv .quiz_box {max-width:100%; padding:4rem 2rem;}
-	.sec_kv .quiz_box:has(.quiz_result:not([hidden])) {margin-bottom:19.7rem; padding:2.4rem 2rem;}
-	.sec_kv .quiz_box .quiz_progress {padding-bottom:1.2rem; font-size:1.8rem;}
-	.sec_kv .quiz_question .quiz_q_text {padding-bottom:2.8rem; font-size:2.4rem;}
+	.sec_kv .quiz_box {flex:none; width:100%; max-width:100%; padding:4rem 2rem;}
+	.sec_kv .quiz_box:has(.quiz_result:not([hidden])) {margin-bottom:7.6rem;}
+	.sec_kv .quiz_question {gap:2.8rem;}
+	.sec_kv .quiz_title {gap:1.2rem;}
+	.sec_kv .quiz_q_text {font-size:2.4rem;}
 
 	/* O/X 버튼 */
-	.sec_kv .quiz_answers .quiz_answer {padding:1.6rem;}
-	.sec_kv .quiz_answers .quiz_answer .answer_text {font-size:2.4rem;}
-	.sec_kv .quiz_answers .quiz_answer:hover {color:#364153; border-color:#D1D5DB; background-color:transparent; transform:translateX(0);}
-	.sec_kv .quiz_answers .quiz_answer.is-selected {color:#fff; border-color:#155DFC; background-color:#155DFC;}
+	.sec_kv .quiz_answers .quiz_answer {padding:2rem;}
+	.sec_kv .quiz_answers .quiz_answer img {width:8rem; height:8rem;}
+	.sec_kv .quiz_answers .quiz_answer:hover {border-color:#D1D5DB; background-color:transparent;}
+	.sec_kv .quiz_answers .quiz_answer:hover img {filter:none;}
+	.sec_kv .quiz_answers .quiz_answer.is-selected {border-color:#155DFC; background-color:#155DFC;}
+	.sec_kv .quiz_answers .quiz_answer.is-selected img {filter:brightness(0) invert(1);}
 
 	/* 정답·해설 */
-	.sec_kv .quiz_feedback {margin-top:2rem; padding:2rem;}
-	.sec_kv .quiz_feedback .feedback_answer {font-size:1.6rem;}
-	.sec_kv .quiz_feedback .feedback_desc {font-size:1.4rem;}
-	.sec_kv .quiz_next {box-sizing:border-box; justify-content:center; width:100%; height:4.4rem; margin-top:2rem; padding:0 1.3rem;}
+	.sec_kv .quiz_feedback .feedback_answer {font-size:1.8rem;}
+	.sec_kv .quiz_feedback .feedback_desc {margin-top:1.2rem; font-size:1.8rem; white-space:pre-line;}
+	.sec_kv .quiz_next {gap:.4rem; margin-top:2.8rem; padding:.8rem 2rem;}
 
 	/* 마무리 화면 */
-	.sec_kv .quiz_result .result_lead {padding-bottom:1.2rem; font-size:2.4rem;}
-
-	.sec_kv .result_actions {flex-direction:column; gap:1.6rem; top:calc(100% + 3.2rem); right:-1px; left:-1px;}
-	.sec_kv .result_actions .result_btn_box {flex-direction: column; gap: 1.6rem; width: 100%;}
-	.sec_kv .result_actions .btn_line,
-	.sec_kv .result_actions .btn_apply {box-sizing:border-box; gap:.8rem; width:100%; height:4.4rem; padding:0 1.3rem; font-size:1.4rem; line-height:1.6rem;}
-	.sec_kv .result_actions .text_desc {letter-spacing:-.025em; text-align:end; white-space:normal;}
+	.sec_kv .quiz_result .result_lead {font-size:2.4rem;}
+	.sec_kv .quiz_result .result_secondary {margin-top:1.2rem; font-size:1.8rem;}
+	.sec_kv .quiz_result .result_btn_box {flex-direction:column; margin-top:2.8rem;}
+	.sec_kv .quiz_result .btn_dark,
+	.sec_kv .quiz_result .btn_blue {gap:.8rem; padding:1.1rem 2rem; font-size:1.6rem; line-height:1.6;}
+	.sec_kv .quiz_result .btn_dark:after,
+	.sec_kv .quiz_result .btn_blue:after {width:2rem; height:2rem;}
+	.sec_kv .quiz_result .text_desc {top:calc(100% + 3.2rem); left:0; white-space:normal;}
 }

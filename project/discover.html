@@ -31,10 +31,10 @@
 					<img src="../img/header_sk_logo.svg" alt="AIGEN">
 				</a>
 				<nav class="header_nav">
-					<a href="./about.html">ABOUT</a>
-					<a href="./journey.html">JOURNEY</a>
-					<a href="./discover.html" class="active">DISCOVER</a>
-					<a href="./support.html">SUPPORT</a>
+					<a href="./about.html" class="font_en">ABOUT</a>
+					<a href="./journey.html" class="font_en">JOURNEY</a>
+					<a href="./discover.html" class="active font_en">DISCOVER</a>
+					<a href="./support.html" class="font_en">SUPPORT</a>
 				</nav>
 				<!-- <a href="https://www.skcareers.com/" target="_blank" class="header_apply">
 					APPLY <span class="ico_arrow"><img src="../img/header_nav_arrow.svg" alt=""></span>
@@ -80,8 +80,8 @@
 
 			<div class="inner_1720">
 				<div class="txt_box">
-					<span class="eyebrow">DISCOVER YOURSELF</span>
-					<h2>아이젠, 어디까지 알고 있나요?</h2>
+					<span class="eyebrow font_en">DISCOVER AIGEN</span>
+					<h2>아이젠, <br>어디까지 알고 있나요?</h2>
 					<p class="sub_txt">5가지 O/X 퀴즈로 아이젠의 도전과 지원을 알아보세요.</p>
 				</div>
 
@@ -89,15 +89,20 @@
 					<div class="quiz" id="detailQuiz">
 						<!-- 질문 화면 -->
 						<div class="quiz_question" id="quizQuestion">
-							<p class="quiz_progress" id="quizProgress">01 | 05</p>
-							<h3 class="quiz_q_text" id="quizQText" tabindex="-1"></h3>
+							<div class="quiz_title">
+								<p class="quiz_progress font_en">
+									<span class="progress_q" id="quizQNum">Q1</span>
+									<span class="progress_count"><span class="current" id="quizCurrent">01</span><span class="bar">|</span><span id="quizTotal">05</span></span>
+								</p>
+								<h3 class="quiz_q_text" id="quizQText" tabindex="-1"></h3>
+							</div>
 
 							<div class="quiz_answers" id="quizAnswers">
 								<button class="quiz_answer" type="button" data-answer="O">
-									<span class="answer_text">O</span>
+									<img src="../img/discover_quiz_o_icon.svg" alt="O">
 								</button>
 								<button class="quiz_answer" type="button" data-answer="X">
-									<span class="answer_text">X</span>
+									<img src="../img/discover_quiz_x_icon.svg" alt="X">
 								</button>
 							</div>
 
@@ -111,16 +116,14 @@
 
 						<!-- 마무리 화면 -->
 						<div class="quiz_result" id="quizResult" hidden>
-							<h3 class="result_lead" id="resultLead" tabindex="-1">이제, 당신의 도전을 <br class="mo_show">생각해볼 차례입니다.</h3>
+							<h3 class="result_lead" id="resultLead" tabindex="-1">이제, 당신의 도전을 생각해볼 차례입니다.</h3>
 							<p class="result_secondary">AI와 함께 내 분야에서 해보고 싶은 일은 무엇인가요?</p>
 
-							<div class="result_actions">
-								<div class="result_btn_box">
-									<a href="./journey.html" class="btn_line">아이젠의 2년 살펴보기</a>
-									<a href="./support.html" class="btn_apply">지원 안내 확인하기</a>
-								</div>
-								<p class="text_desc">※ 이 콘텐츠는 프로그램 이해를 돕기 위한 것으로, <br class="mo_show">지원·선발 평가와 무관합니다.</p>
+							<div class="result_btn_box">
+								<a href="./journey.html" class="btn_dark">아이젠의 전체 여정 살펴보기</a>
+								<a href="./support.html" class="btn_blue">지원 안내 확인하기</a>
 							</div>
+							<p class="text_desc">※ 이 콘텐츠는 프로그램 이해를 돕기 위한 것으로, <br class="mo_show">지원·선발 평가와 무관합니다.</p>
 						</div>
 					</div>
 				</div>
@@ -129,15 +132,10 @@
 
 		<!-- sec_banner -->
 		<section class="sec_banner" hidden>
-			<picture class="bg_box">
-				<source srcset="../img/banner_mo.jpg" media="(max-width: 768px)">
-				<source srcset="../img/banner_pc.jpg" media="(min-width: 769px)">
-				<img src="../img/banner_pc.jpg" alt="">
-			</picture>
 			<div class="inner_1720">
 				<div class="title_box">
-					<span class="eyebrow">SK AIGEN / EXPLORE ANOTHER POSSIBILITY</span>
-					<h2>가능성을 현실로 만드는 <br class="mo_show">24개월, <br class="pc_show">지금 시작하세요</h2>
+					<span class="eyebrow font_en">SK AIGEN / EXPLORE ANOTHER POSSIBILITY</span>
+					<h2>당신의 가능성, <br>이제 도전으로 이어가세요.</h2>
 				</div>
 
 				<!-- <a href="https://www.skcareers.com/" target="_blank" class="btn_apply">

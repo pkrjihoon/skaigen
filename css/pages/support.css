@@ -2,8 +2,8 @@
 /* sec_kv */
 .sec_kv {background-color:#EFF6FF;}
 .sec_kv .bg_box {width:100%; height:90rem;}
-.sec_kv .txt_box {display:flex; flex-direction:column; gap:4rem; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%;}
-.sec_kv .txt_box .eyebrow {display:block; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
+.sec_kv .txt_box {display:flex; flex-direction:column; gap:4rem; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);}
+.sec_kv .txt_box .eyebrow {display:block; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_kv .txt_box h2 {color:#030712; font-size:4.8rem; font-weight:700; line-height:1.3; letter-spacing:-.025em;}
 .sec_kv .txt_box .sub_txt {color:#364153; font-size:2rem; line-height:1.5; letter-spacing:-.025em;}
 
@@ -71,6 +71,7 @@
 
 /* sec_offline */
 .sec_offline {padding:10rem 0; background-color:#E6F1FF;}
+.sec_offline .inner_1280 {max-width:136rem;}
 .sec_offline .title_box {margin-bottom:4.8rem;}
 .sec_offline .title_box .eyebrow {display:block; margin-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_offline .title_box h2 {padding-bottom:2rem; font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
@@ -86,7 +87,7 @@
 .sec_offline .offline_actions .status_pill,
 .sec_offline .offline_actions .offline_apply {display:flex; justify-content:center; align-items:center; gap:1.6rem; padding:1.6rem 4rem; border-radius:10rem; font-size:1.8rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
 
-.sec_offline .status_pill {background-color:#EFF6FF;}
+.sec_offline .status_pill {border:1px solid #EFF6FF; background-color:#EFF6FF;}
 .sec_offline .offline_apply {color:#fff; background-color:#155DFC;}
 .sec_offline .offline_apply:after {content:''; display:inline-block; width:2.4rem; height:2.4rem; background:url('../../img/aigen_test_quiz_apply_icon.svg') no-repeat center/cover;}
 .sec_offline .offline_apply:hover {filter:brightness(1.08);}
@@ -99,13 +100,8 @@
 .sec_faq .title_box .eyebrow {display:block; margin-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_faq .title_box h2 {font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
 
-.sec_faq .faq_tabs {display:flex; gap:1.2rem; margin-bottom:4.8rem;}
-.sec_faq .faq_tab {padding:.8rem 2rem; border:1px solid #E6F1FF; border-radius:99rem; background-color:#E6F1FF; color:#4A5565; font-size:1.4rem; font-weight:600; line-height:2rem; transition:background-color .2s ease, border-color .2s ease, color .2s ease;}
-.sec_faq .faq_tab.active {border-color:#030712; background-color:#030712; color:#fff;}
-
 .sec_faq .faq_list {border-top:1px solid #D1D5DB;}
 .sec_faq .faq_item {border-bottom:1px solid #D1D5DB;}
-.sec_faq .faq_item[hidden] {display:none;}
 
 .sec_faq .faq_question {display:flex; align-items:center; justify-content:space-between; gap:1rem; width:100%; padding:3.2rem 0 0 0; text-align:left;}
 .sec_faq .faq_question span {font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
@@ -125,7 +121,7 @@
 @media all and (max-width:768px) {
 	/* sec_kv */
 	.sec_kv .bg_box {height:75.2rem;}
-	.sec_kv .txt_box {gap:2.4rem; top:15.9rem; left:0; transform:none; width:100%; padding:0 2rem;}
+	.sec_kv .txt_box {gap:2.4rem; top:14rem; left:0; transform:none;}
 	.sec_kv .txt_box .eyebrow {font-size:1.4rem;}
 	.sec_kv .txt_box h2 {font-size:3rem;}
 	.sec_kv .txt_box .sub_txt {font-size:1.8rem; line-height:1.6;}
@@ -196,7 +192,7 @@
 	.sec_offline .offline_card {padding:2.8rem 2rem;}
 	.sec_offline .card_list {flex-direction:column; gap:1.6rem;}
 	.sec_offline .card_list > li .offline_label {margin-bottom:.4rem; font-size:1.4rem; letter-spacing:-.025em;}
-	.sec_offline .card_list > li .offline_desc {font-size:1.8rem; line-height:1.3; letter-spacing:-.025em;}
+	.sec_offline .card_list > li .offline_desc {font-size:2.4rem; line-height:1.2; letter-spacing:-.025em;}
 
 	.sec_offline .offline_actions {flex-direction:column; gap:1.6rem; margin-top:2rem;}
 	.sec_offline .offline_actions .status_pill,
@@ -210,18 +206,13 @@
 	.sec_faq .title_box .eyebrow {margin-bottom:1.2rem; font-size:1.4rem;}
 	.sec_faq .title_box h2 {font-size:3rem; letter-spacing:-.025em;}
 
-	.sec_faq .faq_tabs {flex-wrap:wrap; gap:.8rem; margin-bottom:3.2rem;}
-	.sec_faq .faq_tab {padding:.8rem 1.2rem; line-height:1.6rem;}
-
-	.sec_faq .faq_list {border-top:0;}
-	.sec_faq .faq_item + .faq_item {margin-top:.8rem;}
-	.sec_faq .faq_question {gap:1.2rem; padding:2.4rem 0 0 0;}
-	.sec_faq .faq_question > span:first-child {display:flex; align-items:center; gap:1.2rem;}
+	.sec_faq .faq_question {align-items:flex-start; gap:1.2rem; padding:2.4rem 0 0 0;}
+	.sec_faq .faq_question > span:first-child {display:flex; align-items:flex-start; gap:1.2rem;}
 	.sec_faq .faq_question span {font-size:1.8rem;}
 	.sec_faq .faq_num {flex-shrink:0; width:2.4rem; margin-right:0;}
-	.sec_faq .faq_icon {width:2rem; height:2rem;}
+	.sec_faq .faq_icon {width:2rem; height:2rem; margin-top:.2rem;}
 
 	.sec_faq .faq_answer {margin-bottom:2.4rem; padding-bottom:0;}
-	.sec_faq .faq_answer p {margin-top:1.6rem; padding:0; font-size:1.6rem; line-height:1.6;}
+	.sec_faq .faq_answer p {margin-top:1.6rem; padding:0 0 0 3.6rem; font-size:1.6rem; line-height:1.6;}
 
 }

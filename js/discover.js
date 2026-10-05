@@ -9,7 +9,7 @@ const QUIZ_DATA = [
   {
     question: 'AI나 코딩을 잘해야 아이젠에 도전할 수 있다.',
     answer: 'X',
-    explain: '기술·예술·공공 등 분야는 다양합니다. 중요한 것은 자기 분야에서 AI로 무엇을 해보고 싶은지입니다.',
+    explain: '기술·예술·공공 등 분야는 다양합니다.\n중요한 것은 자기 분야에서 AI로 무엇을 해보고 싶은지입니다.',
   },
   {
     question: '아이젠은 SK 취업을 연계하는 프로그램이다.',
@@ -19,7 +19,7 @@ const QUIZ_DATA = [
   {
     question: '아이젠의 장학은 돈뿐 아니라, 도전할 시간과 경험을 지원하는 것이다.',
     answer: 'O',
-    explain: '장학금과 활동 공간을 기반으로, 새로운 시도에 몰입할 수 있는 2년을 지원합니다.',
+    explain: '장학금과 활동 공간을 기반으로, 새로운 시도에 몰입할 수 있는 22개월을 지원합니다.',
   },
   {
     question: '프로젝트가 예상대로 되지 않은 경험도 성장의 일부가 될 수 있다.',
@@ -37,7 +37,9 @@ let currentIndex = 0;
 let isAnimating = false; // 애니메이션 중 중복 클릭 방지
 
 const questionBox = document.getElementById('quizQuestion');
-const progressText = document.getElementById('quizProgress');
+const progressQNum = document.getElementById('quizQNum');
+const progressCurrent = document.getElementById('quizCurrent');
+const progressTotal = document.getElementById('quizTotal');
 const questionText = document.getElementById('quizQText');
 const answerButtons = [...document.querySelectorAll('.quiz_answer')];
 const feedbackBox = document.getElementById('quizFeedback');
@@ -50,10 +52,11 @@ const resultBox = document.getElementById('quizResult');
 const RESULT_SECTION_SELECTORS = ['.sec_banner'];
 
 
-// 진행 상태 텍스트(01 | 05) 갱신
+// 진행 상태(Q1 / 01 | 05) 갱신
 function updateProgress() {
-  progressText.textContent =
-    `${currentIndex + 1}`.padStart(2, '0') + ' | ' + `${QUIZ_DATA.length}`.padStart(2, '0');
+  progressQNum.textContent = `Q${currentIndex + 1}`;
+  progressCurrent.textContent = `${currentIndex + 1}`.padStart(2, '0');
+  progressTotal.textContent = `${QUIZ_DATA.length}`.padStart(2, '0');
 }
 
 
@@ -84,9 +87,9 @@ function selectAnswer(button) {
   answerButtons.forEach((b) => (b.disabled = true));
   button.classList.add('is-selected');
 
-  answerLabel.textContent = `정답 ${quiz.answer}`;
+  answerLabel.textContent = `정답 : ${quiz.answer}`;
   explainText.textContent = quiz.explain;
-  nextButton.textContent = isLast ? '마무리하기' : '다음 문제';
+  nextButton.textContent = isLast ? '결과 보기' : '다음 문제';
   feedbackBox.hidden = false;
   nextButton.focus({ preventScroll: true });
 }

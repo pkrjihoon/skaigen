@@ -2,12 +2,20 @@
 /* sec_kv */
 .sec_kv {background-color:#E6F1FF;}
 .sec_kv .bg_box {width: 100%; height:90rem; margin:0 auto;}
-.sec_kv .txt_box {position:absolute; top:30.4rem; left:50%; transform:translateX(-50%); width:100%;}
-.sec_kv .txt_box .img_box {width:38rem; margin-left:2.9rem;}
-.sec_kv .txt_box .kv_keyword {margin:15.8rem 0 0 2.1rem; color:#8CB2DE; font-size:2rem; font-weight:600; line-height:2; letter-spacing:.12em;}
+.sec_kv .txt_box {position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; height:100%;}
+.sec_kv .kv_side {position:absolute; top:14rem; left:2rem;}
+.sec_kv .kv_side p {color:#fff; font-size:1.8rem; font-weight:500; line-height:1.5; letter-spacing:-.025em; text-shadow:-.2rem .3rem 1rem rgba(0,0,0,.5);}
+.sec_kv .kv_side p + p {margin-top:2rem;}
+/* 문구 사이 구분선 */
+.sec_kv .kv_side p + p:before {content:''; display:block; width:1.6rem; height:1px; margin-bottom:2rem; background-color:#fff;}
+.sec_kv .kv_title {position:absolute; top:17.25rem; right:2.4rem; text-align:right;}
+.sec_kv .kv_title h2 {color:#030712; font-size:6.4rem; font-weight:700; line-height:1.3; letter-spacing:-.05em;}
+.sec_kv .kv_title .sub_txt {margin-top:2.4rem; color:#373B40; font-size:2.6rem; font-weight:500; line-height:1.3; letter-spacing:-.025em;}
+.sec_kv .kv_logo {position:absolute; top:4.3rem; left:calc(50% + 76.7rem); width:14.2rem;}
 
 /* sec_offline */
 .sec_offline {padding:10rem 0; background-color:#E6F1FF;}
+.sec_offline .inner_1720 {padding:0 6rem;}
 .sec_offline .title_box {margin-bottom:4.8rem;}
 .sec_offline .title_box .eyebrow {display:block; margin-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_offline .title_box h2 {padding-bottom:2rem; font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
@@ -23,7 +31,7 @@
 .sec_offline .offline_actions .status_pill,
 .sec_offline .offline_actions .offline_apply {display:flex; justify-content:center; align-items:center; gap:1.6rem; padding:1.6rem 4rem; border-radius:10rem; font-size:1.8rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
 
-.sec_offline .status_pill {background-color:#EFF6FF;}
+.sec_offline .status_pill {border:1px solid #EFF6FF; background-color:#EFF6FF;}
 .sec_offline .offline_apply {color:#fff; background-color:#155DFC;}
 .sec_offline .offline_apply:after {content:''; display:inline-block; width:2.4rem; height:2.4rem; background:url('../../img/aigen_test_quiz_apply_icon.svg') no-repeat center/cover;}
 .sec_offline .offline_apply:hover {filter:brightness(1.08);}
@@ -86,12 +94,16 @@
 @media all and (max-width:768px) {
 	/* sec_kv */
 	.sec_kv .bg_box {height:75.2rem;}
-	.sec_kv .txt_box {top:12.1rem; left:0; transform:none;}
-	.sec_kv .txt_box .img_box {width:20rem; margin-left:0;}
-	.sec_kv .txt_box .kv_keyword {margin:2.4rem 0 0; font-size:1.4rem;}
+	.sec_kv .txt_box {left:0; transform:none;}
+	.sec_kv .kv_side {display:none;}
+	.sec_kv .kv_title {top:11.7rem; left:3.2rem; right:3.2rem;}
+	.sec_kv .kv_title h2 {font-size:2.8rem; line-height:1.2; letter-spacing:-.025em;}
+	.sec_kv .kv_title .sub_txt {margin-top:2rem; font-size:1.8rem;}
+	.sec_kv .kv_logo {top:4rem; left:auto; right:3.2rem; width:11.9rem;}
 
 	/* sec_offline */
 	.sec_offline {padding:8rem 0;}
+	.sec_offline .inner_1720 {padding:0 2rem;}
 	.sec_offline .title_box {margin-bottom:3.2rem;}
 	.sec_offline .title_box .eyebrow {margin-bottom:1.2rem; font-size:1.4rem;}
 	.sec_offline .title_box h2 {padding-bottom:1.6rem; font-size:3rem;}

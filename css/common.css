@@ -1,18 +1,19 @@
 /* PC */
 .wrap {margin:0 auto;}
 .wrap section {position:relative;}
-.wrap .inner_1280 {width:100%; max-width:128rem; margin:0 auto; padding:0 2rem;}
+.wrap .inner_1280 {width:100%; max-width:128rem; margin:0 auto; padding:0 4rem;}
 .wrap .inner_1720 {width:100%; max-width:172rem; margin:0 auto; padding:0 2rem;}
 .point_pink {color:#FF466E;}
 .point_blue {color:#1447E6;}
 .point_blue02 {color:#155DFC;}
+.font_en {font-family:"Blinker", "Pretendard Variable", sans-serif;}
 html:has(.popup.is-active) {overflow:hidden;}
 /* header */
 .header {position:sticky; top:0; left:0; width:100%; z-index:999; background-color:#fff;}
 .header .inner_1720 {position:relative; display:flex; align-items:center; justify-content:space-between; height:6.6rem;}
-.header .header_logo {display:block; width:14.1rem; height:2.2rem;}
+.header .header_logo {display:block; width:14.3rem; height:3.1rem;}
 .header .header_nav {position:absolute; top:0; left:50%; transform:translateX(-50%); display:flex; align-items:center; height:100%;}
-.header .header_nav a {position:relative; display:inline-flex; align-items:center; height:100%; padding:0 2.4rem; color:#030712; font-size:1.6rem; transition:color .2s}
+.header .header_nav a {position:relative; display:inline-flex; align-items:center; height:100%; padding:0 2.4rem; color:#030712; font-size:1.6rem; line-height:1.8rem; transition:color .2s}
 .header .header_nav a:hover,
 .header .header_nav a.active {color:#030712;}
 .header .header_nav a:after {content:""; position:absolute; left:2.4rem; right:2.4rem; bottom:1.4rem; height:.2rem; background:#155DFC; box-shadow:0 0 1.4rem #155DFC;opacity:0; transform:scaleX(.3);transition:opacity .2s, transform .2s}
@@ -25,21 +26,20 @@ html:has(.popup.is-active) {overflow:hidden;}
 .header .header_mobile_nav {display:none;}
 
 /* sec_banner */
-.sec_banner {padding:10rem 0; background-color:#EFF6FF; overflow:hidden;}
-.sec_banner .bg_box {position:absolute; top:0; left:0; width:100%; height:100%;}
-.sec_banner .inner_1720 {position:relative;}
+.sec_banner {padding:10rem 0; background-color:#193CB8;}
 .sec_banner .title_box {padding-bottom:6rem;}
-.sec_banner .title_box .eyebrow {display:block; padding-bottom:1.6rem; font-size:1.6rem; font-weight:600; letter-spacing:.1em;}
-.sec_banner .title_box h2 {font-size:4.8rem; line-height:1.3; letter-spacing:-.025em;}
-.sec_banner .btn_apply {display:flex; align-items:flex-start; justify-content:space-between; padding:4rem 0; border-top:1px solid #030712; border-bottom:1px solid #030712;}
-.sec_banner .btn_apply .btn_txt {font-size:4rem; font-weight:700; line-height:1.2; letter-spacing:-.025em; color:#030712;}
+.sec_banner .title_box .eyebrow {display:block; padding-bottom:1.6rem; color:#fff; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
+.sec_banner .title_box h2 {color:#fff; font-size:4.8rem; line-height:1.3; letter-spacing:-.025em;}
+.sec_banner .btn_apply {display:flex; align-items:flex-start; justify-content:space-between; padding:4rem 0; border-top:1px solid #E0E3E8; border-bottom:1px solid #E0E3E8;}
+.sec_banner .btn_apply .btn_txt {font-size:4rem; font-weight:700; line-height:1.2; letter-spacing:-.025em; color:#fff;}
 .sec_banner .btn_apply .ico_arrow {width:5.6rem; height:5.6rem;}
+.sec_banner .btn_apply .ico_arrow img {filter:brightness(0) invert(1);}
 .sec_banner .btn_apply:hover span:first-child {text-decoration:underline;}
 
 /* footer */
-.footer {background-color:#364153; padding:6rem 0;}
+.footer {background-color:#101828; padding:6rem 0;}
 .footer .footer_top {position:relative; display:flex; flex-direction:column; gap:4rem; padding-bottom:6rem; border-bottom:1px solid #4A5565;}
-.footer .footer_logo {width:20.5rem; height:3.2rem;}
+.footer .footer_logo {width:18.9rem; height:4.1rem;}
 .footer .footer_ci {position:absolute; top:calc(50% - 3rem); right:0; transform:translateY(-50%); display:flex; gap:4rem;}
 .footer .footer_ci .ci_sk {width:7.4rem; height:5.8rem;}
 .footer .footer_ci .ci_01 {width:5.6rem; height:5.8rem;}
@@ -79,7 +79,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 
 	/* header */
 	.header .inner_1720 {height:6rem;}
-	.header .header_logo {width:14.1rem; height:2.2rem;}
+	.header .header_logo {width:11.5rem; height:2.5rem;}
 	.header .header_nav,
 	.header .header_apply {display:none;}
 	.header .header_toggle {display:block; position:relative; width:2.4rem; height:2.4rem;}
@@ -88,7 +88,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 	.header .header_mobile_nav nav {display:flex; flex-direction:column; border-top:1px solid #D1D5DB;}
 	.header .header_mobile_nav nav a {padding:1.6rem 0 1.7rem; color:#030712; font-size:1.8rem; font-weight:600; border-bottom:1px solid #D1D5DB; line-height:1.6; letter-spacing:-.025em;}
 	.header .header_mobile_nav nav a.active {color:#155DFC;}
-	.header .header_mobile_nav .header_apply {display:inline-flex; gap:.8rem; margin-top:4rem; padding:1rem 2.2rem; font-size:1.4rem; line-height:1.6rem;}
+	.header .header_mobile_nav .header_apply {display:inline-flex; gap:.8rem; margin-top:4rem; padding:.8rem 2rem; font-size:1.4rem; line-height:1.6rem;}
 	.header.is-active .header_mobile_nav {display:block; height:100dvh; max-height:initial;}
 	.header.is-active .header_toggle .ico_hamburger {display:none;}
 	.header.is-active .header_toggle .ico_close {display:block;}
@@ -108,10 +108,10 @@ html:has(.popup.is-active) {overflow:hidden;}
 	/* footer  */
 	.footer {padding:3.6rem 0;}
 	.footer .footer_top {gap:2rem; padding-bottom:3.6rem;}
-	.footer .footer_logo {width:19.2rem; height:3rem;}
+	.footer .footer_logo {width:18.9rem; height:4.1rem;}
 	.footer .footer_ci {position:static; transform:none; gap:1.6rem;}
-	.footer .footer_ci .ci_sk {width:3.8rem; height:3rem;}
-	.footer .footer_ci .ci_01 {width:2.92rem; height:3rem;}
+	.footer .footer_ci .ci_sk {width:3.9rem; height:3rem;}
+	.footer .footer_ci .ci_01 {width:3rem; height:3rem;}
 	.footer .footer_info {flex-direction:column; align-items:flex-start; gap:.4rem;}
 	.footer .footer_info li {gap:1.6rem;}
 	.footer .footer_info .info_label {min-width:4rem; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}

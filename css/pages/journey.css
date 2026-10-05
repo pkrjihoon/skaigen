@@ -19,13 +19,10 @@
 .sec_program .value_head {margin-bottom:2.4rem;}
 .sec_program .value_head .value_num {display:block; margin-bottom:1rem; color:#155DFC; font-size:1.4rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_program .value_head h3 {padding-bottom:1rem; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em;}
-.sec_program .value_head .value_sub {font-size:1.8rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; word-break:keep-all;}
+.sec_program .value_head .value_sub {color:#51A2FF; font-size:1.8rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; word-break:keep-all;}
 .sec_program .value_list li {display:flex; gap:.8rem; color:#4A5565; font-size:1.4rem; line-height:1.6; letter-spacing:-.025em;}
 .sec_program .value_list li + li {margin-top:.4rem;}
 .sec_program .value_list li:before {content:'-'; flex-shrink:0;}
-.sec_program .value_card.point {background-color:#155DFC; color:#fff;}
-.sec_program .value_card.point .value_head .value_num {color:#fff;}
-.sec_program .value_card.point .value_list li {color:#D1D5DB;}
 
 .sec_program .timeline_row {display:flex;}
 .sec_program .timeline_row + .timeline_row {margin-top:5.2rem;}
@@ -46,7 +43,7 @@
 	/* sec_kv */
 	.sec_kv {background-color:#E6F1FF;}
 	.sec_kv .bg_box {height:75.2rem;}
-	.sec_kv .txt_box {gap:2.4rem; top:12.1rem; left:0; transform:none; padding:0 2rem;}
+	.sec_kv .txt_box {gap:2.4rem; top:18rem; left:0; transform:none; padding:0 2rem;}
 	.sec_kv .txt_box .eyebrow {font-size:1.4rem;}
 	.sec_kv .txt_box h2 {font-size:3rem;}
 	.sec_kv .txt_box .sub_txt {font-size:1.8rem; line-height:1.6;}
