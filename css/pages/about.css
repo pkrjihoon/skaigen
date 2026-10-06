@@ -72,7 +72,6 @@
 
 .sec_message .message_img {position:absolute; bottom:-4rem; right:0; width:40rem; text-align:right;}
 .sec_message .message_img picture {display:block; height:50rem;}
-.sec_message .message_img img {opacity:.9;}
 .sec_message .message_img .caption {display:block; margin-top:1rem; color:#99A1AF; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 
 /* sec_who */
