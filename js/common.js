@@ -63,14 +63,38 @@ function initPopup() {
         popup.setAttribute('aria-hidden', 'true');
     });
     document.body.classList.remove('is-popup-open');
+    const wrapEl = document.querySelector('.wrap');
+    if (wrapEl) wrapEl.style.position = wrapEl.style.top = wrapEl.style.left = wrapEl.style.width = '';
 
     if (isPopupInitialized) return;
     isPopupInitialized = true;
 
     let lastFocusedElement = null;
+    let savedScrollY = 0;
+
+    // 팝업이 열리면 본문(.wrap)을 지금 보이는 위치·폭 그대로 화면에 고정 → 페이지가 멈추고 스크롤바만 사라짐
+    function lockScroll() {
+        const wrap = document.querySelector('.wrap');
+        if (!wrap) return;
+        savedScrollY = window.scrollY;
+        wrap.style.setProperty('--scrollbar-w', `${window.innerWidth - document.documentElement.clientWidth}px`); // 사라질 스크롤바 폭 (common.css .is-popup-open .wrap)
+        wrap.style.width = `${wrap.offsetWidth}px`;
+        wrap.style.position = 'fixed';
+        wrap.style.top = `-${savedScrollY}px`;
+        wrap.style.left = '0';
+    }
+
+    function unlockScroll() {
+        const wrap = document.querySelector('.wrap');
+        if (!wrap) return;
+        wrap.style.position = wrap.style.top = wrap.style.left = wrap.style.width = '';
+        wrap.style.removeProperty('--scrollbar-w');
+        window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+    }
 
     function openPopup(popup) {
         lastFocusedElement = document.activeElement;
+        lockScroll();
         popup.classList.add('is-active');
         popup.setAttribute('aria-hidden', 'false');
         document.body.classList.add('is-popup-open');
@@ -84,8 +108,9 @@ function initPopup() {
         popup.classList.remove('is-active');
         popup.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('is-popup-open');
+        unlockScroll();
 
-        if (lastFocusedElement) lastFocusedElement.focus();
+        if (lastFocusedElement) lastFocusedElement.focus({ preventScroll: true });
     }
 
     // 버튼이 나중에 추가돼도 동작하도록 document에 한 번만 위임

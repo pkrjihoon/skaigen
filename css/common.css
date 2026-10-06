@@ -8,6 +8,9 @@
 .point_blue02 {color:#155DFC;}
 .font_en {font-family:"Blinker", "Pretendard Variable", sans-serif;}
 html:has(.popup.is-active) {overflow:hidden;}
+/* 팝업으로 본문 고정 시 사라진 스크롤바 자리까지 섹션 배경만 늘려 띠가 안 보이게 함 (내용 위치는 그대로) */
+.is-popup-open .wrap > *:not(.popup) {margin-right:calc(var(--scrollbar-w, 0px) * -1); padding-right:var(--scrollbar-w, 0px);}
+.is-popup-open .wrap > .header {width:calc(100% + var(--scrollbar-w, 0px));}
 /* header */
 .header {position:sticky; top:0; left:0; width:100%; z-index:999; background-color:#fff;}
 .header .inner_1720 {position:relative; display:flex; align-items:center; justify-content:space-between; height:6.6rem;}
