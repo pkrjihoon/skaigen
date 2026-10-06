@@ -49,7 +49,7 @@
 .sec_explore .explore_list li .card_label {display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;}
 .sec_explore .explore_list li .card_eyebrow {color:#155DFC; font-size:1.4rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em;}
-.sec_explore .explore_list li .card_txt {padding-bottom:6rem; color:#4A5565; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em; word-break:keep-all;}
+.sec_explore .explore_list li .card_txt {padding-bottom:6rem; color:#4A5565; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 .sec_explore .explore_list li .card_link {display:inline-flex; align-items:center; gap:.8rem; font-size:1.4rem; font-weight:600; line-height:2rem;}
 .sec_explore .explore_list li .card_link .ico_arrow {width:2rem; height:2rem; flex-shrink:0;}
 
@@ -131,6 +131,6 @@
 	.sec_explore .explore_list li .card_eyebrow {font-size:1.3rem; line-height:1; letter-spacing:.1em;}
 	.sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:2.4rem; letter-spacing:-.025em;}
 	.sec_explore .explore_list li .card_txt {padding-bottom:3.6rem; font-size:1.6rem; letter-spacing:-.025em;}
-	.sec_explore .explore_list li .card_link {gap:.8rem; font-size:1.3rem; line-height:1.6rem;}
+	.sec_explore .explore_list li .card_link {gap:.4rem; font-size:1.4rem; line-height:1.6rem;}
 	.sec_explore .explore_list li .card_link .ico_arrow {width:2rem; height:2rem;}
 }

@@ -9,9 +9,9 @@
 
 /* sec_history */
 .sec_history {padding:12rem 0; background-color:#193CB8; text-align:center;}
-.sec_history .txt_box p {color:#E5E7EB; font-size:2.4rem; line-height:1.5; letter-spacing:-.025em;}
+.sec_history .txt_box p {color:#E5E7EB; font-size:2.8rem; font-weight:600; line-height:1.5; letter-spacing:-.025em;}
 .sec_history .txt_box p + p {margin-top:2.4rem;}
-.sec_history h2 {margin-top:4rem; color:#fff; font-size:4rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
+.sec_history h2 {margin-top:4rem; color:#fff; font-size:4.8rem; font-weight:700; line-height:1.3; letter-spacing:-.025em;}
 
 /* sec_what */
 .sec_what {padding:12rem 0; background-color:#F9FAFB;}
@@ -38,8 +38,9 @@
 .sec_compare .compare_head .compare_title {flex:1; font-size:3.2rem; line-height:1.2; font-weight:600; letter-spacing:-.025em; color:#4A5565;}
 .sec_compare .compare_head .compare_title.point {color:#155DFC;}
 
-.sec_compare .compare_list li {display:flex; align-items:center; gap:4.5rem;}
-.sec_compare .compare_list li + li {margin-top:1.6rem;}
+.sec_compare .compare_list li {display:flex; align-items:center; gap:1.6rem;}
+.sec_compare .compare_list li + li {margin-top:4rem;}
+.sec_compare .compare_note {margin-top:4rem; color:#99A1AF; font-size:1.4rem; line-height:1.6; letter-spacing:-.025em; text-align:right;}
 .sec_compare .compare_box {flex:1; padding:4.2rem 4rem 4rem;}
 .sec_compare .compare_box > strong {display:block; padding-bottom:2rem; font-size:4rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
 .sec_compare .compare_box > strong:last-child {padding-bottom:0;}
@@ -71,6 +72,7 @@
 
 .sec_message .message_img {position:absolute; bottom:-4rem; right:0; width:40rem; text-align:right;}
 .sec_message .message_img picture {display:block; height:50rem;}
+.sec_message .message_img img {opacity:.9;}
 .sec_message .message_img .caption {display:block; margin-top:1rem; color:#99A1AF; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 
 /* sec_who */
@@ -112,15 +114,15 @@
 
 	/* sec_history */
 	.sec_history {padding:6rem 0;}
-	.sec_history .txt_box p {font-size:1.8rem;}
+	.sec_history .txt_box p {font-size:2rem;}
 	.sec_history .txt_box p + p {margin-top:2rem;}
-	.sec_history h2 {margin-top:2rem; font-size:2.8rem;}
+	.sec_history h2 {margin-top:2.8rem; font-size:3rem;}
 
 	/* sec_what */
 	.sec_what {padding:6rem 0;}
 	.sec_what .inner_1720 {flex-direction:column; gap:4rem;}
 	.sec_what .what_img {width:100%; height:44rem;}
-	.sec_what .title_box {margin-bottom:2rem;}
+	.sec_what .title_box {margin-bottom:4.7rem;}
 	.sec_what .title_box .eyebrow {padding-bottom:2rem; font-size:3.6rem; font-weight:600; line-height:1;}
 	.sec_what .title_box h2 {padding-bottom:1.2rem; font-size:4rem; font-weight:800; letter-spacing:-0.05em;}
 	.sec_what .title_box .sub_txt {font-size:1.8rem; letter-spacing:-0.025em;}
@@ -141,7 +143,7 @@
 	.sec_compare .compare_wrap {display:flex; flex-direction:column; gap:1.2rem;}
 	.sec_compare .compare_head {display:none;}
 	.sec_compare .compare_list li {gap:0.8rem; align-items:stretch;}
-	.sec_compare .compare_list li + li {margin-top:1.2rem;}
+	.sec_compare .compare_list li + li {margin-top:2rem;}
 
 	.sec_compare .compare_box {padding:2rem 1.2rem; word-break:keep-all;}
 	.sec_compare .compare_box > span {display:block; padding-bottom:.8rem; color:#4A5565; font-size:1.2rem; font-weight:600; line-height:1.2; letter-spacing:-0.025em;}
@@ -172,12 +174,13 @@
 	.sec_message .message_list .message_item.open .ico_minus {display:block;}
 
 	.sec_message .message_list .message_content {max-height:0; overflow:hidden; transition:max-height .4s ease;}
-	.sec_message .message_list .message_txt {padding-bottom:2.4rem; font-size:1.6rem; line-height:1.6; letter-spacing:-0.025em;}
+	.sec_message .message_list .message_txt {padding-bottom:2.4rem; font-size:1.6rem; line-height:1.6; letter-spacing:-0.04em;}
 	.sec_message .message_list .message_quote,
-	.sec_message .message_list .message_quote ~ .message_txt {font-size:2rem; line-height:1.5;}
+	.sec_message .message_list .message_quote ~ .message_txt {font-size:1.8rem; line-height:1.5; letter-spacing: -0.45px;}
+	.sec_message .message_list .message_content > p + p {margin-top:3rem;}
 
 	.sec_message .message_img {position:static; width:24rem; margin:2rem 0 0 auto;}
-	.sec_message .message_img picture {height:30rem;}
+	.sec_message .message_img picture {width: 24rem; height:30rem;}
 	.sec_message .message_img .caption {margin-top:.6rem; font-size:1.4rem; letter-spacing:-0.025em;}
 
 	/* sec_who */
