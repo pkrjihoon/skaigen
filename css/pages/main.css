@@ -5,13 +5,14 @@
 .sec_kv .txt_box {position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; height:100%;}
 .sec_kv .kv_side {position:absolute; top:14rem; left:2rem;}
 .sec_kv .kv_side p {color:#fff; font-size:1.8rem; font-weight:500; line-height:1.5; letter-spacing:-.025em; text-shadow:-.2rem .3rem 1rem rgba(0,0,0,.5);}
-.sec_kv .kv_side p + p {margin-top:2rem;}
+.sec_kv .kv_side p + p {margin-top:2.4rem;}
 /* 문구 사이 구분선 */
-.sec_kv .kv_side p + p:before {content:''; display:block; width:1.6rem; height:1px; margin-bottom:2rem; background-color:#fff;}
-.sec_kv .kv_title {position:absolute; top:17.25rem; right:2.4rem; text-align:right;}
-.sec_kv .kv_title h2 {color:#030712; font-size:6.4rem; font-weight:700; line-height:1.3; letter-spacing:-.05em;}
+.sec_kv .kv_side p + p:before {content:''; display:block; width:1.6rem; height:1px; margin-bottom:2.4rem; background-color:#fff;}
+.sec_kv .kv_title {position:absolute; top:28.1rem; right:2.4rem; text-align:right;}
+.sec_kv .kv_title h2 {color:#030712; font-size:4.8rem; font-weight:600; line-height:1.3; letter-spacing:-.05em;}
+.sec_kv .kv_title .kv_title_line {display:block; color:#000;}
 .sec_kv .kv_title .sub_txt {margin-top:2.4rem; color:#373B40; font-size:2.6rem; font-weight:500; line-height:1.3; letter-spacing:-.025em;}
-.sec_kv .kv_logo {position:absolute; top:9.3rem; left:calc(50% + 68.7rem); width:14.2rem;}
+.sec_kv .kv_logo {position:absolute; top:14rem; right:max(2rem, calc(50% - 84rem)); width:45.3rem;}
 
 /* sec_offline */
 .sec_offline {padding:10rem 0; background-color:#E6F1FF;}
@@ -94,11 +95,15 @@
 	/* sec_kv */
 	.sec_kv .bg_box {height:75.2rem;}
 	.sec_kv .txt_box {left:0; transform:none;}
-	.sec_kv .kv_side {display:none;}
-	.sec_kv .kv_title {top:11.7rem; left:3.2rem; right:3.2rem;}
-	.sec_kv .kv_title h2 {font-size:2.8rem; line-height:1.2; letter-spacing:-.025em;}
+	.sec_kv .kv_side {top:4rem; left:2.4rem;}
+	.sec_kv .kv_side p {font-size:1.3rem;}
+	.sec_kv .kv_side p + p {margin-top:2rem;}
+	.sec_kv .kv_side p + p:before {margin-bottom:2rem;}
+	.sec_kv .kv_title {top:26.8rem; left:3.2rem; right:3.2rem;}
+	.sec_kv .kv_title h2 {font-size:2.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
+	.sec_kv .kv_title .kv_title_line {margin-bottom:.4rem;}
 	.sec_kv .kv_title .sub_txt {margin-top:2rem; font-size:1.8rem;}
-	.sec_kv .kv_logo {top:4rem; left:auto; right:3.2rem; width:11.9rem;}
+	.sec_kv .kv_logo {top:19.8rem; right:3.2rem; width:17.9rem;}
 
 	/* sec_offline */
 	.sec_offline {padding:8rem 0;}
