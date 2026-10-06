@@ -15,7 +15,6 @@
 
 /* sec_offline */
 .sec_offline {padding:10rem 0; background-color:#E6F1FF;}
-.sec_offline .inner_1720 {padding:0 6rem;}
 .sec_offline .title_box {margin-bottom:4.8rem;}
 .sec_offline .title_box .eyebrow {display:block; margin-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_offline .title_box h2 {padding-bottom:2rem; font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
@@ -31,7 +30,7 @@
 .sec_offline .offline_actions .status_pill,
 .sec_offline .offline_actions .offline_apply {display:flex; justify-content:center; align-items:center; gap:1.6rem; padding:1.6rem 4rem; border-radius:10rem; font-size:1.8rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
 
-.sec_offline .status_pill {border:1px solid #EFF6FF; background-color:#EFF6FF;}
+.sec_offline .offline_actions .status_pill {padding:1.5rem 3.9rem; border:1px solid #EFF6FF; background-color:#EFF6FF;}
 .sec_offline .offline_apply {color:#fff; background-color:#155DFC;}
 .sec_offline .offline_apply:after {content:''; display:inline-block; width:2.4rem; height:2.4rem; background:url('../../img/aigen_test_quiz_apply_icon.svg') no-repeat center/cover;}
 .sec_offline .offline_apply:hover {filter:brightness(1.08);}
@@ -116,6 +115,7 @@
 	.sec_offline .offline_actions {flex-direction:column; gap:1.6rem; margin-top:2rem;}
 	.sec_offline .offline_actions .status_pill,
 	.sec_offline .offline_actions .offline_apply {gap:1.2rem; width:100%; padding:1.2rem 0; font-size:1.6rem;}
+	.sec_offline .offline_actions .status_pill {padding:1.1rem 0;}
 
 	.sec_offline .offline_note {margin-top:1.2rem; font-size:1rem;}
 
