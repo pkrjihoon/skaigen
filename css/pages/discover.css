@@ -62,7 +62,7 @@
 /* SIZE 360 기준 */
 @media all and (max-width:768px) {
 	/* sec_kv */
-	.sec_kv {min-height:0; padding:4.8rem 0 6rem; background: #e6f1ff url('../../img/discover_kv_mo.jpg') no-repeat center top /cover;}
+	.sec_kv {min-height:0; padding:4.8rem 0 6rem; background: #e6f1ff url('../../img/discover_kv_mo.webp') no-repeat center top /cover;}
 	.sec_kv .inner_1720 {flex-direction:column; gap:3.2rem;}
 	.sec_kv .txt_box {gap:1.2rem; left:0; transform:none; width:100%;}
 	.sec_kv .txt_box .eyebrow {font-size:1.4rem;}
