@@ -1,8 +1,7 @@
 /* PC */
 .wrap {margin:0 auto;}
 .wrap section {position:relative;}
-.wrap .inner_1280 {width:100%; max-width:128rem; margin:0 auto; padding:0 4rem;}
-.wrap .inner_1720 {width:100%; max-width:172rem; margin:0 auto; padding:0 2rem;}
+.wrap .inner_1920 {width:100%; max-width:192rem; margin:0 auto; padding:0 12rem;}
 .point_pink {color:#FF466E;}
 .point_blue {color:#1447E6;}
 .point_blue02 {color:#155DFC;}
@@ -13,16 +12,16 @@ html:has(.popup.is-active) {overflow:hidden;}
 .is-popup-open .wrap > .header {width:calc(100% + var(--scrollbar-w, 0px));}
 /* header */
 .header {position:sticky; top:0; left:0; width:100%; z-index:999; background-color:#fff;}
-.header .inner_1720 {position:relative; display:flex; align-items:center; justify-content:space-between; height:6.6rem;}
+.header .inner_1920 {position:relative; display:flex; align-items:center; justify-content:space-between; height:7rem;}
 .header .header_logo {display:block; width:14.3rem; height:3.1rem;}
 .header .header_nav {position:absolute; top:0; left:50%; transform:translateX(-50%); display:flex; align-items:center; height:100%;}
-.header .header_nav a {position:relative; display:inline-flex; align-items:center; height:100%; padding:0 2.4rem; color:#030712; font-size:1.6rem; line-height:1.8rem; transition:color .2s}
+.header .header_nav a {position:relative; display:inline-flex; align-items:center; height:100%; padding:0 4rem; color:#030712; font-size:2.4rem; line-height:2.4rem; transition:color .2s}
 .header .header_nav a:hover,
 .header .header_nav a.active {color:#030712;}
-.header .header_nav a:after {content:""; position:absolute; left:2.4rem; right:2.4rem; bottom:1.4rem; height:.2rem; background:#155DFC; box-shadow:0 0 1.4rem #155DFC;opacity:0; transform:scaleX(.3);transition:opacity .2s, transform .2s}
+.header .header_nav a:after {content:""; position:absolute; left:4rem; right:4rem; bottom:1.4rem; height:.2rem; background:#155DFC; box-shadow:0 0 1.4rem #155DFC;opacity:0; transform:scaleX(.3);transition:opacity .2s, transform .2s}
 .header .header_nav a:hover::after,
 .header .header_nav a.active::after {opacity:1; transform:scaleX(1)}
-.header .header_apply {display:inline-flex; align-items:center; gap:.8rem; padding:0.8rem 2rem; border:1px solid #155DFC; background-color:#155DFC; color:#fff; font-size:1.4rem; font-weight:600; border-radius:99.9rem; white-space:nowrap;}
+.header .header_apply {display:inline-flex; align-items:center; gap:.8rem; padding:0.8rem 2rem; border:1px solid #155DFC; background-color:#155DFC; color:#fff; font-size:1.6rem; font-weight:600; line-height:2rem; border-radius:99.9rem; white-space:nowrap;}
 .header .header_apply .ico_arrow {width:2rem; height:2rem;}
 .header .header_toggle,
 .header .header_toggle .ico_close,
@@ -48,11 +47,11 @@ html:has(.popup.is-active) {overflow:hidden;}
 .footer .footer_ci .ci_01 {width:5.6rem; height:5.8rem;}
 .footer .footer_info {display:flex; align-items:center; gap:6rem;}
 .footer .footer_info li {display:flex; align-items:center; gap:2rem;}
-.footer .footer_info .info_label {min-width:4rem; font-size:1.8rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; color:#E5E7EB;}
-.footer .footer_info .info_value {font-size:1.6rem; font-weight:400; line-height:1.6; letter-spacing:-.025em; color:#E5E7EB;}
+.footer .footer_info .info_label {min-width:4rem; font-size:2rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; color:#E5E7EB;}
+.footer .footer_info .info_value {font-size:1.8rem; font-weight:400; line-height:1.6; letter-spacing:-.025em; color:#E5E7EB;}
 .footer .footer_bottom {display:flex; align-items:center; justify-content:space-between; padding-top:4rem;}
 .footer .footer_text,
-.footer .footer_copy {font-size:1.3rem; line-height:1.6; letter-spacing:-.025em; color:#99A1AF;}
+.footer .footer_copy {font-size:1.4rem; line-height:1.6; letter-spacing:-.025em; color:#99A1AF;}
 
 /* popup */
 .popup {position:fixed; top:0; left:0; z-index:1000; display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2rem; visibility:hidden; opacity:0; transition:opacity .25s ease, visibility .25s ease;}
@@ -70,18 +69,17 @@ html:has(.popup.is-active) {overflow:hidden;}
 
 .popup .popup_content {text-align:center;}
 .popup .popup_title {padding-bottom:1.2rem; color:#030712; font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
-.popup .popup_txt {color:#364153; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
-.popup .btn_popup_confirm {display:block; width:100%; box-sizing:border-box; margin-top:3.2rem; padding:1.6rem 4rem; border-radius:99.9rem; background-color:#155DFC; color:#fff; font-size:1.8rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
+.popup .popup_txt {color:#364153; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
+.popup .btn_popup_confirm {display:block; width:100%; box-sizing:border-box; margin-top:3.2rem; padding:1.6rem 4rem; border-radius:99.9rem; background-color:#155DFC; color:#fff; font-size:2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
 
 
 /* MOBILE */
 /* SIZE 360 기준 */
 @media all and (max-width:768px) {
-	.wrap .inner_1280,
-	.wrap .inner_1720 {max-width:100%; padding:0 2rem;}
+	.wrap .inner_1920 {max-width:100%; padding:0 2rem;}
 
 	/* header */
-	.header .inner_1720 {height:6rem;}
+	.header .inner_1920 {height:6rem;}
 	.header .header_logo {width:11.5rem; height:2.5rem;}
 	.header .header_nav,
 	.header .header_apply {display:none;}
@@ -100,7 +98,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 
 	/* sec_banner */
 	.sec_banner {padding:6rem 0;}
-	.sec_banner .inner_1720 {padding:0 2rem;}
+	.sec_banner .inner_1920 {padding:0 2rem;}
 	.sec_banner .title_box {padding-bottom:3.6rem;}
 	.sec_banner .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem; line-height:1; letter-spacing:.1em;}
 	.sec_banner .title_box h2 {font-size:3rem; line-height:1.3; letter-spacing:-.025em;}
@@ -127,5 +125,6 @@ html:has(.popup.is-active) {overflow:hidden;}
 	.popup .popup_inner {padding:5.2rem 1.6rem 2rem;}
 	.popup .btn_popup_close {top:1.2rem; right:1.6rem;}
 	.popup .popup_title {padding-bottom:.8rem; font-size:1.8rem;}
-	.popup .btn_popup_confirm {margin-top:2.4rem; padding:1.2rem 2.8rem;}
+	.popup .popup_txt {font-size:1.6rem;}
+	.popup .btn_popup_confirm {margin-top:2.4rem; padding:1.2rem 2.8rem; font-size:1.8rem;}
 }

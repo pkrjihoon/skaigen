@@ -3,23 +3,23 @@
 .sec_kv {background-color:#EFF6FF;}
 .sec_kv .bg_box {width: 100%; height:90rem; margin:0 auto;}
 .sec_kv .txt_box {position:absolute; top:0; left:50%; transform:translateX(-50%); width:100%; height:100%;}
-.sec_kv .kv_side {position:absolute; top:14rem; left:2rem;}
+.sec_kv .kv_side {position:absolute; top:14rem; left:12rem;}
 .sec_kv .kv_side p {color:#fff; font-size:1.8rem; font-weight:500; line-height:1.5; letter-spacing:-.025em; text-shadow:-.2rem .3rem 1rem rgba(0,0,0,.5);}
 .sec_kv .kv_side p + p {margin-top:2.4rem;}
 /* 문구 사이 구분선 */
 .sec_kv .kv_side p + p:before {content:''; display:block; width:1.6rem; height:1px; margin-bottom:2.4rem; background-color:#fff;}
-.sec_kv .kv_title {position:absolute; top:28.1rem; right:2.4rem; text-align:right;}
+.sec_kv .kv_title {position:absolute; top:31rem; right:12.4rem; text-align:right;}
 .sec_kv .kv_title h2 {color:#030712; font-size:4.8rem; font-weight:600; line-height:1.3; letter-spacing:-.05em;}
 .sec_kv .kv_title .kv_title_line {display:block; color:#000;}
 .sec_kv .kv_title .sub_txt {margin-top:2.4rem; color:#373B40; font-size:2.6rem; font-weight:500; line-height:1.3; letter-spacing:-.025em;}
-.sec_kv .kv_logo {position:absolute; top:14rem; right:max(2rem, calc(50% - 84rem)); width:45.3rem;}
+.sec_kv .kv_logo {position:absolute; top:14rem; right:max(12rem, calc(50% - 84rem)); width:45.3rem;}
 
 /* sec_offline */
 .sec_offline {padding:10rem 0; background-color:#E6F1FF;}
 .sec_offline .title_box {margin-bottom:4.8rem;}
 .sec_offline .title_box .eyebrow {display:block; margin-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_offline .title_box h2 {padding-bottom:2rem; font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
-.sec_offline .title_box .sub_txt {color:#64748B; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
+.sec_offline .title_box .sub_txt {color:#64748B; font-size:2rem; line-height:1.6; letter-spacing:-.025em;}
 
 .sec_offline .offline_card {padding:4rem; background-color:#fff;}
 .sec_offline .card_list {display:flex; justify-content:space-between; gap:2rem;}
@@ -29,7 +29,7 @@
 
 .sec_offline .offline_actions {display:flex; justify-content:flex-end; align-items:center; gap:2rem; margin-top:4rem;}
 .sec_offline .offline_actions .status_pill,
-.sec_offline .offline_actions .offline_apply {display:flex; justify-content:center; align-items:center; gap:1.6rem; padding:1.6rem 4rem; border-radius:10rem; font-size:1.8rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
+.sec_offline .offline_actions .offline_apply {display:flex; justify-content:center; align-items:center; gap:1.6rem; padding:1.6rem 4rem; border-radius:10rem; font-size:2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
 
 .sec_offline .offline_actions .status_pill {padding:1.5rem 3.9rem; border:1px solid #EFF6FF; background-color:#EFF6FF;}
 .sec_offline .offline_apply {color:#fff; background-color:#155DFC;}
@@ -44,13 +44,13 @@
 .sec_explore .title_box .eyebrow {display:block; padding-bottom:1.6rem; color:#155DFC; font-size:1.6rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_explore .title_box h2 {font-size:4.8rem; font-weight:700; line-height:1.2; letter-spacing:-.025em;}
 
-.sec_explore .explore_list {display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;}
-.sec_explore .explore_list li {position:relative; width:calc(50% - 1rem); padding:3.2rem; border:1px solid #BEDBFF; background-color:#fff;}
+.sec_explore .explore_list {display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:2rem;}
+.sec_explore .explore_list li {position:relative; padding:3.2rem; border:1px solid #BEDBFF; background-color:#fff;}
 .sec_explore .explore_list li .card_label {display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;}
 .sec_explore .explore_list li .card_eyebrow {color:#155DFC; font-size:1.4rem; font-weight:600; line-height:1; letter-spacing:.1em;}
 .sec_explore .explore_list li h3 {padding-bottom:1rem; font-size:3.2rem; font-weight:600; line-height:1.2; letter-spacing:-.025em;}
-.sec_explore .explore_list li .card_txt {padding-bottom:6rem; color:#4A5565; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
-.sec_explore .explore_list li .card_link {display:inline-flex; align-items:center; gap:.8rem; font-size:1.4rem; font-weight:600; line-height:2rem;}
+.sec_explore .explore_list li .card_txt {padding-bottom:6rem; color:#4A5565; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
+.sec_explore .explore_list li .card_link {display:inline-flex; align-items:center; gap:.8rem; font-size:1.6rem; font-weight:600; line-height:2rem;}
 .sec_explore .explore_list li .card_link .ico_arrow {width:2rem; height:2rem; flex-shrink:0;}
 
 /* 호버스타일 */
@@ -68,10 +68,7 @@
 .sec_explore .explore_list li:nth-child(2).is-tapped {background-color:#51A2FF; border-color:#D1D5DB;}
 
 .sec_explore .explore_list li:nth-child(3):hover,
-.sec_explore .explore_list li:nth-child(3).is-tapped {background-color:#155DFC; border-color:#D1D5DB;}
-
-.sec_explore .explore_list li:nth-child(4):hover,
-.sec_explore .explore_list li:nth-child(4).is-tapped {background-color:#FF466E; border-color:#D1D5DB;}
+.sec_explore .explore_list li:nth-child(3).is-tapped {background-color:#FF466E; border-color:#D1D5DB;}
 
 /* hover / is-tapped 상태일 때 텍스트·아이콘 색상 전환 */
 .sec_explore .explore_list li:hover .card_eyebrow,
@@ -107,10 +104,11 @@
 
 	/* sec_offline */
 	.sec_offline {padding:8rem 0;}
-	.sec_offline .inner_1720 {padding:0 2rem;}
+	.sec_offline .inner_1920 {padding:0 2rem;}
 	.sec_offline .title_box {margin-bottom:3.2rem;}
 	.sec_offline .title_box .eyebrow {margin-bottom:1.2rem; font-size:1.4rem;}
 	.sec_offline .title_box h2 {padding-bottom:1.6rem; font-size:3rem;}
+	.sec_offline .title_box .sub_txt {font-size:1.8rem;}
 
 	.sec_offline .offline_card {padding:2.8rem 2rem;}
 	.sec_offline .card_list {flex-direction:column; gap:1.6rem;}
@@ -130,7 +128,7 @@
 	.sec_explore .title_box .eyebrow {padding-bottom:1.2rem; font-size:1.4rem; line-height:1; letter-spacing:.1em;}
 	.sec_explore .title_box h2 {font-size:2.8rem; line-height:1.2; letter-spacing:-.025em;}
 
-	.sec_explore .explore_list {gap:1.6rem;}
+	.sec_explore .explore_list {grid-template-columns:minmax(0, 1fr); gap:1.6rem;}
 	.sec_explore .explore_list li {width:100%; padding:2.4rem;}
 	.sec_explore .explore_list li .card_label {margin-bottom:1rem;}
 	.sec_explore .explore_list li .card_eyebrow {font-size:1.3rem; line-height:1; letter-spacing:.1em;}
