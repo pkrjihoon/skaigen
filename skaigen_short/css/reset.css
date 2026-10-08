@@ -170,12 +170,12 @@ button {
 	box-sizing: content-box;
 }
 
-/* SIZE 1472 기준 (내용 1280 + 좌우 96) */
-@media all and (max-width:1472px) {
+/* SIZE 1672 기준 (내용 1472 + 좌우 100) */
+@media all and (max-width:1672px) {
 
 	html,
 	body {
-		font-size: calc(100vw * 10/1472);
+		font-size: calc(100vw * 10/1672);
 	}
 }
 

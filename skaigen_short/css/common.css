@@ -1,7 +1,7 @@
 /* PC */
 .wrap {margin:0 auto;}
 .wrap section {position:relative;}
-.wrap .inner_1472 {width:100%; max-width:147.2rem; margin:0 auto; padding:0 9.6rem;} /* 전체 1472 = 내용 1280 + 좌우 96 */
+.wrap .inner_1472 {width:100%; max-width:167.2rem; margin:0 auto; padding:0 10rem;} /* 전체 1672 = 내용 1472 + 좌우 100 */
 .point_pink {color:#FF466E;}
 .point_blue {color:#1447E6;}
 .point_blue02 {color:#155DFC;}
