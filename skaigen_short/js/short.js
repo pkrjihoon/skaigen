@@ -1,5 +1,5 @@
-// 키비주얼: PC는 이미지가 뜨면 장막 빛 효과 1회(다시 재생 버튼), 모바일은 01 → 02 → 03 장면 자동 전환(이전·다음·재생/일시정지·스와이프)
-// 화면 밖·다른 탭에서는 멈추고, 동작 줄이기 설정이면 효과·자동 전환 없이 정지 화면
+// 키비주얼: PC는 이미지 한 장, 모바일은 01 → 02 → 03 장면 자동 전환(이전·다음·재생/일시정지·스와이프)
+// 화면 밖·다른 탭에서는 멈추고, 동작 줄이기 설정이면 자동 전환 없이 정지 화면
 function initKvMotion() {
 	const section = document.querySelector('.sec_kv');
 	if (!section) return;
@@ -14,8 +14,6 @@ function initKvMotion() {
 	const play = section.querySelector('.kv_play');
 	const position = section.querySelector('.kv_position');
 	const announce = section.querySelector('.kv_announce');
-	const curtain = section.querySelector('.kv_curtain');
-	const replay = section.querySelector('.kv_replay');
 	const mobile = window.matchMedia('(max-width: 768px)');
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 	const labels = ['익숙한 길을 넘어', '새로운 길을 만들어가다', '새로운 길을 만들어가다'];
@@ -31,7 +29,6 @@ function initKvMotion() {
 	let timer = null;
 	let startedAt = 0;
 	let remaining = duration;
-	let pcPlayed = false;
 	let request = 0;
 	let touchStart = null;
 	let fadeTimer = null;
@@ -52,7 +49,6 @@ function initKvMotion() {
 
 	function updateControls() {
 		controls.hidden = !mobile.matches;
-		replay.hidden = mobile.matches || reduced.matches;
 		play.hidden = reduced.matches;
 		prev.disabled = busy || index === 0;
 		next.disabled = busy || index === last;
@@ -123,18 +119,10 @@ function initKvMotion() {
 		ensureImage(index + 1).catch(() => {});
 	}
 
-	// PC 장막 빛 효과: 이미지가 화면에 보일 때 한 번
-	function playCurtain() {
-		if (mobile.matches || pcPlayed || reduced.matches || !inView || document.hidden || !base.complete || !base.naturalWidth) return;
-		pcPlayed = true;
-		curtain.classList.add('is-playing');
-	}
-
 	function sync() {
 		stopClock();
 		pauseFade();
 		updateControls();
-		playCurtain();
 		runFade();
 		if (!eligible() || !base.complete || !base.naturalWidth) return;
 		startedAt = performance.now();
@@ -236,12 +224,6 @@ function initKvMotion() {
 		wanted = false;
 		sync();
 	});
-	replay.addEventListener('click', () => {
-		if (reduced.matches) return;
-		curtain.classList.remove('is-playing');
-		requestAnimationFrame(() => curtain.classList.add('is-playing'));
-	});
-	curtain.addEventListener('animationend', () => curtain.classList.remove('is-playing'));
 	document.addEventListener('visibilitychange', sync);
 	mobile.addEventListener('change', () => {
 		++request;
@@ -252,7 +234,6 @@ function initKvMotion() {
 		wanted = !reduced.matches && !finished;
 		if (reduced.matches) {
 			++request;
-			curtain.classList.remove('is-playing');
 			cancelFade();
 		}
 		sync();
@@ -424,7 +405,7 @@ function initScrollReveal() {
 		el.style.setProperty('--reveal-delay', `${Math.min(index * .1, .4)}s`);
 		targets.push(el);
 	}
-	document.querySelectorAll('.wrap section:not(.sec_kv) > .inner_1472').forEach((inner) => [...inner.children].forEach((el) => collect(el, 0)));
+	document.querySelectorAll('.wrap section:not(.sec_kv) > .inner_1680').forEach((inner) => [...inner.children].forEach((el) => collect(el, 0)));
 
 	function show(el) {
 		if (el.classList.contains('is-show')) return;
