@@ -1,4 +1,4 @@
-// 키비주얼: PC는 이미지가 뜨면 장막 빛 효과 1회(재생 버튼으로 다시 보기), 모바일은 01 → 02 → 03 장면 자동 전환(이전·다음·재생/일시정지·스와이프)
+// 키비주얼: PC는 이미지가 뜨면 장막 빛 효과 1회(재생 버튼으로 다시 보기), 모바일은 01 → 02 → 03 장면 자동 전환 후 마지막 장면에서 멈춤(이전·다음·스와이프로 넘기면 자동 전환 멈춤)
 // 화면 밖·다른 탭에서는 멈추고, 동작 줄이기 설정이면 자동 전환 없이 정지 화면
 function initKvMotion() {
 	const section = document.querySelector('.sec_kv');
@@ -11,7 +11,6 @@ function initKvMotion() {
 	const controls = section.querySelector('.kv_controls');
 	const prev = section.querySelector('.kv_prev');
 	const next = section.querySelector('.kv_next');
-	const play = section.querySelector('.kv_play');
 	const position = section.querySelector('.kv_position');
 	const announce = section.querySelector('.kv_announce');
 	const curtain = section.querySelector('.kv_curtain');
@@ -53,15 +52,9 @@ function initKvMotion() {
 	function updateControls() {
 		controls.hidden = !mobile.matches;
 		replay.hidden = mobile.matches || reduced.matches;
-		play.hidden = reduced.matches;
 		prev.disabled = busy || index === 0;
 		next.disabled = busy || index === last;
-		play.disabled = busy;
 		position.textContent = `${index + 1} / ${last + 1}`;
-		const running = eligible();
-		play.textContent = finished ? '다시 재생' : running ? '일시정지' : '재생';
-		play.setAttribute('aria-pressed', String(!running));
-		play.setAttribute('aria-label', finished ? '첫 장면부터 다시 재생' : running ? '자동 장면 전환 일시정지' : '자동 장면 전환 재생');
 		section.dataset.visible = String(inView && !document.hidden);
 		section.dataset.slide = String(index);
 	}
@@ -194,20 +187,6 @@ function initKvMotion() {
 
 	prev.addEventListener('click', () => go(index - 1, true));
 	next.addEventListener('click', () => go(index + 1, true));
-	play.addEventListener('click', async () => {
-		if (busy) return;
-		if (finished) {
-			finished = false;
-			await go(0, true);
-			wanted = !reduced.matches;
-			remaining = duration;
-			sync();
-			return;
-		}
-		wanted = !wanted;
-		remaining = remaining || duration;
-		sync();
-	});
 	controls.addEventListener('keydown', (e) => {
 		if (e.key === 'ArrowLeft') {
 			e.preventDefault();
@@ -230,9 +209,8 @@ function initKvMotion() {
 		touchStart = null;
 		if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) go(index + (dx < 0 ? 1 : -1), true);
 	}, { passive: true });
-	// 키보드로 KV 안에 들어오면 자동 전환 멈춤 (재생 버튼 제외)
-	section.addEventListener('focusin', (e) => {
-		if (e.target === play) return;
+	// 키보드로 KV 안에 들어오면 자동 전환 멈춤
+	section.addEventListener('focusin', () => {
 		wanted = false;
 		sync();
 	});

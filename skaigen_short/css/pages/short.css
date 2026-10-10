@@ -344,7 +344,6 @@ html {scroll-behavior:smooth;}
 	.sec_kv .kv_controls {display:flex; align-items:center; justify-content:center; gap:1.12rem; height:5.8rem; padding:.56rem 1.6rem; background-color:#07111E;}
 	.sec_kv .kv_controls button {display:inline-flex; align-items:center; justify-content:center; min-width:4.4rem; min-height:4.4rem; padding:.72rem 1.12rem; box-sizing:border-box; border:1px solid rgba(255,255,255,.38); border-radius:.3rem; color:#FFFFFF; font-size:1.6rem; line-height:1.4; letter-spacing:-.02em; cursor:pointer;}
 	.sec_kv .kv_controls button:disabled {opacity:.38; cursor:default;}
-	.sec_kv .kv_controls .kv_play {min-width:9.6rem; font-size:1.5rem;}
 	.sec_kv .kv_position {min-width:3.84rem; font-size:1.5rem; line-height:1.4; text-align:center; font-variant-numeric:tabular-nums;}
 	.js-reveal .wrap .reveal {transform:translateY(2.4rem);}
 	.sec_apply .apply_steps li {--step-distance:1rem;}
@@ -418,7 +417,7 @@ html {scroll-behavior:smooth;}
 	.sec_journey .module_txt p {padding-top:.8rem; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 	.sec_journey .module_example {flex:none; width:100%; gap:0; padding:1.6rem 1.2rem 0; border-left:0; border-top:1px solid #F6D3BE;}
 	.sec_journey .module_example strong {font-size:1.4rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
-	.sec_journey .module_example p {padding-top:.8rem; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
+	.sec_journey .module_example p {padding:.8rem 0 1.6rem; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 	.sec_journey .year_inner .note_txt {padding-bottom:1.6rem; font-size:1.4rem; line-height:2.2rem; letter-spacing:-.02em;}
 	.sec_journey .pathway_list {flex-direction:column; gap:1.2rem; margin-top:2.4rem;}
 	.sec_journey .pathway_list li {padding:1.6rem;}
