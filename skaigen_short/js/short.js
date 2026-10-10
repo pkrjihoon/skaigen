@@ -1,4 +1,4 @@
-// 키비주얼: PC는 이미지 한 장, 모바일은 01 → 02 → 03 장면 자동 전환(이전·다음·재생/일시정지·스와이프)
+// 키비주얼: PC는 이미지가 뜨면 장막 빛 효과 1회(재생 버튼으로 다시 보기), 모바일은 01 → 02 → 03 장면 자동 전환(이전·다음·재생/일시정지·스와이프)
 // 화면 밖·다른 탭에서는 멈추고, 동작 줄이기 설정이면 자동 전환 없이 정지 화면
 function initKvMotion() {
 	const section = document.querySelector('.sec_kv');
@@ -14,6 +14,8 @@ function initKvMotion() {
 	const play = section.querySelector('.kv_play');
 	const position = section.querySelector('.kv_position');
 	const announce = section.querySelector('.kv_announce');
+	const curtain = section.querySelector('.kv_curtain');
+	const replay = section.querySelector('.kv_replay');
 	const mobile = window.matchMedia('(max-width: 768px)');
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 	const labels = ['익숙한 길을 넘어', '새로운 길을 만들어가다', '새로운 길을 만들어가다'];
@@ -29,6 +31,7 @@ function initKvMotion() {
 	let timer = null;
 	let startedAt = 0;
 	let remaining = duration;
+	let pcPlayed = false;
 	let request = 0;
 	let touchStart = null;
 	let fadeTimer = null;
@@ -49,6 +52,7 @@ function initKvMotion() {
 
 	function updateControls() {
 		controls.hidden = !mobile.matches;
+		replay.hidden = mobile.matches || reduced.matches;
 		play.hidden = reduced.matches;
 		prev.disabled = busy || index === 0;
 		next.disabled = busy || index === last;
@@ -119,10 +123,18 @@ function initKvMotion() {
 		ensureImage(index + 1).catch(() => {});
 	}
 
+	// PC 장막 빛 효과: 이미지가 화면에 보일 때 한 번
+	function playCurtain() {
+		if (mobile.matches || pcPlayed || reduced.matches || !inView || document.hidden || !base.complete || !base.naturalWidth) return;
+		pcPlayed = true;
+		curtain.classList.add('is-playing');
+	}
+
 	function sync() {
 		stopClock();
 		pauseFade();
 		updateControls();
+		playCurtain();
 		runFade();
 		if (!eligible() || !base.complete || !base.naturalWidth) return;
 		startedAt = performance.now();
@@ -224,6 +236,12 @@ function initKvMotion() {
 		wanted = false;
 		sync();
 	});
+	replay.addEventListener('click', () => {
+		if (reduced.matches) return;
+		curtain.classList.remove('is-playing');
+		requestAnimationFrame(() => curtain.classList.add('is-playing'));
+	});
+	curtain.addEventListener('animationend', () => curtain.classList.remove('is-playing'));
 	document.addEventListener('visibilitychange', sync);
 	mobile.addEventListener('change', () => {
 		++request;
@@ -234,6 +252,7 @@ function initKvMotion() {
 		wanted = !reduced.matches && !finished;
 		if (reduced.matches) {
 			++request;
+			curtain.classList.remove('is-playing');
 			cancelFade();
 		}
 		sync();
@@ -294,7 +313,7 @@ function initAnchorNav() {
 	update();
 }
 
-// 아코디언 (연차별·FAQ·카드 공통): 목록에 data-mode="single"(하나만 열림) / "multiple"(여러 개 열림)
+// 아코디언 (연차별·FAQ 공통): 목록에 data-mode="single"(하나만 열림) / "multiple"(여러 개 열림)
 // 항목 안의 첫 번째 button[aria-controls]로 열고 닫음, 열리면 항목에 is-open
 function initAccordion(listSelector, itemSelector) {
 	document.querySelectorAll(listSelector).forEach((list) => {
@@ -393,7 +412,7 @@ function initScrollReveal() {
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 	if (reduced.matches || !('IntersectionObserver' in window)) return;
 	// 이 묶음은 안쪽 항목을 하나씩 등장시킴 (그 외 요소는 통째로)
-	const groups = '.title_split, .split, .journey_cultivation, .problem_box, .acc_list, .loop_list, .journey_overview, .year_list, .persona_list, .apply_top, .apply_facts, .faq_layout, .faq_list';
+	const groups = '.title_split, .split, .journey_cultivation, .problem_box, .problem_list, .card_list, .support_list, .movie_list, .loop_list, .journey_overview, .year_list, .persona_list, .apply_top, .apply_facts, .faq_layout, .faq_list';
 	const targets = [];
 
 	function collect(el, index) {
@@ -437,14 +456,14 @@ function initScrollReveal() {
 		});
 	}, { threshold: .15, rootMargin: '0px 0px -10% 0px' });
 
-	// 모집·선발 절차 (클론과 동일): 목록이 화면 끝에 닿으면 STEP 카드가 0.7초 간격으로 차례로 떠오름 (미리 숨기지 않음)
+	// 모집·선발 절차 (클론과 동일): 목록이 화면 끝에 닿으면 STEP 카드 6개가 0.7초 간격으로 하나씩 떠오름 (미리 숨기지 않음)
 	const steps = document.querySelector('.sec_apply .apply_steps ol');
 	if (steps) {
 		const stepObserver = new IntersectionObserver((entries) => {
 			if (!entries[0].isIntersecting) return;
 			stepObserver.disconnect();
 			[...steps.children].forEach((li, i) => {
-				li.style.setProperty('--step-delay', `${Math.min(i * .7, 2.8)}s`);
+				li.style.setProperty('--step-delay', `${(i * .7).toFixed(1)}s`);
 				li.classList.add('is-step');
 				li.addEventListener('animationend', () => {
 					li.classList.remove('is-step');
@@ -475,7 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	initAnchorNav();
 	initAccordion('.sec_journey .year_list', '.year_item');
 	initAccordion('.sec_faq .faq_list', '.faq_item');
-	initAccordion('.wrap .acc_list', '.acc_item');
 	initCountdown();
 	initScrollReveal();
 });

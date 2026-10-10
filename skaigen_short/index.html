@@ -22,7 +22,8 @@
 	<meta property="og:image:height" content="400">
 	<meta name="twitter:card" content="summary_large_image">
 
-	<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23155DFC'/%3E%3Ctext x='7' y='25' font-size='29' font-family='Arial' font-weight='700' fill='white'%3Ea%3C/text%3E%3Ccircle cx='26' cy='8' r='3' fill='white'/%3E%3C/svg%3E">
+	<meta name="theme-color" content="#DE4B55">
+	<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23DE4B55'/%3E%3Ctext x='7' y='25' font-size='29' font-family='Arial' font-weight='700' fill='white'%3Ea%3C/text%3E%3Ccircle cx='26' cy='8' r='3' fill='white'/%3E%3C/svg%3E">
 	<link rel="stylesheet" href="./css/reset.css">
 	<link rel="stylesheet" href="./css/common.css">
 	<link rel="stylesheet" href="./css/pages/short.css">
@@ -48,7 +49,7 @@
 					<a href="#sec_journey">성장 여정</a>
 					<a href="#sec_support">지원 혜택</a>
 					<a href="#sec_people">인재상</a>
-					<a href="#sec_faq">Q&amp;A</a>
+					<a href="#sec_faq">FAQ</a>
 				</nav>
 				<div class="header_actions">
 					<a href="#" data-popup-open="briefing" class="header_briefing">설명회 신청</a>
@@ -72,7 +73,7 @@
 					<a href="#sec_journey">성장 여정</a>
 					<a href="#sec_support">지원 혜택</a>
 					<a href="#sec_people">인재상</a>
-					<a href="#sec_faq">Q&amp;A</a>
+					<a href="#sec_faq">FAQ</a>
 				</nav>
 			</div>
 		</header>
@@ -80,7 +81,7 @@
 		<!-- sec_kv -->
 		<section class="sec_kv" aria-labelledby="kv_title" data-slide="0">
 			<div class="kv_stage">
-				<!-- PC는 한 장, 모바일(768 이하)은 01 → 02 → 03 장면 전환 -->
+				<!-- PC는 한 장 + 장막 빛 효과, 모바일(768 이하)은 01 → 02 → 03 장면 전환 -->
 				<div class="kv_art" aria-hidden="true">
 					<picture class="kv_base">
 						<source srcset="./img/short_kv_01_mo.webp" media="(max-width: 768px)">
@@ -88,6 +89,7 @@
 					</picture>
 					<img class="kv_frame" data-src="./img/short_kv_02_mo.webp" width="382" height="817" alt="" decoding="async" loading="lazy" hidden>
 					<img class="kv_frame" data-src="./img/short_kv_03_mo.webp" width="962" height="1634" alt="" decoding="async" loading="lazy" hidden>
+					<div class="kv_curtain"></div>
 				</div>
 				<div class="inner_1680 kv_txt">
 					<div class="kv_launch">
@@ -101,6 +103,7 @@
 					</div>
 				</div>
 				<div class="kv_btn_box">
+					<button type="button" class="kv_replay" aria-label="장막 효과 재생" hidden><span aria-hidden="true">▷</span>재생</button>
 					<a href="#" data-popup-open="briefing" class="kv_briefing">오프라인 설명회 신청하기 <span aria-hidden="true">↗</span></a>
 				</div>
 			</div>
@@ -125,12 +128,12 @@
 					<div class="txt_box">
 						<p class="lead_txt">자신의 질문으로 도전하고, 배우며 성장하는 2년의 여정</p>
 						<div class="desc_box">
-							<p>AI·동료와 배우고 실제 문제에 도전하며 자신만의 방향을 찾습니다.</p>
+							<p>동료와 함께 배우고 AI를 활용해 실제 문제에 도전하며, <br class="mo_show">자신만의 방향을 찾습니다.</p>
 							<p>장학퀴즈와 한국고등교육재단으로 이어온 SK의 인재육성 철학을 <br>AI 시대 청년의 성장을 위한 AIGEN(아이젠)으로 잇습니다.</p>
 						</div>
 						<ul class="fact_list">
-							<li><p class="fact_label">기간</p><p class="fact_value">2년 Full Time</p><p class="fact_sub">(1기 : 27년 3월 ~ 28년 12월)</p></li>
-							<li><p class="fact_label">참여 방식</p><p class="fact_value">전일제</p></li>
+							<li><p class="fact_label">기간</p><p class="fact_value">2년</p><p class="fact_sub">1기: ’27년 3월 ~ ’28년 12월</p></li>
+							<li><p class="fact_label">참여 방식</p><p class="fact_value">2년 Full Time</p></li>
 							<li><p class="fact_label">과정 형태</p><p class="fact_value">비학위</p></li>
 						</ul>
 					</div>
@@ -143,16 +146,16 @@
 			<div class="inner_1680">
 				<p class="eyebrow"><span class="eyebrow_no">02</span>WHY NOW</p>
 				<div class="quote_box">
-					<p class="quote_txt">“AI 시대에는 <br class="mo_show">인재의 정의가 달라지는 만큼 <br><span class="quote_indent"></span>개인 역시 기존과는 다른 역량을 <br class="mo_show">키워야 한다”</p>
+					<p class="quote_txt">“AI 시대에는 <br class="mo_show">인재의 정의가 달라지는 만큼, <br><span class="quote_indent"></span>기존과는 다른 역량을 키워야 합니다.”</p>
 					<div class="quote_info">
 						<strong>최태원 SK그룹 회장</strong>
-						<a href="https://v.daum.net/v/20260529162618797" target="_blank" rel="noopener noreferrer">KBS 〈인재전쟁 2: 최태원의 대답〉 관련 보도 · 2026.05.29</a>
+						<a href="https://v.daum.net/v/20260529162618797" target="_blank" rel="noopener noreferrer">KBS 〈인재전쟁 2: 최태원의 대답〉 · 2026.05.28 방송</a>
 					</div>
 				</div>
 				<ul class="power_list">
 					<li>
 						<div class="power_head"><span class="power_en">THINK</span><h3>생각 근육</h3></div>
-						<div class="power_body"><p>본질을 탐구하고 스스로 질문하며 <br>깊이 사고하는 힘</p><span class="power_question">"우리가 정말 풀어야 할 문제는 무엇일까요?"</span></div>
+						<div class="power_body"><p>본질을 탐구하고 스스로 질문하며 <br class="pc_show">깊이 사고하는 힘</p><span class="power_question">"우리가 정말 풀어야 할 문제는 무엇일까요?"</span></div>
 					</li>
 					<li>
 						<div class="power_head"><span class="power_en">ADAPT</span><h3>적응 근육</h3></div>
@@ -183,19 +186,10 @@
 						<h3>어떤 문제를 만나나요?</h3>
 						<p>일상·기업·사회의 실제 문제를 만납니다.</p>
 					</div>
-					<ul class="acc_list problem_list" data-mode="multiple">
-						<li class="acc_item">
-							<button type="button" class="acc_btn" id="problem_q1" aria-expanded="false" aria-controls="problem_a1"><strong>생활 속 문제</strong><span class="ico_plus" aria-hidden="true"></span></button>
-							<div class="acc_panel" id="problem_a1" role="region" aria-labelledby="problem_q1" hidden><p>일상에서 겪는 불편 등 가까운 문제를 발견하고 <br class="pc_show">해결 방법을 찾습니다.</p></div>
-						</li>
-						<li class="acc_item">
-							<button type="button" class="acc_btn" id="problem_q2" aria-expanded="false" aria-controls="problem_a2"><strong>지역사회·공공문제</strong><span class="ico_plus" aria-hidden="true"></span></button>
-							<div class="acc_panel" id="problem_a2" role="region" aria-labelledby="problem_q2" hidden><p>지역과 공동체의 문제를 살펴보고, <br class="pc_show">현장의 목소리에서 해결책을 찾습니다.</p></div>
-						</li>
-						<li class="acc_item">
-							<button type="button" class="acc_btn" id="problem_q3" aria-expanded="false" aria-controls="problem_a3"><strong>기업 현장의 문제</strong><span class="ico_plus" aria-hidden="true"></span></button>
-							<div class="acc_panel" id="problem_a3" role="region" aria-labelledby="problem_q3" hidden><p>기업 현장의 제품·서비스·업무 과정에서 개선이 <br class="pc_show">필요한 문제를 찾고, 해결 방법을 고민합니다.</p></div>
-						</li>
+					<ul class="problem_list">
+						<li><h4>생활 속 문제</h4><p>일상에서 겪는 불편 등 가까운 문제를 발견하고 <br>해결 방법을 찾습니다.</p></li>
+						<li><h4>지역사회·공공문제</h4><p>지역과 공동체의 문제를 살펴보고, <br>현장의 목소리에서 해결책을 찾습니다.</p></li>
+						<li><h4>기업 현장의 문제</h4><p>기업 현장의 제품·서비스·업무 과정에서 개선이 <br>필요한 문제를 찾고, 해결 방법을 고민합니다.</p></li>
 					</ul>
 				</div>
 			</div>
@@ -207,22 +201,22 @@
 						<p>현장을 살펴보고, 무엇을 왜 해결해야 할지 정합니다.</p>
 					</div>
 					<ol class="loop_list" aria-label="반복하는 학습 과정">
-						<li><span class="loop_no">01</span><strong>문제 발견</strong><p class="item_desc">현장을 보고 질문하기</p></li>
-						<li><span class="loop_no">02</span><strong>동료와 함께, AI로 학습</strong><p class="item_desc">동료와 함께 배우고, AI를 활용해 해결 방법을 구체화합니다.</p></li>
-						<li><span class="loop_no">03</span><strong>실행</strong><p class="item_desc">아이디어를 직접 만들고 적용하며, 효과를 확인합니다.</p></li>
-						<li><span class="loop_no">04</span><strong>피드백·개선</strong><p class="item_desc">돌아보고 다시 시도하기</p></li>
+						<li><span class="loop_no">01</span><strong>문제 발견</strong><p class="item_desc">현장을 살펴보고, <br class="mo_show">무엇을 왜 해결해야 할지 정합니다.</p></li>
+						<li><span class="loop_no">02</span><strong>동료와 함께, AI로 학습</strong><p class="item_desc">동료와 함께 배우고, <br class="mo_show">AI를 활용해 해결 방법을 구체화합니다.</p></li>
+						<li><span class="loop_no">03</span><strong>실행</strong><p class="item_desc">아이디어를 직접 만들고 적용하며, <br class="mo_show">효과를 확인합니다.</p></li>
+						<li><span class="loop_no">04</span><strong>피드백·개선</strong><p class="item_desc">전문가·동료와 결과를 돌아보고, <br class="mo_show">더 나은 방법으로 다시 시도합니다.</p></li>
 					</ol>
 				</div>
 
 				<div class="journey_overview">
-					<div class="overview_title">
+					<div class="overview_title mo_show">
 						<h3>2년의 성장 경험</h3>
 						<p>1기 2027년 3월~2028년 12월</p>
 					</div>
-					<div class="txt_box">
-						<h4>2년간의 경험이 자산이 됩니다.</h4>
-						<p>직접 해결한 문제와 완성한 결과물로 자신의 실력을 증명하고, 창업·취업·연구·창작 등 다음 커리어를 준비합니다.</p>
-					</div>
+					<h4>2년간의 경험이 자산이 됩니다.</h4>
+					<p class="pc_show">직접 해결한 문제와 결과물로 실력을 쌓고, 동료·전문가와 경험을 넓힙니다. 기술 개발·창업·연구·창작 등 자신이 선택한 길로 나아갑니다.</p>
+					<p class="mo_show">직접 해결한 문제와 완성한 결과물로 자신의 실력을 증명하고, 창업·취업·연구·창작 등 다음 커리어를 준비합니다.</p>
+					<p class="overview_date pc_show">1기 2027년 3월~2028년 12월</p>
 				</div>
 
 				<p class="year_guide" id="year_guide">연차별 활동과 배움의 흐름을 살펴보세요.</p>
@@ -230,8 +224,7 @@
 					<div class="year_item year_first">
 						<button type="button" class="year_question" id="year_q1" aria-expanded="false" aria-controls="year_a1">
 							<span class="year_label">YEAR 1</span>
-							<strong>넓게 도전하는 1년 차</strong>
-							<span class="year_desc">여섯 개의 문제 중심 모듈을 통한 폭넓은 경험</span>
+							<strong>실제 문제를 풀며 성장합니다.</strong>
 							<span class="ico_plus" aria-hidden="true"></span>
 						</button>
 						<div class="year_detail" id="year_a1" role="region" aria-labelledby="year_q1" hidden>
@@ -284,19 +277,10 @@
 					<h2>아이젠을 만드는 사람들</h2>
 					<p class="sub_txt">뜻을 함께하는 교육·AI·현장 전문가들이 <br>여러분의 배움과 도전을 함께합니다.</p>
 				</div>
-				<ul class="acc_list card_list" data-mode="multiple">
-					<li class="acc_item">
-						<button type="button" class="acc_btn" id="maker_q1" aria-expanded="false" aria-controls="maker_a1"><span class="card_role">프로그램 기획·운영</span><strong class="card_logo"><span class="img_box"><img src="./img/short_logo_mysuni.webp" alt="mySUNI 로고"></span>마이써니</strong><span class="ico_plus" aria-hidden="true"></span></button>
-						<div class="acc_panel" id="maker_a1" role="region" aria-labelledby="maker_q1" hidden><p>SK 구성원의 배움과 성장을 이끌어온 실전 경험으로 <br class="pc_show">아이젠을 기획하고 운영합니다.</p></div>
-					</li>
-					<li class="acc_item">
-						<button type="button" class="acc_btn" id="maker_q2" aria-expanded="false" aria-controls="maker_a2"><span class="card_role">인문학적 통찰·커리어 설계</span><strong>서울대 AI연구원</strong><span class="ico_plus" aria-hidden="true"></span></button>
-						<div class="acc_panel" id="maker_a2" role="region" aria-labelledby="maker_q2" hidden><p>기술·사람·사회를 연결하는 폭넓은 시각과 인문학적 통찰로, <br class="pc_show">생각과 가능성을 넓힙니다.</p></div>
-					</li>
-					<li class="acc_item">
-						<button type="button" class="acc_btn" id="maker_q3" aria-expanded="false" aria-controls="maker_a3"><span class="card_role">실행 경험·조언과 피드백</span><strong>현장 전문가와 멘토</strong><span class="ico_plus" aria-hidden="true"></span></button>
-						<div class="acc_panel" id="maker_a3" role="region" aria-labelledby="maker_q3" hidden><p>현장에서 쌓은 경험과 전문적인 조언으로 <br class="pc_show">실제 문제를 해결하는 과정을 돕습니다.</p></div>
-					</li>
+				<ul class="card_list">
+					<li><p class="card_role">프로그램 기획·운영</p><h3 class="card_logo"><span class="img_box"><img src="./img/short_logo_mysuni.webp" alt="mySUNI 로고"></span>mySUNI(마이써니)</h3><p class="card_desc">SK 구성원의 배움과 성장을 이끌어온 실전 경험으로 <br>아이젠을 기획하고 운영합니다.</p></li>
+					<li><p class="card_role">인문학적 통찰·커리어 설계</p><h3>서울대 AI연구원</h3><p class="card_desc">기술·사람·사회를 연결하는 폭넓은 시각과 <br class="mo_show">인문학적 통찰로, <br class="pc_show">생각과 가능성을 넓힙니다.</p></li>
+					<li><p class="card_role">실행 경험·조언과 피드백</p><h3>현장 전문가와 멘토</h3><p class="card_desc">현장에서 쌓은 경험과 전문적인 조언으로 <br>실제 문제를 해결하는 과정을 돕습니다.</p></li>
 				</ul>
 			</div>
 		</section>
@@ -306,28 +290,13 @@
 			<div class="inner_1680">
 				<p class="eyebrow"><span class="eyebrow_no">05</span>지원 혜택</p>
 				<h2>당신의 가능성에 <br class="mo_show">SK가 2년을 투자합니다.</h2>
-				<ul class="acc_list support_list" data-mode="multiple">
-					<li class="acc_item">
-						<button type="button" class="acc_btn" id="support_q1" aria-expanded="false" aria-controls="support_a1"><span class="support_no">01</span><strong>몰입할 공간</strong><span class="ico_plus" aria-hidden="true"></span></button>
-						<div class="acc_panel" id="support_a1" role="region" aria-labelledby="support_q1" hidden><p>배움과 토론, 실험에 집중하고 동료들과 자유롭게 교류할 수 있는 <br class="pc_show">공간을 제공합니다.</p></div>
-					</li>
-					<li class="acc_item">
-						<button type="button" class="acc_btn" id="support_q2" aria-expanded="false" aria-controls="support_a2"><span class="support_no">02</span><strong>AI 도구 및 장비</strong><span class="ico_plus" aria-hidden="true"></span></button>
-						<div class="acc_panel" id="support_a2" role="region" aria-labelledby="support_q2" hidden><p>실제 문제 해결에 활용할 AI 도구와 소프트웨어, 노트북 등을 제공합니다.</p></div>
-					</li>
-					<li class="acc_item">
-						<button type="button" class="acc_btn" id="support_q3" aria-expanded="false" aria-controls="support_a3"><span class="support_no">03</span><strong>함께 도전하는 동료</strong><span class="ico_plus" aria-hidden="true"></span></button>
-						<div class="acc_panel" id="support_a3" role="region" aria-labelledby="support_q3" hidden><p>서로 다른 경험과 관점을 가진 동료들과 협업하며, <br class="pc_show">시행착오를 나누고 함께 성장합니다.</p></div>
-					</li>
-					<li class="acc_item">
-						<button type="button" class="acc_btn" id="support_q4" aria-expanded="false" aria-controls="support_a4"><span class="support_no">04</span><strong>분야별 전문가와 멘토</strong><span class="ico_plus" aria-hidden="true"></span></button>
-						<div class="acc_panel" id="support_a4" role="region" aria-labelledby="support_q4" hidden><p>전문가의 조언으로 문제 해결의 깊이를 더하고, <br class="pc_show">다양한 현장의 사람들과 교류하며 네트워크를 넓힙니다.</p></div>
-					</li>
+				<ul class="support_list">
+					<li><h3><span class="support_no">01</span>몰입할 공간</h3><p>배움과 토론, 실험에 집중하고 <br class="mo_show">동료들과 자유롭게 교류할 수 있는 공간을 제공합니다.</p></li>
+					<li><h3><span class="support_no">02</span>AI 도구 및 장비</h3><p>실제 문제 해결에 활용할 AI 도구와 소프트웨어, <br class="mo_show">노트북 등을 제공합니다.</p></li>
+					<li><h3><span class="support_no">03</span>함께 도전하는 동료</h3><p>서로 다른 경험과 관점을 가진 동료들과 협업하며, <br class="mo_show">시행착오를 나누고 함께 성장합니다.</p></li>
+					<li><h3><span class="support_no">04</span>분야별 전문가와 멘토</h3><p>전문가의 조언으로 문제 해결의 깊이를 더하고, <br class="mo_show">다양한 현장의 사람들과 교류하며 네트워크를 넓힙니다.</p></li>
+					<li class="support_grant"><h3><span class="support_no">05</span>성장지원금</h3><p>월 300만 원 상당의 성장지원금을 지급합니다.</p></li>
 				</ul>
-				<div class="support_grant">
-					<h3>성장지원금</h3>
-					<p>월 300만 원 상당의 성장지원금을 지급합니다.</p>
-				</div>
 			</div>
 		</section>
 
@@ -345,7 +314,7 @@
 						</div>
 						<div class="people_badge">
 							<strong>학력·전공 무관</strong>
-							<p>코딩 경험이나 전문적인 AI 지식이 없어도 지원할 수 있습니다.</p>
+							<p>코딩 경험이나 전문적인 AI 지식이 없어도 지원할 수 있습니다. <br>대한민국 국적 청년 중 2년 Full Time 참여가 가능한 분을 대상으로 합니다. <br>정규 학업이나 직장 근무와의 병행은 어렵습니다.</p>
 						</div>
 					</div>
 					<ol class="persona_list">
@@ -354,13 +323,15 @@
 						<li><span class="img_box ico_persona"><img src="./img/short_persona_innovator.svg" alt=""></span><div><h3>혁신가</h3><p>사람과 사회의 문제에 공감하고, <br class="mo_show">익숙한 방식을 넘어 새로운 해결책을 찾는 사람</p></div></li>
 					</ol>
 				</div>
-				<p class="people_condition">만 19~34세 청년 중 2년간 전일제 참여가 가능한 분을 대상으로 합니다. <br class="mo_show">정규 학업이나 직장 근무와의 병행은 어렵습니다.</p>
 				<div class="people_movie">
 					<h3>아이젠을 닮은 사람들</h3>
-					<!-- 영상 준비 중 : 영상이 나오면 movie_box 안을 video로 교체 -->
-					<div class="movie_box"><span class="img_box ico_film"><img src="./img/short_ico_film.svg" alt=""></span><p>영상 준비 중</p></div>
+					<!-- 영상 준비 중 : 영상이 나오면 movie_box 안을 video로, movie_title에 제목 입력 -->
+					<ul class="movie_list">
+						<li><div class="movie_box"><p>영상 준비 중</p></div><p class="movie_title">[제목 입력]</p></li>
+						<li><div class="movie_box"><p>영상 준비 중</p></div><p class="movie_title">[제목 입력]</p></li>
+					</ul>
 				</div>
-				<div class="people_btn">
+				<div class="people_btn mo_show">
 					<a href="#sec_apply" class="btn_red">지원하기</a>
 				</div>
 			</div>
@@ -378,6 +349,7 @@
 					<div class="apply_schedule">
 						<span class="schedule_label">지원서 접수</span>
 						<strong class="schedule_date">2026.11.01 – 11.15</strong>
+						<p class="schedule_note">11월 1일 오전 9시(KST) 시작</p>
 						<a href="#" data-popup-open="apply" class="btn_white">지원하기</a>
 					</div>
 				</div>
@@ -387,13 +359,14 @@
 					<li><p class="fact_label">참여 기간</p><p class="fact_value">2년 Full Time</p></li>
 				</ul>
 				<div class="apply_steps">
-					<h3>27년 3월 AIGEN 1기 시작</h3>
+					<h3 class="mo_show">27년 3월 AIGEN 1기 시작</h3>
 					<ol>
-						<li><span class="step_no"><span>STEP</span>01</span><span class="step_date">11.01 – 11.15</span><strong>지원서·포트폴리오</strong><p class="item_desc">경험과 활동, 결과물을 담은 <br class="pc_show">자료 제출</p></li>
-						<li><span class="step_no"><span>STEP</span>02</span><span class="step_date">11월 중</span><strong>AI 인터뷰</strong><p class="item_desc">자신의 경험과 생각을 <br class="pc_show">살펴보는 인터뷰</p></li>
-						<li><span class="step_no"><span>STEP</span>03</span><span class="step_date">12월 초</span><strong>기본 사고역량 확인</strong><p class="item_desc">정보 이해력과 판단·추론 <br class="pc_show">역량 확인</p></li>
-						<li><span class="step_no"><span>STEP</span>04</span><span class="step_date">12월 중</span><strong>개인·그룹 프로젝트 면접</strong><p class="item_desc">개인·그룹 프로젝트를 통해 <br class="pc_show">문제 해결 과정 확인</p></li>
-						<li><span class="step_no"><span>STEP</span>05</span><span class="step_date">2027년 1월</span><strong>최종 선발</strong><p class="item_desc">전체 전형 결과를 종합해 <br class="pc_show">최종 참여자 선발</p></li>
+						<li><span class="step_no"><span>STEP</span>01</span><span class="step_date">11.01 – 11.15</span><strong>지원서·포트폴리오</strong><p class="item_desc">경험과 활동, 결과물을 담은 자료 제출</p></li>
+						<li><span class="step_no"><span>STEP</span>02</span><span class="step_date">11월 중</span><strong>AI 인터뷰</strong><p class="item_desc">자신의 경험과 생각을 살펴보는 인터뷰</p></li>
+						<li><span class="step_no"><span>STEP</span>03</span><span class="step_date">12월 초</span><strong>기본 사고역량 확인</strong><p class="item_desc">정보 이해력과 판단·추론 역량 확인</p></li>
+						<li><span class="step_no"><span>STEP</span>04</span><span class="step_date">12월 중</span><strong>프로젝트 면접</strong></li>
+						<li><span class="step_no"><span>STEP</span>05</span><span class="step_date">2027년 1월</span><strong>최종 선발</strong></li>
+						<li class="step_start"><span class="step_no" aria-hidden="true">→</span><span class="step_date">27년 3월</span><strong>AIGEN 1기 시작</strong></li>
 					</ol>
 				</div>
 				<div class="apply_briefing">
@@ -413,7 +386,7 @@
 				<p class="eyebrow"><span class="eyebrow_no">08</span>QUESTIONS &amp; ANSWERS</p>
 				<div class="faq_layout">
 					<div class="title_box">
-						<h2>Q&amp;A</h2>
+						<h2>FAQ</h2>
 						<p class="sub_txt">참여 전 알아두면 좋은 내용을 모았습니다.</p>
 						<div class="contact_box">
 							<h3>직접 문의하기</h3>
@@ -433,11 +406,11 @@
 						</div>
 						<div class="faq_item">
 							<button type="button" class="faq_question" id="faq_q3" aria-expanded="false" aria-controls="faq_a3">학교나 직장과 병행할 수 있나요?<span class="ico_plus" aria-hidden="true"></span></button>
-							<div class="faq_answer" id="faq_a3" role="region" aria-labelledby="faq_q3" hidden><p>2년간 전일제 과정으로, 정규 학업이나 직장 근무와 병행하기 어렵습니다. <br class="pc_show">지원 전 충분히 참여할 수 있는지 확인해주세요.</p></div>
+							<div class="faq_answer" id="faq_a3" role="region" aria-labelledby="faq_q3" hidden><p>2년 Full Time 과정으로, 정규 학업이나 직장 근무와 병행하기 어렵습니다. <br>지원 전 충분히 참여할 수 있는지 확인해주세요.</p></div>
 						</div>
 						<div class="faq_item">
 							<button type="button" class="faq_question" id="faq_q4" aria-expanded="false" aria-controls="faq_a4">2년 동안 어떤 방식으로 배우나요?<span class="ico_plus" aria-hidden="true"></span></button>
-							<div class="faq_answer" id="faq_a4" role="region" aria-labelledby="faq_q4" hidden><p>1년 차에는 AI·동료와 실제 문제에 도전하고 실행·피드백을 반복하며 생각·적응·공감의 힘을 기릅니다. <br class="pc_show">2년 차에는 관심 분야와 문제의 심화학습·탐구·현장 경험을 이어가며, 두 해의 경험을 최종 결과물로 만듭니다.</p></div>
+							<div class="faq_answer" id="faq_a4" role="region" aria-labelledby="faq_q4" hidden><p>1년 차에는 동료들과 AI를 활용해 실제 문제를 해결하며 배우고, 자신의 커리어 계획을 세웁니다. <br>2년 차에는 그 계획에 따라 창업·연구·기업 현장 등에서 문제 해결 경험과 네트워크를 넓힙니다.</p></div>
 						</div>
 						<div class="faq_item">
 							<button type="button" class="faq_question" id="faq_q5" aria-expanded="false" aria-controls="faq_a5">도전과 성장을 위해 어떤 지원을 받나요?<span class="ico_plus" aria-hidden="true"></span></button>
@@ -464,7 +437,7 @@
 					<h2>나만의 길을 만드는 도전, <br>아이젠과 함께 시작하세요.</h2>
 					<p class="cta_date">지원서 접수 2026.11.01–11.15</p>
 				</div>
-				<div class="cta_count" data-countdown="2026-11-01T00:00:00+09:00" data-end-date="2026-11-15">
+				<div class="cta_count" data-countdown="2026-11-01T09:00:00+09:00" data-end-date="2026-11-15">
 					<p class="count_label">접수 일정</p>
 					<strong class="count_value">11.01–11.15</strong>
 					<ul class="count_list" role="timer" aria-live="off" hidden>
@@ -473,7 +446,7 @@
 						<li><strong data-unit="m">00</strong><span>분</span></li>
 						<li><strong data-unit="s">00</strong><span>초</span></li>
 					</ul>
-					<p class="count_note">11월 1일 00:00(KST) 계산 기준</p>
+					<p class="count_note">11월 1일 오전 9시(KST) 시작</p>
 				</div>
 				<a href="#sec_apply" class="btn_white cta_btn">지원 안내</a>
 			</div>
