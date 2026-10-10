@@ -49,7 +49,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 .popup {position:fixed; top:0; left:0; z-index:1000; display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2rem; visibility:hidden; opacity:0; transition:opacity .25s ease, visibility .25s ease;}
 .popup.is-active {visibility:visible; opacity:1;}
 .popup .popup_dim {position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,.3); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);}
-.popup .popup_inner {position:relative; width:100%; max-width:48rem; max-height:calc(100% - 4rem); overflow-y:auto; padding:5.6rem 2rem 2.4rem; border-radius:.3rem; background-color:#FFFFFF; box-shadow:0 .8rem 1.2rem rgba(0,0,0,.1); transform:translateY(2rem); transition:transform .25s ease;}
+.popup .popup_inner {position:relative; width:100%; max-width:48rem; max-height:calc(100% - 4rem); overflow-y:auto; padding:4.8rem 2rem 2.4rem; border-radius:.3rem; background-color:#FFFFFF; box-shadow:0 .8rem 1.2rem rgba(0,0,0,.1); transform:translateY(2rem); transition:transform .25s ease;}
 .popup.is-active .popup_inner {transform:translateY(0);}
 .popup .btn_popup_close {position:absolute; top:1.6rem; right:2rem; width:2.4rem; height:2.4rem;}
 .popup .btn_popup_close:before,
@@ -57,16 +57,18 @@ html:has(.popup.is-active) {overflow:hidden;}
 .popup .btn_popup_close:before {transform:translate(-50%,-50%) rotate(45deg);}
 .popup .btn_popup_close:after {transform:translate(-50%,-50%) rotate(-45deg);}
 .popup .btn_popup_close:focus-visible {outline:.2rem solid #DE4B55; outline-offset:.2rem;}
-.popup .popup_content {text-align:center;}
-.popup .popup_eyebrow {display:block; padding-bottom:1.2rem; color:#DE4B55; font-size:1.4rem; font-weight:700; line-height:1; letter-spacing:.1em;}
-.popup .popup_title {padding-bottom:1.2rem; color:#1A1A1A; font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
-.popup .popup_txt {color:#5F5A55; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
-.popup .popup_facts {margin:2.4rem 0; padding:1.2rem 0; border-top:1px solid #ECE5DE; border-bottom:1px solid #ECE5DE; text-align:left;}
-.popup .popup_facts > li {display:flex; gap:1.2rem; padding:.8rem 0; font-size:1.6rem; line-height:1.6;}
+.popup .popup_content {text-align:center; word-break:keep-all;}
+.popup .popup_eyebrow {display:block; padding-bottom:1.2rem; color:#DE4B55; font-size:1.6rem; font-weight:700; line-height:2rem; letter-spacing:-.02em;}
+.popup .popup_title {padding-bottom:1.2rem; color:#030712; font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
+.popup .popup_txt {color:#5F5A55; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
+.popup .popup_facts {margin-top:2.4rem; padding:1.2rem 0; border-top:1px solid #ECE5DE; border-bottom:1px solid #ECE5DE; text-align:left;}
+.popup .popup_facts > li {display:flex; gap:1.2rem; padding:.8rem 0; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
+.popup .popup_facts + .popup_txt {margin-top:2rem;}
 .popup .popup_facts .fact_label {flex-shrink:0; width:8rem; color:#8A847D;}
 .popup .popup_facts .fact_value {color:#1A1A1A;}
-.popup .popup_note {margin-top:2rem; padding:1.2rem; border-radius:.3rem; background-color:#FAF5F0; color:#5F5A55; font-size:1.4rem; line-height:1.6;}
-.popup .btn_popup_confirm {display:block; width:100%; box-sizing:border-box; margin-top:3.2rem; padding:1.6rem 4rem; border-radius:.3rem; background-color:#DE4B55; color:#FFFFFF; font-size:2rem; font-weight:700; line-height:1.4; letter-spacing:-.025em;}
+.popup .popup_note {margin-top:2rem; padding:1.2rem; border-radius:.3rem; background-color:#FAF5F0; color:#5F5A55; font-size:1.5rem; line-height:2.4rem;}
+.popup .popup_facts + .popup_note {margin-top:2.4rem;}
+.popup .btn_popup_confirm {display:block; width:100%; box-sizing:border-box; margin-top:3.2rem; padding:1.6rem 4rem; border-radius:.3rem; background-color:#DE4B55; color:#FFFFFF; font-size:2rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
 
 /* MOBILE */
 /* SIZE 440 기준 */
@@ -99,10 +101,4 @@ html:has(.popup.is-active) {overflow:hidden;}
 	.footer .footer_contact {justify-content:space-between;}
 	.footer .footer_bottom {position:relative; margin-top:2.4rem; padding-top:2.1rem; border-top:0;}
 	.footer .footer_bottom:before {content:''; position:absolute; top:0; left:2rem; right:2rem; border-top:1px solid #ECE5DE;}
-
-	/* popup */
-	.popup .popup_inner {padding:5.6rem 2rem 2.4rem;}
-	.popup .popup_title {font-size:2.2rem;}
-	.popup .popup_txt {font-size:1.6rem;}
-	.popup .btn_popup_confirm {margin-top:2.4rem; padding:1.4rem 3.2rem; font-size:1.8rem;}
 }
