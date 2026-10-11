@@ -89,7 +89,7 @@
 				<!-- PC는 배경 영상(JS가 PC에서만 data-src로 불러옴), 모바일(768 이하)은 01 → 02 → 03 장면 전환 -->
 				<div class="kv_art" aria-hidden="true">
 					<video class="kv_video" data-src="./video/short_kv_pc.mp4" width="3840" height="1520" muted playsinline
-						preload="none" tabindex="-1"></video>
+						preload="none" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
 					<picture class="kv_base">
 						<source srcset="./img/short_kv_01_mo.webp" media="(max-width: 768px)">
 						<img src="./img/short_kv_bg_pc.webp" class="kv_base_img" width="3840" height="1140" alt=""
@@ -475,6 +475,20 @@
 						<p class="people_note">대한민국 국적 청년 중 2년 Full Time 참여가 가능한 분을 대상으로 합니다. <br>정규 학업이나 직장 근무와의 병행은 어렵습니다.</p>
 					</div>
 				</div>
+				<!-- [아이젠을 닮은 사람들 영상 : 클라이언트 요청으로 숨김(2026-10-11), 편집본 1개가 오면 사용]
+					1. video 폴더에 영상 파일을 넣고, 아래 src의 파일명(short_movie.mp4)과 width·height, 제목 문구를 바꾼다.
+					2. 이 주석(시작 <!- - 와 끝 - ->)만 풀면 끝. CSS(short.css sec_people 영상)와 JS(short.js initMovie)는 이미 들어 있음.
+					   동작 : 화면에 들어오면 소리 끈 채 자동 재생, 벗어나면 멈춤, 멈춰 있을 때는 컨트롤바 대신 가운데 재생 버튼.
+				<div class="people_movie">
+					<h3>아이젠을 닮은 사람들</h3>
+					<div class="movie_box">
+						<video class="movie_video" src="./video/short_movie.mp4#t=0.1" width="1920" height="1080" controls muted playsinline
+							preload="metadata" aria-label="아이젠을 닮은 사람들 영상"></video>
+						<button type="button" class="movie_play" hidden><span class="blind">영상 재생</span></button>
+					</div>
+					<p class="movie_title">영상 제목 입력</p>
+				</div>
+				-->
 			</div>
 		</section>
 

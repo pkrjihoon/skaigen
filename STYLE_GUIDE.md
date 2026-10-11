@@ -332,3 +332,47 @@ HTML 속성만으로 연결합니다. JS를 따로 쓸 필요가 없습니다.
 - [ ] PC 수정이 모바일 화면을 바꾸지 않았다
 - [ ] 이미지 경로가 모두 존재하는 파일을 가리킨다 (webp)
 - [ ] 파일 줄바꿈 형식이 CRLF로 유지됐다
+
+---
+
+## 7. skaigen_short (원페이지) — 2026-10-11 기준
+
+위 1~6번은 다섯 페이지짜리 `skaigen` 기준이라 일부 값이 다릅니다. `skaigen_short`는 아래 내용을 우선합니다.
+
+### 7-1. 파일 구성
+
+```
+skaigen_short/
+├── index.html              원페이지 (경로는 ./)
+├── css/reset.css · common.css · pages/short.css
+├── js/common.js            헤더 모바일 메뉴, 팝업
+├── js/short.js             KV, 아코디언, 카운트다운, 스크롤 등장, 영상, 맨 위로
+├── img/                    short_ 접두어 (예: short_kv_bg_pc.webp, short_ico_top.svg)
+└── video/                  short_kv_pc.mp4 (PC KV 배경 영상)
+```
+
+### 7-2. 기준 값
+
+- **Figma**: 섹션 `261011 최종 수정`(1528:8167). PC는 `PC_혜진작업`(1920), 모바일은 `MO_혜진작업`(440)입니다. 옆에 아코디언(YEAR 1·2) 펼친 디자인과 팝업 디자인이 있습니다.
+- **내용 영역**: `.inner_1680` (최대 168rem, 좌우 12rem). PC 내용 폭은 1440px입니다.
+- **rem**: 1681px 이상은 10px, 769~1680px는 화면 폭 ÷ 168, **768px 이하는 화면 폭 ÷ 44**입니다. 모바일 Figma 440의 px ÷ 10이 rem입니다.
+- **섹션 순서**: header → sec_kv → sec_about → sec_why → sec_journey → sec_makers → sec_support → sec_people → sec_apply → sec_faq → sec_cta → footer → 팝업(apply, briefing).
+- **모바일 글자 크기**: Figma 코드의 `var(--font/size/..., 값)`에 적힌 숫자는 PC 값입니다. `get_variable_defs`로 그 섹션의 실제 값을 확인합니다. 모바일 `sec_apply`는 Body XL 22 / Body M 18이 적용돼 있어 다른 섹션과 다릅니다.
+- **줄바꿈 확인**: Figma 코드 응답이 예전 문구를 돌려줄 때가 있습니다. 최종 확인은 Figma 스크린샷(실제 렌더)과 페이지 캡처를 나란히 놓고 합니다. 단어 중간에서 줄이 바뀌면 `word-break`를 넣지 않고 그 위치에 `<br class="mo_show">`를 넣습니다.
+
+### 7-3. 동작 (short.js)
+
+| 함수 | 내용 |
+|---|---|
+| `initKvMotion` | 모바일 KV 이미지 3장 자동 전환(이전·다음·스와이프) |
+| `initKvVideo` | PC KV 배경 영상. PC에서만 불러와 1회 재생 후 마지막 장면에서 멈춤. 자동 재생이 막히면 배경 이미지로 대체 |
+| `initMovie` | 아이젠을 닮은 사람들 영상(현재 주석 처리). 화면에 들어오면 소리 끈 채 자동 재생, 멈춰 있을 때는 재생 버튼만 표시 |
+| `initTopButton` | 맨 위로 버튼. 인재상 섹션부터 나타남 |
+| `initAccordion` | 연차별(YEAR 1·2)·FAQ 아코디언 |
+| `initCountdown` | CTA 모집 시작까지 남은 시간 |
+| `initScrollReveal` | 스크롤 등장 효과, 모집·선발 절차 카드 순차 등장 |
+
+### 7-4. 숨겨 둔 영역 (클라이언트 요청)
+
+- **아이젠을 닮은 사람들 영상**: `index.html` sec_people 맨 아래에 영상 1개짜리 마크업이 주석으로 들어 있습니다. 편집본이 오면 `video` 폴더에 파일을 넣고, 주석 안의 `src` 파일명·`width`·`height`·제목을 바꾼 뒤 주석만 풀면 됩니다. CSS와 JS는 이미 들어 있습니다.
+- **설명회 신청 버튼**: Figma에서 헤더·KV·모집 섹션 버튼이 숨김 처리되어 마크업을 지웠습니다. briefing 팝업 마크업은 남아 있어 버튼에 `data-popup-open="briefing"`만 붙이면 다시 연결됩니다.
