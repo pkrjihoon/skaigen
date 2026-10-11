@@ -1,5 +1,5 @@
 /* PC */
-/* page common : Figma 261009 디자인 정리 PC(1920, 내용 1440 + 좌우 120) 기준 */
+/* page common : Figma 261011 최종 수정 PC(1920, 내용 1440 + 좌우 120) 기준 */
 html {scroll-behavior:smooth;}
 .wrap {background-color:#FFFFFF; color:#1A1A1A;} /* 줄바꿈은 Figma와 같은 글자 단위(기본값) */
 .wrap section[id] {scroll-margin-top:9.3rem;}
@@ -23,15 +23,9 @@ html {scroll-behavior:smooth;}
 .wrap .sub_title p {padding-top:1.2rem; color:#5F5A55; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
 .wrap .note_txt {color:#5F5A55; font-size:1.4rem; line-height:2.2rem; letter-spacing:-.02em;}
 /* buttons */
-.wrap .btn_white,
-.wrap .btn_red,
-.wrap .btn_line {display:inline-flex; align-items:center; justify-content:center; min-height:5.2rem; padding:1.2rem 4rem; border:1px solid transparent; font-size:1.6rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; white-space:nowrap; transition:background-color .18s, border-color .18s, color .18s;}
+.wrap .btn_white {display:inline-flex; align-items:center; justify-content:center; min-height:5.2rem; padding:1.2rem 4rem; border:1px solid transparent; font-size:1.6rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; white-space:nowrap; transition:background-color .18s, border-color .18s, color .18s;}
 .wrap .btn_white {background-color:#FFFFFF; color:#1A1A1A;}
 .wrap .btn_white:hover {background-color:#FAF5F0;}
-.wrap .btn_red {background-color:#DE4B55; color:#FFFFFF;}
-.wrap .btn_red:hover {background-color:#C23440;}
-.wrap .btn_line {border-color:#EE7A3C; color:#EE7A3C;}
-.wrap .btn_line:hover {background-color:#2A2725;}
 /* accordion icon : + (열리면 -) */
 .wrap .ico_plus {position:relative; flex-shrink:0; width:1.4rem; height:1.4rem;}
 .wrap .ico_plus:before,
@@ -41,12 +35,19 @@ html {scroll-behavior:smooth;}
 .wrap .sec_dark .ico_plus:after {background-color:#EE7A3C;}
 .wrap .is-open > button .ico_plus:after {transform:translateY(-50%) rotate(0);}
 
-/* sec_kv : Figma kv_bg_pc 2560 × 760 배경을 가운데 정렬 (1920 화면에서는 양옆이 잘리고, 넓은 화면일수록 배경이 더 보임. 2560보다 넓으면 양옆은 배경색) */
+/* sec_kv : PC는 배경 영상(3840 × 1520 = 1920 × 760의 2배)을 화면 폭에 꽉 채움, 영상이 없을 때(스크립트 실패)는 kv_bg_pc 2560 × 760 이미지를 가운데 정렬 */
 .wrap .sec_kv {padding:0; border-top:0; background-color:#0A1322; color:#FFFFFF;}
 .sec_kv .kv_stage {position:relative; height:76rem; overflow:hidden; isolation:isolate; touch-action:pan-y;}
 .sec_kv .kv_art {position:absolute; top:0; left:50%; z-index:-1; width:256rem; height:100%; margin-left:-128rem; background-color:#0A1322;}
 .sec_kv .kv_base {position:absolute; top:0; left:0; width:100%; height:100%;}
 .sec_kv .kv_frame {display:none; position:absolute; top:0; left:0; width:100%; height:100%; object-position:center top;}
+.sec_kv .kv_video {display:none; position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0; transition:opacity .6s;} /* 화면이 넓어져 위아래가 잘릴 때 아래쪽 기준으로 맞춤 */
+.sec_kv .kv_video.is-ready {opacity:1;}
+@media all and (min-width:769px) {
+	.sec_kv.is-video .kv_art {left:0; width:100%; margin-left:0;}
+	.sec_kv.is-video .kv_video {display:block;}
+	.sec_kv.is-video .kv_base {display:none;}
+}
 .sec_kv .kv_txt {display:flex; align-items:flex-start; justify-content:space-between; padding-top:11.4rem;}
 .sec_kv .kv_launch {width:52.8rem;}
 .sec_kv .kv_year {font-size:5.8rem; font-weight:700; line-height:7.2rem; letter-spacing:-.02em;}
@@ -56,25 +57,7 @@ html {scroll-behavior:smooth;}
 .sec_kv .kv_brand {display:flex; align-items:flex-end; gap:1rem; font-size:6.6rem; font-weight:700; line-height:6.6rem; letter-spacing:-.02em;}
 .sec_kv .kv_korean {padding-bottom:.6rem; font-size:3.8rem; line-height:3.8rem;}
 .sec_kv .kv_caption {font-size:4.8rem; font-weight:700; line-height:1.4; letter-spacing:-.025em;}
-.sec_kv .kv_btn_box {position:absolute; align-items:flex-end; bottom:9rem; left:50%; display:flex; justify-content:flex-end; width:100%; max-width:147.2rem; padding:0 12rem; transform:translateX(-50%);}
-.sec_kv .kv_briefing {display:flex; margin-left:auto; align-items:center; justify-content:space-between; width:33.9rem; height:6.8rem; padding:1.2rem 2rem; border:1px solid #DE4B55; border-radius:.3rem; background-color:#DE4B55; color:#FFFFFF; font-size:1.8rem; font-weight:600; line-height:1.3; letter-spacing:-.025em; transition:background-color .18s;}
-.sec_kv .kv_briefing:hover {background-color:#C23440;}
-.sec_kv .kv_briefing span {font-size:2.9rem; font-weight:400; line-height:4rem;}
-/* 재생 버튼 : 장막 빛 효과 다시 보기 (PC만) */
-.sec_kv .kv_replay {display:flex; align-items:center; gap:1rem; min-height:4.4rem; padding:.6rem 1.4rem; box-sizing:border-box; border-radius:.3rem; -webkit-backdrop-filter:blur(.8rem); backdrop-filter:blur(.8rem); color:#FFFFFF; font-size:1.4rem; font-weight:700; line-height:2rem; letter-spacing:-.02em; cursor:pointer; transition:background-color .18s;}
-.sec_kv .kv_replay:hover {background-color:rgba(255,255,255,.12);}
-.sec_kv .kv_replay span {font-size:1.8rem; line-height:1.8rem;}
-/* 장막 빛 효과 : 배경 그림의 빛의 문 위치(배경 2560 기준 가로 36~43%) */
-.sec_kv .kv_curtain {position:absolute; top:3%; bottom:3%; left:35.5%; width:8%; opacity:0; pointer-events:none; clip-path:polygon(25% 0, 70% 0, 100% 100%, 0 100%); background:linear-gradient(105deg, transparent 15%, #B7E5FF 50%, transparent 83%); mix-blend-mode:screen; -webkit-mask-image:linear-gradient(180deg, transparent 0%, #FFFFFF 42%, transparent 75%); mask-image:linear-gradient(180deg, transparent 0%, #FFFFFF 42%, transparent 75%); -webkit-mask-size:100% 230%; mask-size:100% 230%;}
-.sec_kv .kv_curtain.is-playing {animation:kv_curtain_light 1s ease-out both;}
-.sec_kv[data-visible="false"] .is-playing,
-.sec_kv[data-visible="false"] .is-entering {animation-play-state:paused;} /* 화면 밖·다른 탭에서는 효과·장면 전환 멈춤 */
-@keyframes kv_curtain_light {
-	0% {opacity:0; -webkit-mask-position:0 100%; mask-position:0 100%;}
-	30% {opacity:.27;}
-	70% {opacity:.2;}
-	100% {opacity:0; -webkit-mask-position:0 -70%; mask-position:0 -70%;}
-}
+.sec_kv[data-visible="false"] .is-entering {animation-play-state:paused;} /* 화면 밖·다른 탭에서는 장면 전환 멈춤 */
 @keyframes kv_reveal {
 	from {clip-path:inset(0 100% 0 0);}
 	to {clip-path:inset(0);}
@@ -92,6 +75,7 @@ html {scroll-behavior:smooth;}
 .sec_about .fact_list {display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.6rem; margin-top:3.8rem; padding-top:2.4rem; border-top:1px solid #F6D3BE;}
 .sec_about .fact_label {padding-bottom:.8rem; color:#5F5A55; font-size:1.4rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
 .sec_about .fact_value {font-size:3.2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
+.sec_about .fact_list li {min-height:12.2rem;} /* Figma 항목 줄 높이 122 고정 */
 .sec_about .fact_list li:first-child .fact_value {padding-top:.4rem;}
 .sec_about .fact_sub {color:#5F5A55; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em; white-space:nowrap; opacity:.5;}
 
@@ -99,15 +83,15 @@ html {scroll-behavior:smooth;}
 .sec_why .quote_box {padding:6.8rem 0 2rem;}
 .sec_why .quote_txt {font-size:4rem; font-weight:700; line-height:1.4; letter-spacing:-.025em;}
 .sec_why .quote_indent {display:inline-block; width:.5em;}
-.sec_why .quote_info {display:flex; align-items:flex-end; gap:2rem; padding:2rem 0 0 1.2rem; line-height:1.6;}
+.sec_why .quote_info {display:flex; align-items:flex-end; gap:2rem; height:4.42rem; padding:2rem 0 0 1.2rem; box-sizing:border-box; line-height:1.6;} /* Figma 출처 줄 높이 44 고정 */
 .sec_why .quote_info strong {color:#EE7A3C; font-size:2rem; font-weight:600; letter-spacing:-.025em;}
 .sec_why .quote_info a {color:#B9B3AD; font-size:1.6rem; letter-spacing:-.025em;}
 .sec_why .power_list {display:flex; align-items:flex-start; gap:3.2rem; margin-top:4.8rem;}
-.sec_why .power_list li {position:relative; flex:1; min-width:0; border:1px solid #3D3936; border-top-width:.2rem; background-color:#2A2725;}
-.sec_why .power_list li:before {content:''; position:absolute; top:-.2rem; left:-1px; right:-1px; height:.5rem; background-color:#EE7A3C;} /* 카드 위 주황 띠 */
+.sec_why .power_list li {position:relative; flex:1; min-width:0; border:1px solid rgba(148,163,184,.24); border-top-width:.2rem;}
+.sec_why .power_list li:before {content:''; position:absolute; top:-.2rem; left:-1px; right:-1px; height:.5rem; background-color:#566174;} /* 카드 위 회색 띠 */
 .sec_why .power_head {display:flex; flex-direction:column; justify-content:center; min-height:12.8rem; padding:2rem;}
 .sec_why .power_en {color:#B9B3AD; font-size:1.4rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
-.sec_why .power_head h3 {padding-top:.8rem; font-size:2.2rem; font-weight:600; line-height:1.5; letter-spacing:-.025em;}
+.sec_why .power_head h3 {padding-top:.8rem; font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
 .sec_why .power_body {display:flex; flex-direction:column; gap:1.6rem; padding:0 2rem 2.8rem;}
 .sec_why .power_body p {color:#B9B3AD; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
 .sec_why .power_question {color:#EE7A3C; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
@@ -117,22 +101,22 @@ html {scroll-behavior:smooth;}
 .sec_journey .journey_head {display:flex; flex-wrap:wrap; align-items:center; gap:2.4rem 12rem; padding-top:4rem;}
 .sec_journey .journey_head h2 {flex:1; max-width:64rem;}
 .sec_journey .journey_head .sub_txt {flex:1; max-width:68rem; padding-top:.8rem; font-size:2.2rem; line-height:1.5; letter-spacing:-.025em;}
-.sec_journey .journey_head h3 {width:100%; font-size:3.2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
-.sec_journey .problem_box {margin-top:6rem; padding:4.8rem 0; background-color:#FAF5F0;}
+.sec_journey .journey_head h3 {width:100%; color:#DE4B55; font-size:3.2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
+.sec_journey .problem_box {margin-top:6rem; padding:6rem 0; background-color:#FAF5F0;} /* 문제 유형 + 학습 과정을 하나의 베이지 영역으로 */
 .sec_journey .problem_list {display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.6rem; margin-top:2.8rem;}
 .sec_journey .problem_list li {display:flex; flex-direction:column; gap:2rem; padding:3.2rem 2.8rem; border:1px solid #ECE5DE; border-top-width:.2rem; background-color:#FFFFFF;}
 .sec_journey .problem_list h4 {font-size:2.2rem; font-weight:600; line-height:1.5; letter-spacing:-.025em;}
 .sec_journey .problem_list p {color:#5F5A55; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
 .sec_journey .loop_box {padding-top:6rem;}
 .sec_journey .loop_list {display:flex; margin-top:2.4rem; padding:2.8rem 0; border-top:1px solid #F6D3BE; border-bottom:1px solid #F6D3BE;}
-.sec_journey .loop_list li {flex:1; min-width:0; display:flex; flex-direction:column; padding:0 2.8rem;}
+.sec_journey .loop_list li {flex:0 0 25%; min-width:0; display:flex; flex-direction:column; padding:0 2.8rem; box-sizing:border-box;} /* 4칸 같은 너비(360) */
 .sec_journey .loop_list li:first-child {padding-left:0;}
 .sec_journey .loop_list li + li {border-left:1px solid #F6D3BE;}
 .sec_journey .loop_no {color:#DE4B55; font-size:1.4rem; font-weight:700; line-height:2.7rem; letter-spacing:-.02em;}
 .sec_journey .loop_list strong {padding:.4rem 0 .8rem; font-size:2.2rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
 .sec_journey .loop_list .item_desc {color:#5F5A55; font-size:1.4rem; line-height:2.7rem; letter-spacing:-.025em; white-space:nowrap;}
-.sec_journey .journey_overview {padding-top:4rem;}
-.sec_journey .journey_overview h4 {color:#DE4B55; font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
+.sec_journey .journey_overview {padding-top:6rem;}
+.sec_journey .journey_overview h4 {color:#DE4B55; font-size:3.2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
 .sec_journey .journey_overview p {padding-top:1.2rem; color:#5F5A55; font-size:2rem; line-height:1.6; letter-spacing:-.025em;}
 .sec_journey .journey_overview .overview_date {padding-top:0; font-size:1.8rem;}
 .sec_journey .year_guide {padding-top:3.2rem; color:#5F5A55; font-size:1.8rem; line-height:2.7rem; letter-spacing:-.02em;}
@@ -154,9 +138,10 @@ html {scroll-behavior:smooth;}
 .sec_journey .module_theme {display:block; color:#DE4B55; font-size:1.2rem; line-height:1.9rem; letter-spacing:-.02em;}
 .sec_journey .module_txt h4 {font-size:1.9rem; font-weight:700; line-height:2.9rem; letter-spacing:-.02em;}
 .sec_journey .module_txt p {padding-top:1.2rem; color:#5F5A55; font-size:1.8rem; line-height:2.9rem; letter-spacing:-.02em;}
-.sec_journey .module_example {flex:1; min-width:0; display:flex; flex-direction:column; gap:1.2rem; padding:1.6rem 1.8rem 1.2rem; border-left:.2rem solid #F6D3BE; background-color:#FAF5F0;}
-.sec_journey .module_example strong {color:#DE4B55; font-size:1.6rem; font-weight:700; line-height:2.4rem; letter-spacing:-.02em;}
-.sec_journey .module_example p {padding-top:1.2rem; color:#5F5A55; font-size:1.8rem; line-height:2.9rem; letter-spacing:-.02em;}
+.sec_journey .module_example {flex:1; min-width:0; padding:2rem 1.8rem; border-left:.2rem solid #F6D3BE; background-color:#FAF5F0;}
+.sec_journey .module_example strong {display:block; margin-top:-.4rem; color:#DE4B55; font-size:1.6rem; font-weight:700; line-height:2.4rem; letter-spacing:-.02em;} /* '프로젝트 예시' 표시는 첫 모듈에만 (Figma) */
+.sec_journey .module_example p {color:#5F5A55; font-size:1.8rem; line-height:2.9rem; letter-spacing:-.02em;}
+.sec_journey .module_example strong + p {padding-top:2.8rem;}
 .sec_journey .year_inner .note_txt {padding-bottom:2rem;}
 .sec_journey .pathway_list {display:flex; gap:1.6rem; max-width:none; margin-top:2.8rem;}
 .sec_journey .pathway_list li {position:relative; flex:1; min-width:0; padding:2rem; border-top:.2rem solid #EE7A3C; background-color:#FAF5F0;}
@@ -169,11 +154,11 @@ html {scroll-behavior:smooth;}
 .wrap .sec_makers {background-color:#FAF5F0;}
 .sec_makers .title_split {padding-right:3.5rem;}
 .wrap .sec_makers .title_split .sub_txt {flex:none; width:57.6rem; font-size:2.4rem; line-height:3.3rem; letter-spacing:-.02em;}
-.sec_makers .card_list {display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.6rem; margin-top:4rem;}
+.sec_makers .card_list {display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1.6rem; margin-top:6rem;}
 .sec_makers .card_list li {padding:2rem; border:1px solid #ECE5DE; background-color:#FFFFFF;}
 .sec_makers .card_role {color:#5F5A55; font-size:1.6rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
 .sec_makers .card_list h3 {display:flex; align-items:center; gap:.8rem; height:5.6rem; padding-top:1rem; font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
-.sec_makers .card_logo .img_box {flex-shrink:0; width:10.72rem; height:4.09rem;}
+.sec_makers .card_logo .img_box {flex-shrink:0; width:10.8rem; height:4.1rem;}
 .sec_makers .card_logo img {object-fit:contain;}
 .sec_makers .card_desc {padding-top:1.2rem; color:#5F5A55; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
 
@@ -199,13 +184,7 @@ html {scroll-behavior:smooth;}
 .sec_people .ico_persona {flex-shrink:0; width:3.4rem; height:3.4rem; margin-top:.3rem;}
 .sec_people .persona_list h3 {font-size:2.4rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
 .sec_people .persona_list p {padding-top:1.2rem; color:#5F5A55; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
-.sec_people .people_movie {padding-top:4rem;}
-.sec_people .people_movie h3 {font-size:3.2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
-.sec_people .movie_list {display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:2rem; padding-top:2.4rem;}
-.sec_people .movie_box {display:flex; align-items:center; justify-content:center; aspect-ratio:710 / 399.375; background-color:#292624;}
-.sec_people .movie_box p {color:#C9C4BF; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
-.sec_people .movie_title {padding-top:1rem; font-size:1.6rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; text-align:center;}
-.sec_people .people_btn {display:flex; justify-content:flex-end; padding-top:2.8rem;}
+.sec_people .people_note {padding-top:2rem; color:#5F5A55; font-size:1.4rem; line-height:1.6; letter-spacing:-.025em;}
 
 /* sec_apply */
 .sec_apply .apply_top {display:flex; align-items:stretch; gap:12rem; padding-top:4rem;}
@@ -223,7 +202,8 @@ html {scroll-behavior:smooth;}
 .sec_apply .fact_label {color:#EE7A3C; font-size:1.6rem; font-weight:700; line-height:1; letter-spacing:-.025em;}
 .sec_apply .fact_value {padding-top:1.6rem; font-size:3.2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
 .sec_apply .apply_steps {padding-top:4rem;}
-.sec_apply .apply_steps ol {position:relative; display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); align-items:start; gap:4rem 3rem; margin-top:4rem;}
+.sec_apply .apply_steps h3 {font-size:3.2rem; font-weight:600; line-height:1.4; letter-spacing:-.025em;}
+.sec_apply .apply_steps ol {position:relative; display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); align-items:start; gap:4rem 3rem; margin-top:8rem;}
 .sec_apply .apply_steps li {position:relative; min-width:0; display:flex; flex-direction:column; padding:4.8rem 1.6rem 2.4rem; border-top:1px solid #EE7A3C; background-color:#2A2725;}
 .sec_apply .apply_steps li:not(:nth-child(3n+1)):before {content:''; position:absolute; top:-1px; left:-3rem; width:3rem; height:1px; background-color:#EE7A3C;} /* 카드 사이 간격까지 주황 선 이어짐 */
 .sec_apply .step_no {position:absolute; top:-2.2rem; left:1.4rem; display:flex; flex-direction:column; align-items:center; justify-content:center; width:5.2rem; height:5.2rem; padding-top:.4rem; background-color:#EE7A3C; color:#1E1C1B; font-size:2.2rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
@@ -239,8 +219,10 @@ html {scroll-behavior:smooth;}
 
 /* sec_faq */
 .wrap .sec_faq {border-top:0;}
-.sec_faq .faq_layout {display:flex; align-items:flex-start; gap:12rem; padding-top:4rem;}
-.sec_faq .title_box {flex:1; min-width:0; max-width:64rem;}
+/* 읽기 순서는 제목 → 질문 목록 → 문의 안내, PC 배치는 왼쪽(제목·문의) / 오른쪽(질문 목록 76rem, 간격 12rem) */
+.sec_faq .faq_layout {display:flow-root; padding-top:4rem;}
+.sec_faq .title_box,
+.sec_faq .contact_box {float:left; clear:left; width:calc(100% - 88rem);}
 .sec_faq h2 {color:#DE4B55;}
 .sec_faq .sub_txt {padding:2.4rem 0; font-size:1.8rem; line-height:1.6; letter-spacing:-.025em;}
 .sec_faq .contact_box {padding-top:2.8rem; border-top:1px solid #F6D3BE;}
@@ -249,7 +231,7 @@ html {scroll-behavior:smooth;}
 .sec_faq .contact_mail {display:inline-flex; align-items:center; gap:1.2rem; min-height:4.8rem; color:#DE4B55; font-size:2rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
 .sec_faq .ico_mail {width:2.5rem; height:2.5rem;}
 .sec_faq .contact_mail:hover span:last-child {text-decoration:underline; text-underline-offset:.4rem;}
-.sec_faq .faq_list {flex-shrink:0; width:76rem;}
+.sec_faq .faq_list {float:right; width:76rem;}
 .sec_faq .faq_item {border-bottom:1px solid #ECE5DE;}
 .sec_faq .faq_question {position:relative; display:block; width:100%; padding:2.4rem 3.4rem 2.4rem 0; box-sizing:border-box; font-size:2rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; text-align:left; cursor:pointer;}
 .sec_faq .faq_question .ico_plus {position:absolute; top:50%; right:.2rem; width:1.8rem; height:1.8rem; transform:translateY(-50%);}
@@ -275,6 +257,12 @@ html {scroll-behavior:smooth;}
 .wrap .sec_cta .cta_btn {flex-shrink:0; color:#DE4B55;}
 .wrap .sec_cta .cta_btn:hover {background-color:#FCE1E3;}
 
+/* 맨 위로 : 인재상 섹션이 화면에 들어온 뒤부터 JS가 is-show를 붙여 나타냄, 화살표는 :after 배경 */
+.footer .btn_top {position:fixed; right:4rem; bottom:4rem; z-index:900; width:5.2rem; height:5.2rem; border:1px solid #DE4B55; border-radius:50%; background-color:#FFFFFF; box-shadow:0 .37rem .37rem rgba(0,0,0,.1); opacity:0; visibility:hidden; transform:translateY(1.2rem); transition:opacity .3s, visibility .3s, transform .3s, background-color .18s;}
+.footer .btn_top:after {content:''; position:absolute; top:50%; left:50%; width:2.4rem; height:2.4rem; background:url('../../img/short_ico_top.svg') no-repeat center / contain; transform:translate(-50%, -50%);}
+.footer .btn_top.is-show {opacity:1; visibility:visible; transform:none;}
+.footer .btn_top:hover {background-color:#FCEDEE;}
+
 /* 스크롤 등장 (short.js initScrollReveal) : JS가 html.js-reveal과 대상에 reveal을 붙였을 때만 숨김 → 스크립트 실패 시 모두 보임 */
 .js-reveal .wrap .reveal {opacity:0; transform:translateY(3.2rem);}
 .js-reveal .wrap .reveal.is-show {opacity:1; transform:none; transition:opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); transition-delay:var(--reveal-delay, 0s);}
@@ -289,9 +277,7 @@ html {scroll-behavior:smooth;}
 	html {scroll-behavior:auto;}
 	.wrap *, .popup * {transition:none !important;}
 	.sec_kv .is-entering,
-	.sec_kv .kv_curtain.is-playing,
 	.sec_apply .apply_steps li.is-step {animation:none !important;}
-	.sec_kv .kv_curtain {opacity:0 !important;}
 }
 
 /* MOBILE */
@@ -306,10 +292,11 @@ html {scroll-behavior:smooth;}
 	.wrap .sub_title h3 {font-size:2.4rem;}
 	.wrap .sub_title p {padding-top:.8rem; font-size:1.6rem;}
 	.wrap .note_txt {font-size:1.2rem; line-height:1.6;}
-	.wrap .btn_white,
-	.wrap .btn_red,
-	.wrap .btn_line {display:flex; width:100%;}
+	.wrap .btn_white {display:flex; width:100%;}
 	.wrap .ico_plus {width:1.1rem; height:1.1rem;}
+	.sec_about .eyebrow,
+	.sec_why .eyebrow,
+	.sec_journey .eyebrow {gap:1.2rem; padding-bottom:1.2rem;}
 	.sec_makers .eyebrow,
 	.sec_support .eyebrow,
 	.sec_people .eyebrow,
@@ -327,8 +314,7 @@ html {scroll-behavior:smooth;}
 	/* 01 장면 : 정사각 이미지를 참고 사이트와 같은 위치·크기로 (위아래 끝은 마스크로 흐리게) */
 	.sec_kv .kv_base_img {position:absolute; top:7.5%; left:-7.66667%; width:151.111%; max-width:none; height:auto; aspect-ratio:1 / 1; object-fit:contain; -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.4375) 1.59%, rgba(0,0,0,.75) 3.19%, rgba(0,0,0,.9375) 4.78%, #000000 6.37%, #000000 93.63%, rgba(0,0,0,.9375) 95.22%, rgba(0,0,0,.75) 96.81%, rgba(0,0,0,.4375) 98.41%, rgba(0,0,0,0) 100%); mask-image:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.4375) 1.59%, rgba(0,0,0,.75) 3.19%, rgba(0,0,0,.9375) 4.78%, #000000 6.37%, #000000 93.63%, rgba(0,0,0,.9375) 95.22%, rgba(0,0,0,.75) 96.81%, rgba(0,0,0,.4375) 98.41%, rgba(0,0,0,0) 100%);}
 	.sec_kv .kv_frame {display:block;}
-	.sec_kv .kv_curtain,
-	.sec_kv .kv_replay {display:none !important;}
+	.sec_kv .kv_video {display:none !important;}
 	.sec_kv .kv_frame.is-entering,
 	.sec_kv .kv_base.is-entering {z-index:3; animation:kv_reveal .5s cubic-bezier(.22,.61,.36,1) both;}
 	.sec_kv .kv_txt {flex-direction:column; gap:1.6rem; padding-top:2.4rem;}
@@ -340,8 +326,6 @@ html {scroll-behavior:smooth;}
 	.sec_kv .kv_brand {align-items:baseline; gap:.8rem; font-size:3.6rem; line-height:1.2;}
 	.sec_kv .kv_korean {padding-bottom:0; font-size:1.8rem; line-height:1.2; letter-spacing:-.02em;}
 	.sec_kv .kv_caption {font-size:3rem;}
-	.sec_kv .kv_btn_box {bottom:2rem; padding:0 2rem;}
-	.sec_kv .kv_briefing {width:100%; height:5.6rem; padding:0 2rem; font-size:1.8rem;}
 	.sec_kv .kv_controls {display:flex; align-items:center; justify-content:center; gap:1.12rem; height:5.8rem; padding:.56rem 1.6rem; background-color:#07111E;}
 	.sec_kv .kv_controls button {display:inline-flex; align-items:center; justify-content:center; min-width:4.4rem; min-height:4.4rem; padding:.72rem 1.12rem; box-sizing:border-box; border:1px solid rgba(255,255,255,.38); border-radius:.3rem; color:#FFFFFF; font-size:1.6rem; line-height:1.4; letter-spacing:-.02em; cursor:pointer;}
 	.sec_kv .kv_controls button:disabled {opacity:.38; cursor:default;}
@@ -359,6 +343,7 @@ html {scroll-behavior:smooth;}
 	.sec_about .lead_txt {font-size:1.8rem;}
 	.sec_about .desc_box p {font-size:1.4rem;}
 	.sec_about .fact_list {grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1.2rem 2rem; padding-top:2rem;}
+	.sec_about .fact_list li {min-height:0;}
 	.sec_about .fact_list li:first-child {grid-column:1 / -1;}
 	.sec_about .fact_label {padding-bottom:.4rem;}
 	.sec_about .fact_list li:first-child .fact_value {padding-top:0;}
@@ -370,10 +355,11 @@ html {scroll-behavior:smooth;}
 	.sec_why .quote_box {padding:4.8rem 0 1.6rem;}
 	.sec_why .quote_txt {font-size:2.8rem;}
 	.sec_why .quote_indent {display:none;}
-	.sec_why .quote_info {flex-direction:column; align-items:flex-start; gap:.4rem; padding:1.6rem 0 0;}
+	.sec_why .quote_info {flex-direction:column; align-items:flex-start; gap:.4rem; height:auto; padding:1.6rem 0 0;}
 	.sec_why .quote_info strong {font-size:1.8rem;}
 	.sec_why .quote_info a {font-size:1.4rem;}
 	.sec_why .power_list {flex-direction:column; align-items:stretch; gap:1.2rem; margin-top:3.2rem;}
+	.sec_why .power_list li {border-color:rgba(86,97,116,.24);}
 	.sec_why .power_head {min-height:0; padding:1.6rem;}
 	.sec_why .power_en {font-size:1.2rem;}
 	.sec_why .power_head h3 {padding-top:.4rem; font-size:1.8rem;}
@@ -383,7 +369,7 @@ html {scroll-behavior:smooth;}
 
 	/* sec_journey */
 	.wrap .sec_journey {padding-top:5rem;}
-	.sec_journey .journey_head {flex-direction:column; align-items:stretch; gap:0; padding-top:2.8rem;}
+	.sec_journey .journey_head {flex-direction:column; align-items:stretch; gap:0; padding-top:3.6rem;}
 	.sec_journey .journey_head h2 {max-width:none;}
 	.sec_journey .journey_head h3 {order:2; padding-top:1.2rem; font-size:2.4rem;}
 	.sec_journey .journey_head .sub_txt {order:3; max-width:none; padding-top:2.4rem; font-size:1.8rem;}
@@ -392,22 +378,23 @@ html {scroll-behavior:smooth;}
 	.sec_journey .problem_list li {gap:1.6rem; padding:2.4rem;}
 	.sec_journey .problem_list h4 {font-size:1.8rem;}
 	.sec_journey .problem_list p {font-size:1.6rem;}
-	.sec_journey .loop_box {padding-top:3.6rem;}
+	.sec_journey .loop_box {padding-top:4.6rem;} /* Figma : 간격 10 + 학습 영역 위 36 */
 	.sec_journey .loop_list {flex-wrap:wrap; row-gap:2rem; margin-top:2rem; padding:2.4rem 0;}
 	.sec_journey .loop_list li {flex:none; width:50%; padding:0 0 0 1.6rem;}
 	.sec_journey .loop_list li:nth-child(odd) {padding:0 1.6rem 0 0; border-left:0;}
 	.sec_journey .loop_no {line-height:2.2rem;}
 	.sec_journey .loop_list strong {font-size:1.8rem;}
 	.sec_journey .loop_list .item_desc {font-size:1.2rem; line-height:1.6; white-space:normal;}
-	.sec_journey .journey_overview {padding-top:2.8rem;}
-	.sec_journey .journey_overview h4 {font-size:1.8rem;}
+	.sec_journey .journey_overview {padding-top:3.6rem;}
+	.sec_journey .journey_overview h4 {font-size:2.4rem;}
 	.sec_journey .journey_overview p {padding-top:.8rem; font-size:1.6rem;}
 	.sec_journey .journey_overview .overview_date {padding-top:2.8rem; font-size:1.6rem;}
 	.sec_journey .year_guide {padding-top:2.4rem; line-height:1.5;}
+	.sec_journey .year_list {gap:1.2rem;}
 	.sec_journey .year_item:before {top:3.4rem;}
-	.sec_journey .year_question {position:relative; flex-direction:column; align-items:flex-start; gap:.8rem; height:auto; padding:1.6rem 5.4rem 1.6rem 2rem;}
+	.sec_journey .year_question {position:relative; flex-direction:column; align-items:flex-start; gap:.8rem; height:auto; padding:1.6rem 4rem 1.6rem 2rem;}
 	.sec_journey .year_question strong {width:auto; font-size:1.8rem;}
-	.sec_journey .year_question .ico_plus {position:absolute; top:2.2rem; right:1.6rem;}
+	.sec_journey .year_question .ico_plus {position:absolute; top:2.35rem; right:1.4rem;}
 	.sec_journey .year_inner {padding:1.6rem;}
 	.sec_journey .year_inner > * {max-width:none;}
 	.sec_journey .year_intro {font-size:1.8rem;}
@@ -416,9 +403,10 @@ html {scroll-behavior:smooth;}
 	.sec_journey .module_theme {font-weight:600; line-height:1.6; letter-spacing:-.025em;}
 	.sec_journey .module_txt h4 {padding-top:.8rem; font-size:1.8rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
 	.sec_journey .module_txt p {padding-top:.8rem; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
-	.sec_journey .module_example {flex:none; width:100%; gap:0; padding:1.6rem 1.2rem 0; border-left:0; border-top:1px solid #F6D3BE;}
-	.sec_journey .module_example strong {font-size:1.4rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
-	.sec_journey .module_example p {padding:.8rem 0 1.6rem; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
+	.sec_journey .module_example {flex:none; width:100%; padding:1.6rem 1.2rem; border-left:0; border-top:1px solid #F6D3BE;}
+	.sec_journey .module_example strong {margin-top:0; font-size:1.4rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
+	.sec_journey .module_example p {font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
+	.sec_journey .module_example strong + p {padding-top:.8rem;}
 	.sec_journey .year_inner .note_txt {padding-bottom:1.6rem; font-size:1.4rem; line-height:2.2rem; letter-spacing:-.02em;}
 	.sec_journey .pathway_list {flex-direction:column; gap:1.2rem; margin-top:2.4rem;}
 	.sec_journey .pathway_list li {padding:1.6rem;}
@@ -448,17 +436,12 @@ html {scroll-behavior:smooth;}
 	.sec_people .desc_box {padding-top:2rem;}
 	.sec_people .desc_box p {font-size:1.6rem;}
 	.sec_people .people_badge {padding-top:1.6rem;}
-	.sec_people .people_badge p {font-size:1.2rem;}
+	.sec_people .people_badge p {font-size:1.4rem;}
 	.sec_people .persona_list li {gap:2.4rem; padding:2.8rem 0;}
 	.sec_people .persona_list li:first-child {padding-top:0;}
 	.sec_people .persona_list h3 {font-size:1.8rem;}
 	.sec_people .persona_list p {font-size:1.6rem;}
-	.sec_people .people_movie {padding-top:2.8rem;}
-	.sec_people .people_movie h3 {font-size:2.4rem;}
-	.sec_people .movie_list {grid-template-columns:minmax(0, 1fr); gap:1.6rem; padding-top:2rem;}
-	.sec_people .movie_box p,
-	.sec_people .movie_title {font-size:1.4rem;}
-	.sec_people .people_btn {padding-top:2.4rem;}
+	.sec_people .people_note {padding-top:1.6rem; font-size:1.4rem;}
 
 	/* sec_apply : 모바일 피그마 수치 그대로 (좌우 여백 16, 번호 | 영문 eyebrow) */
 	.wrap .sec_apply {padding:3.76rem 0;}
@@ -470,15 +453,15 @@ html {scroll-behavior:smooth;}
 	.sec_apply .apply_top h2 {padding-top:1.2rem; font-size:3.2rem; line-height:1.3; letter-spacing:-.037em;}
 	.sec_apply .apply_schedule {padding:0;}
 	.wrap .sec_apply .apply_schedule .btn_white {width:14.3rem; min-height:5.5rem; margin:1.6rem 0 0; padding:1.2rem 2rem; font-size:1.8rem;}
-	.sec_apply .schedule_label {font-size:1.8rem;}
+	.sec_apply .schedule_label {font-size:2.2rem;}
 	.sec_apply .schedule_date {padding-top:.4rem; font-size:3.212rem; letter-spacing:-.045em;}
-	.sec_apply .schedule_note {font-size:1.6rem;}
+	.sec_apply .schedule_note {font-size:1.8rem;}
 	.sec_apply .apply_facts {margin-top:2.88rem; padding:2.24rem 0;}
 	.sec_apply .apply_facts li + li {padding-left:1.6rem;}
 	.sec_apply .fact_label {font-size:1.4rem;}
 	.sec_apply .fact_value {padding-top:1.2rem; font-size:1.7rem; font-weight:700; line-height:1.6; letter-spacing:-.03em;}
 	.sec_apply .apply_steps {padding-top:2.72rem;}
-	.sec_apply .apply_steps h3 {font-size:1.8rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
+	.sec_apply .apply_steps h3 {font-size:2.2rem; font-weight:600; line-height:1.3; letter-spacing:-.025em;}
 	.sec_apply .apply_steps ol {grid-template-columns:minmax(0, 1fr); gap:1.6rem; margin-top:2rem; padding-left:5.28rem;}
 	.sec_apply .apply_steps ol:before {content:''; position:absolute; top:4.4rem; bottom:4.4rem; left:1.7rem; width:1px; background-color:#EE7A3C;}
 	.sec_apply .apply_steps li:not(:nth-child(3n+1)):before {display:none;}
@@ -491,18 +474,20 @@ html {scroll-behavior:smooth;}
 	.sec_apply .apply_briefing {flex-direction:column; align-items:stretch; gap:2.08rem; margin-top:2.72rem; padding-top:2rem;}
 	.sec_apply .apply_briefing h3 {padding-top:.88rem; font-size:2.4rem; line-height:1.4;}
 	.sec_apply .apply_briefing p {padding-top:.88rem; font-size:1.6rem; line-height:1.6;}
-	.wrap .sec_apply .btn_line {min-height:5.2rem; padding:.8rem 2.8rem; font-size:1.6rem; font-weight:700; line-height:2.4rem;}
 
 	/* sec_faq */
-	.sec_faq .faq_layout {flex-direction:column; align-items:stretch; gap:2.8rem; padding-top:2.8rem;}
-	.sec_faq .title_box {max-width:none;}
+	.sec_faq .faq_layout {padding-top:2.8rem;}
+	.sec_faq .title_box,
+	.sec_faq .contact_box,
+	.sec_faq .faq_list {float:none; width:auto;}
+	.sec_faq .faq_list {margin-top:2.8rem;}
+	.sec_faq .contact_box {margin-top:0;} /* Figma : 질문 목록 바로 아래 구분선 */
 	.sec_faq h2 {font-size:3rem;}
 	.sec_faq .sub_txt {padding:2rem 0; font-size:1.6rem;}
 	.sec_faq .contact_box {padding-top:2.4rem;}
 	.sec_faq .contact_box h3 {font-size:1.8rem;}
 	.sec_faq .contact_box p {padding-top:.8rem; font-size:1.6rem;}
 	.sec_faq .contact_mail {min-height:2.9rem; gap:.8rem; font-size:1.8rem;}
-	.sec_faq .faq_list {width:auto;}
 	.sec_faq .faq_question {padding:2rem 3.2rem 2rem 0; font-size:1.8rem;}
 	.sec_faq .faq_question .ico_plus {top:1.8rem; width:1.1rem; height:1.1rem; transform:none;}
 	.sec_faq .faq_answer {padding:0 1.6rem 1.6rem 0;}
@@ -521,4 +506,8 @@ html {scroll-behavior:smooth;}
 	.sec_cta .count_list span {line-height:1.5;}
 	.sec_cta .count_note {font-size:1.6rem;}
 	.wrap .sec_cta .cta_btn {min-height:4.4rem; padding:.9rem 2rem;}
+
+	/* 맨 위로 */
+	.footer .btn_top {right:2rem; bottom:2rem; width:4.4rem; height:4.4rem; box-shadow:0 .32rem .32rem rgba(0,0,0,.1);}
+	.footer .btn_top:after {width:2rem; height:2rem;}
 }

@@ -1,4 +1,4 @@
-// 키비주얼: PC는 이미지가 뜨면 장막 빛 효과 1회(재생 버튼으로 다시 보기), 모바일은 01 → 02 → 03 장면 자동 전환 후 마지막 장면에서 멈춤(이전·다음·스와이프로 넘기면 자동 전환 멈춤)
+// 키비주얼: PC는 배경 영상(initKvVideo), 모바일은 01 → 02 → 03 장면 자동 전환 후 마지막 장면에서 멈춤(이전·다음·스와이프로 넘기면 자동 전환 멈춤)
 // 화면 밖·다른 탭에서는 멈추고, 동작 줄이기 설정이면 자동 전환 없이 정지 화면
 function initKvMotion() {
 	const section = document.querySelector('.sec_kv');
@@ -13,8 +13,6 @@ function initKvMotion() {
 	const next = section.querySelector('.kv_next');
 	const position = section.querySelector('.kv_position');
 	const announce = section.querySelector('.kv_announce');
-	const curtain = section.querySelector('.kv_curtain');
-	const replay = section.querySelector('.kv_replay');
 	const mobile = window.matchMedia('(max-width: 768px)');
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 	const labels = ['익숙한 길을 넘어', '새로운 길을 만들어가다', '새로운 길을 만들어가다'];
@@ -30,7 +28,6 @@ function initKvMotion() {
 	let timer = null;
 	let startedAt = 0;
 	let remaining = duration;
-	let pcPlayed = false;
 	let request = 0;
 	let touchStart = null;
 	let fadeTimer = null;
@@ -51,7 +48,6 @@ function initKvMotion() {
 
 	function updateControls() {
 		controls.hidden = !mobile.matches;
-		replay.hidden = mobile.matches || reduced.matches;
 		prev.disabled = busy || index === 0;
 		next.disabled = busy || index === last;
 		position.textContent = `${index + 1} / ${last + 1}`;
@@ -116,18 +112,10 @@ function initKvMotion() {
 		ensureImage(index + 1).catch(() => {});
 	}
 
-	// PC 장막 빛 효과: 이미지가 화면에 보일 때 한 번
-	function playCurtain() {
-		if (mobile.matches || pcPlayed || reduced.matches || !inView || document.hidden || !base.complete || !base.naturalWidth) return;
-		pcPlayed = true;
-		curtain.classList.add('is-playing');
-	}
-
 	function sync() {
 		stopClock();
 		pauseFade();
 		updateControls();
-		playCurtain();
 		runFade();
 		if (!eligible() || !base.complete || !base.naturalWidth) return;
 		startedAt = performance.now();
@@ -214,12 +202,6 @@ function initKvMotion() {
 		wanted = false;
 		sync();
 	});
-	replay.addEventListener('click', () => {
-		if (reduced.matches) return;
-		curtain.classList.remove('is-playing');
-		requestAnimationFrame(() => curtain.classList.add('is-playing'));
-	});
-	curtain.addEventListener('animationend', () => curtain.classList.remove('is-playing'));
 	document.addEventListener('visibilitychange', sync);
 	mobile.addEventListener('change', () => {
 		++request;
@@ -230,7 +212,6 @@ function initKvMotion() {
 		wanted = !reduced.matches && !finished;
 		if (reduced.matches) {
 			++request;
-			curtain.classList.remove('is-playing');
 			cancelFade();
 		}
 		sync();
@@ -252,6 +233,89 @@ function initKvMotion() {
 		}, { threshold: .1 }).observe(section);
 	}
 	sync();
+}
+
+// PC 키비주얼 영상: PC(769 이상)에서만 data-src 영상을 불러와 한 번 재생하고 마지막 장면에서 멈춤
+// 화면 밖·다른 탭에서는 멈췄다가 돌아오면 이어서 재생, 동작 줄이기 설정이면 재생 없이 마지막 장면만 보여줌
+// 영상을 불러오지 못하면 is-video를 빼서 기존 배경 이미지(kv_base)로 대체
+function initKvVideo() {
+	const section = document.querySelector('.sec_kv');
+	const video = section && section.querySelector('.kv_video');
+	if (!video) return;
+	const mobile = window.matchMedia('(max-width: 768px)');
+	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+	let inView = true;
+
+	function showLast() {
+		if (video.duration) video.currentTime = Math.max(0, video.duration - .05);
+	}
+
+	function sync() {
+		if (mobile.matches) {
+			video.pause();
+			return;
+		}
+		if (!video.getAttribute('src')) {
+			section.classList.add('is-video');
+			video.muted = true;
+			video.preload = 'auto';
+			video.src = video.dataset.src;
+		}
+		if (reduced.matches) {
+			video.pause();
+			if (video.readyState >= 1) showLast();
+			return;
+		}
+		if (inView && !document.hidden && !video.ended) {
+			const playing = video.play();
+			if (playing) playing.catch(() => {});
+		} else {
+			video.pause();
+		}
+	}
+
+	// 첫 장면이 준비되면 부드럽게 나타냄 (빈 화면 → 영상 전환 시 깜빡임 방지)
+	video.addEventListener('loadeddata', () => video.classList.add('is-ready'));
+	video.addEventListener('loadedmetadata', () => {
+		if (reduced.matches) showLast();
+	});
+	video.addEventListener('error', () => section.classList.remove('is-video'));
+	mobile.addEventListener('change', sync);
+	reduced.addEventListener('change', sync);
+	document.addEventListener('visibilitychange', sync);
+	if ('IntersectionObserver' in window) {
+		new IntersectionObserver((entries) => {
+			inView = entries[0].isIntersecting;
+			sync();
+		}, { threshold: .1 }).observe(section);
+	}
+	sync();
+}
+
+// 맨 위로: 인재상 섹션이 화면에 들어온 뒤부터(그 아래로 내려가도 계속) 나타남, 누르면 맨 위로 이동 후 헤더 로고에 포커스
+function initTopButton() {
+	const button = document.querySelector('.btn_top');
+	const start = document.querySelector('.sec_people');
+	if (!button || !start) return;
+	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+	const logo = document.querySelector('.header_logo');
+	button.addEventListener('click', (e) => {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: reduced.matches ? 'auto' : 'smooth' });
+		if (logo) logo.focus({ preventScroll: true });
+	});
+	let ticking = false;
+	function update() {
+		button.classList.toggle('is-show', start.getBoundingClientRect().top < window.innerHeight);
+		ticking = false;
+	}
+	window.addEventListener('scroll', () => {
+		if (ticking) return;
+		ticking = true;
+		requestAnimationFrame(update);
+	}, { passive: true });
+	window.addEventListener('resize', update);
+	update();
 }
 
 // 헤더 메뉴: 보고 있는 섹션 표시(aria-current), 모바일 메뉴는 항목을 누르면 닫힘
@@ -390,7 +454,7 @@ function initScrollReveal() {
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 	if (reduced.matches || !('IntersectionObserver' in window)) return;
 	// 이 묶음은 안쪽 항목을 하나씩 등장시킴 (그 외 요소는 통째로)
-	const groups = '.title_split, .split, .journey_cultivation, .problem_box, .problem_list, .card_list, .support_list, .movie_list, .loop_list, .journey_overview, .year_list, .persona_list, .apply_top, .apply_facts, .faq_layout, .faq_list';
+	const groups = '.title_split, .split, .journey_cultivation, .problem_box, .problem_list, .card_list, .support_list, .loop_list, .journey_overview, .year_list, .persona_box, .persona_list, .apply_top, .apply_facts, .faq_layout, .faq_list';
 	const targets = [];
 
 	function collect(el, index) {
@@ -402,7 +466,7 @@ function initScrollReveal() {
 		el.style.setProperty('--reveal-delay', `${Math.min(index * .1, .4)}s`);
 		targets.push(el);
 	}
-	document.querySelectorAll('.wrap section:not(.sec_kv) > .inner_1680').forEach((inner) => [...inner.children].forEach((el) => collect(el, 0)));
+	document.querySelectorAll('.wrap section:not(.sec_kv) > .inner_1680, .wrap .problem_box > .inner_1680').forEach((inner) => [...inner.children].forEach((el) => collect(el, 0)));
 
 	function show(el) {
 		if (el.classList.contains('is-show')) return;
@@ -469,6 +533,8 @@ function initScrollReveal() {
 
 document.addEventListener('DOMContentLoaded', () => {
 	initKvMotion();
+	initKvVideo();
+	initTopButton();
 	initAnchorNav();
 	initAccordion('.sec_journey .year_list', '.year_item');
 	initAccordion('.sec_faq .faq_list', '.faq_item');
