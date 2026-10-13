@@ -35,7 +35,7 @@ html {scroll-behavior:smooth;}
 .wrap .sec_dark .ico_plus:after {background-color:#EE7A3C;}
 .wrap .is-open > button .ico_plus:after {transform:translateY(-50%) rotate(0);}
 
-/* sec_kv : PC는 배경 영상(3840 × 1520 = 1920 × 760의 2배)을 화면 폭에 꽉 채움, 영상이 없을 때(스크립트 실패)는 kv_bg_pc 2560 × 760 이미지를 가운데 정렬 */
+/* sec_kv : PC는 배경 영상(2560 × 760)을 화면 폭에 꽉 채움, 영상이 없을 때(스크립트 실패)는 kv_bg_pc 2560 × 760 이미지를 가운데 정렬 */
 .wrap .sec_kv {padding:0; border-top:0; background-color:#0A1322; color:#FFFFFF;}
 .sec_kv .kv_stage {position:relative; height:76rem; overflow:hidden; isolation:isolate; touch-action:pan-y;}
 .sec_kv .kv_art {position:absolute; top:0; left:50%; z-index:-1; width:256rem; height:100%; margin-left:-128rem; background-color:#0A1322;}
@@ -326,8 +326,8 @@ html {scroll-behavior:smooth;}
 	.sec_kv .kv_stage {height:95.2rem;}
 	.sec_kv .kv_art {top:17rem; left:0; width:100%; height:78.2rem; margin-left:0; background-color:#07111E;}
 	.sec_kv .kv_art:after {content:''; position:absolute; top:0; left:0; z-index:4; width:100%; height:30rem; background:linear-gradient(180deg, #07111E, rgba(7,17,30,0)); pointer-events:none;}
-	/* 01 장면 : 정사각 이미지를 참고 사이트와 같은 위치·크기로 (위아래 끝은 마스크로 흐리게) */
-	.sec_kv .kv_base_img {position:absolute; top:7.5%; left:-7.66667%; width:151.111%; max-width:none; height:auto; aspect-ratio:1 / 1; object-fit:contain; -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.4375) 1.59%, rgba(0,0,0,.75) 3.19%, rgba(0,0,0,.9375) 4.78%, #000000 6.37%, #000000 93.63%, rgba(0,0,0,.9375) 95.22%, rgba(0,0,0,.75) 96.81%, rgba(0,0,0,.4375) 98.41%, rgba(0,0,0,0) 100%); mask-image:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.4375) 1.59%, rgba(0,0,0,.75) 3.19%, rgba(0,0,0,.9375) 4.78%, #000000 6.37%, #000000 93.63%, rgba(0,0,0,.9375) 95.22%, rgba(0,0,0,.75) 96.81%, rgba(0,0,0,.4375) 98.41%, rgba(0,0,0,0) 100%);}
+	/* 01 장면 : 02·03과 같은 880 × 1564 이미지, 위 기준으로 채움 */
+	.sec_kv .kv_base_img {object-position:center top;}
 	.sec_kv .kv_frame {display:block;}
 	.sec_kv .kv_video {display:none !important;}
 	.sec_kv .kv_frame.is-entering,
