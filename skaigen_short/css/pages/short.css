@@ -26,6 +26,12 @@ html {scroll-behavior:smooth;}
 .wrap .btn_white {display:inline-flex; align-items:center; justify-content:center; min-height:5.2rem; padding:1.2rem 4rem; border:1px solid transparent; font-size:1.6rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; white-space:nowrap; transition:background-color .18s, border-color .18s, color .18s;}
 .wrap .btn_white {background-color:#FFFFFF; color:#1A1A1A;}
 .wrap .btn_white:hover {background-color:#FAF5F0;}
+.wrap .btn_red,
+.wrap .btn_line {display:inline-flex; align-items:center; justify-content:center; min-height:5.2rem; padding:1.2rem 4rem; border:1px solid transparent; font-size:1.6rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; white-space:nowrap; transition:background-color .18s, border-color .18s, color .18s;}
+.wrap .btn_red {background-color:#DE4B55; color:#FFFFFF;}
+.wrap .btn_red:hover {background-color:#C23440;}
+.wrap .btn_line {border-color:#EE7A3C; color:#FFFFFF;}
+.wrap .btn_line:hover {background-color:#2A2725;}
 /* accordion icon : + (열리면 -) */
 .wrap .ico_plus {position:relative; flex-shrink:0; width:1.4rem; height:1.4rem;}
 .wrap .ico_plus:before,
@@ -52,6 +58,9 @@ html {scroll-behavior:smooth;}
 	.sec_kv.is-video .kv_video {display:block;}
 	.sec_kv.is-video .kv_base {display:none;}
 }
+/* 설명회 신청 : KV 오른쪽 아래, 내용 폭(1440) 끝에 맞춤 */
+.wrap .sec_kv .kv_briefing {position:absolute; right:max(12rem, calc(50% - 72rem)); bottom:4.8rem; z-index:5; justify-content:space-between; gap:1.2rem; width:37rem; min-height:6.2rem; padding:1.2rem 2.4rem; font-size:2.2rem; font-weight:400;}
+.sec_kv .kv_briefing span {font-size:1.25em; line-height:1;}
 .sec_kv .kv_txt {display:flex; align-items:flex-start; justify-content:space-between; padding-top:11.4rem;}
 .sec_kv .kv_launch {width:52.8rem;}
 .sec_kv .kv_year {font-size:5.8rem; font-weight:700; line-height:7.2rem; letter-spacing:-.02em;}
@@ -307,7 +316,9 @@ html {scroll-behavior:smooth;}
 	.wrap .sub_title h3 {font-size:2.4rem;}
 	.wrap .sub_title p {padding-top:.8rem; font-size:1.6rem;}
 	.wrap .note_txt {font-size:1.2rem; line-height:1.6;}
-	.wrap .btn_white {display:flex; width:100%;}
+	.wrap .btn_white,
+	.wrap .btn_red,
+	.wrap .btn_line {display:flex; width:100%;}
 	.wrap .ico_plus {width:1.1rem; height:1.1rem;}
 	.sec_about .eyebrow,
 	.sec_why .eyebrow,
@@ -329,6 +340,7 @@ html {scroll-behavior:smooth;}
 	/* 01 장면 : 02·03과 같은 880 × 1564 이미지, 위 기준으로 채움 */
 	.sec_kv .kv_base_img {object-position:center top;}
 	.sec_kv .kv_frame {display:block;}
+	.wrap .sec_kv .kv_briefing {right:2rem; bottom:2rem; width:26.4rem; min-height:4.4rem; padding:.8rem 1.4rem; font-size:1.6rem;}
 	.sec_kv .kv_video {display:none !important;}
 	.sec_kv .kv_frame.is-entering,
 	.sec_kv .kv_base.is-entering {z-index:3; animation:kv_reveal .5s cubic-bezier(.22,.61,.36,1) both;}

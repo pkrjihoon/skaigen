@@ -146,7 +146,15 @@ function initPopup() {
         if (e.key !== 'Escape') return;
         closePopup(document.querySelector('[data-popup].is-active'));
     });
+
+    // data-popup-auto 팝업은 첫 진입 때 한 번 자동으로 열기 (뒤로가기 복원 때는 다시 열지 않음)
+    const autoPopup = document.querySelector('[data-popup-auto]');
+    if (autoPopup && !autoPopupShown) {
+        autoPopupShown = true;
+        openPopup(autoPopup);
+    }
 }
+let autoPopupShown = false;
 
 
 
