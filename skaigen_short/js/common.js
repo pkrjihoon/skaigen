@@ -151,7 +151,21 @@ function initPopup() {
     const autoPopup = document.querySelector('[data-popup-auto]');
     if (autoPopup && !autoPopupShown) {
         autoPopupShown = true;
-        openPopup(autoPopup);
+        // #sec_people 처럼 해시로 들어오면 그 영역까지 스크롤이 끝난 뒤 팝업 (닫으면 그 위치에 남음)
+        const hashTarget = location.hash && document.getElementById(location.hash.slice(1));
+        if (hashTarget) {
+            let opened = false;
+            const openAuto = () => {
+                if (opened) return;
+                opened = true;
+                openPopup(autoPopup);
+            };
+            window.addEventListener('scrollend', openAuto, { once: true });
+            setTimeout(openAuto, 1500); // scrollend 미지원 브라우저·이미 그 위치일 때 대비
+            hashTarget.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            openPopup(autoPopup);
+        }
     }
 }
 let autoPopupShown = false;
