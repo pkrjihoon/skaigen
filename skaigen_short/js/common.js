@@ -171,7 +171,9 @@ function initPopup() {
 let autoPopupShown = false;
 
 // 설명회 신청 오픈 시각 (한국 시간) : 년, 월, 일, 시, 분
-const BRIEFING_OPEN = [2026, 10, 15, 15, 0];
+const BRIEFING_OPEN = [2026, 10, 14, 15, 0];
+// 설명회 신청 링크 : HTML에 미리 두지 않고 오픈 시각이 되면 넣음 (Elements 탭에서 미리 안 보이게)
+const BRIEFING_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeoZ7pw0ZPJbXRhdoCLTacCkqwYVAU2M2Jb01qN5VpnCpkvQA/viewform?pli=1';
 
 // 오픈 시각이 되면 안내 문구·확인 버튼 → 신청 링크
 // 서버 응답의 Date 헤더 기준, 못 읽으면(파일로 열기·네트워크 오류) 사용자 PC 시계로 대신함
@@ -190,7 +192,9 @@ async function initBriefingOpen() {
     const show = () => {
         popup.querySelector('.popup_note').hidden = true;
         popup.querySelector('button.btn_popup_confirm').hidden = true;
-        popup.querySelector('[data-briefing-link]').hidden = false;
+        const link = popup.querySelector('[data-briefing-link]');
+        link.href = BRIEFING_URL;
+        link.hidden = false;
     };
     const [year, month, day, hour, minute] = BRIEFING_OPEN;
     const openAt = Date.UTC(year, month - 1, day, hour - 9, minute); // 한국 시간 = UTC+9
