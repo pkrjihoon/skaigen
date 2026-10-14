@@ -171,7 +171,7 @@ function initPopup() {
 let autoPopupShown = false;
 
 // 설명회 신청 오픈 시각 (한국 시간) : 년, 월, 일, 시, 분
-const BRIEFING_OPEN = [2026, 10, 14, 15, 0];
+const BRIEFING_OPEN = [2026, 10, 15, 15, 0];
 // 설명회 신청 링크 : HTML에 미리 두지 않고 오픈 시각이 되면 넣음 (Elements 탭에서 미리 안 보이게)
 const BRIEFING_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeoZ7pw0ZPJbXRhdoCLTacCkqwYVAU2M2Jb01qN5VpnCpkvQA/viewform?pli=1';
 
