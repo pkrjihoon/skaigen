@@ -341,7 +341,7 @@ html {scroll-behavior:smooth;}
 	/* 01 장면 : 02·03과 같은 880 × 1564 이미지, 위 기준으로 채움 */
 	.sec_kv .kv_base_img {object-position:center top;}
 	.sec_kv .kv_frame {display:block;}
-	.wrap .sec_kv .kv_briefing {right:2rem; bottom:2rem; width:26.4rem; min-height:4.4rem; padding:.8rem 1.4rem; font-size:1.6rem;}
+	.wrap .sec_kv .kv_briefing {left:2rem; right:2rem; bottom:2rem; width:auto; min-height:5.6rem; padding:0 2rem; font-size:1.8rem; font-weight:600;}
 	.sec_kv .kv_video {display:none !important;}
 	.sec_kv .kv_frame.is-entering,
 	.sec_kv .kv_base.is-entering {z-index:3; animation:kv_reveal .5s cubic-bezier(.22,.61,.36,1) both;}
