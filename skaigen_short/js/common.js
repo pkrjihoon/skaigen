@@ -171,23 +171,21 @@ function initPopup() {
 let autoPopupShown = false;
 
 // 설명회 신청 오픈 시각 (한국 시간) : 년, 월, 일, 시, 분
-const BRIEFING_OPEN = [2026, 10, 14, 16, 0];
-55
+const BRIEFING_OPEN = [2026, 10, 14, 16, 10];
+
 // 오픈 시각이 되면 안내 문구·확인 버튼 → 신청 링크
-// 사용자 PC 시계 대신 서버 응답의 Date 헤더 기준 (못 읽으면 안내 문구 그대로 둠)
+// 서버 응답의 Date 헤더 기준, 못 읽으면(파일로 열기·네트워크 오류) 사용자 PC 시계로 대신함
 async function initBriefingOpen() {
     const popup = document.querySelector('[data-briefing-link]')?.closest('[data-popup]');
     if (!popup || popup.dataset.briefingReady) return;
     popup.dataset.briefingReady = 'true';
 
-    let serverNow;
+    let serverNow = NaN;
     try {
         const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
         serverNow = Date.parse(res.headers.get('Date'));
-    } catch (e) {
-        return;
-    }
-    if (Number.isNaN(serverNow)) return;
+    } catch (e) {}
+    if (Number.isNaN(serverNow)) serverNow = Date.now();
 
     const show = () => {
         popup.querySelector('.popup_note').hidden = true;
