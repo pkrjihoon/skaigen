@@ -59,8 +59,8 @@ html {scroll-behavior:smooth;}
 	.sec_kv.is-video .kv_base {display:none;}
 }
 /* 설명회 신청 : KV 오른쪽 아래, 내용 폭(1440) 끝에 맞춤 */
-.wrap .sec_kv .kv_briefing {position:absolute; right:max(12rem, calc(50% - 72rem)); bottom:4.8rem; z-index:5; justify-content:space-between; gap:1.2rem; width:37rem; min-height:6.2rem; padding:1.2rem 2.4rem; font-size:2.2rem; font-weight:400;}
-.sec_kv .kv_briefing span {font-size:1.25em; line-height:1;}
+.wrap .sec_kv .kv_briefing {position:absolute; right:calc(50% - 61.6rem); bottom:9rem; z-index:5; justify-content:space-between; gap:1.4rem; width:33.8rem; min-height:6.8rem; padding:1.2rem 2rem; border-radius:.3rem; font-size:1.8rem; font-weight:600; line-height:1.3;}
+.sec_kv .kv_briefing span {font-size:1.6em; font-weight:400; line-height:1;}
 .sec_kv .kv_txt {display:flex; align-items:flex-start; justify-content:space-between; padding-top:11.4rem;}
 .sec_kv .kv_launch {width:52.8rem;}
 .sec_kv .kv_year {font-size:5.8rem; font-weight:700; line-height:7.2rem; letter-spacing:-.02em;}
