@@ -170,7 +170,7 @@ button {
 	box-sizing: content-box;
 }
 
-/* SIZE 1680 기준 */
+/* SIZE 1680 기준 (내용 1440 + 좌우 120) */
 @media all and (max-width:1680px) {
 
 	html,
@@ -179,12 +179,12 @@ button {
 	}
 }
 
-/* SIZE 360 기준 */
+/* SIZE 440 기준 (Figma 모바일 440 수치 ÷10 그대로) */
 @media all and (max-width:768px) {
 
 	html,
 	body {
-		font-size: calc(100vw * 10/360);
+		font-size: calc(100vw * 10/440);
 	}
 
 	.pc_show {

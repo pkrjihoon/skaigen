@@ -5,14 +5,18 @@ function initHeaderToggle() {
     const toggleBtn = header.querySelector('.header_toggle');
     if (!toggleBtn) return; // 버튼 없는 경우 방어
 
+    const toggleLabel = toggleBtn.querySelector('.blind');
+
     function closeHeader() {
         header.classList.remove('is-active');
         toggleBtn.setAttribute('aria-expanded', 'false');
+        if (toggleLabel) toggleLabel.textContent = '메뉴 열기';
     }
 
     function openHeader() {
         header.classList.add('is-active');
         toggleBtn.setAttribute('aria-expanded', 'true');
+        if (toggleLabel) toggleLabel.textContent = '메뉴 닫기';
     }
 
     // 페이지 진입 시 항상 닫힌 상태로 초기화
@@ -29,6 +33,15 @@ function initHeaderToggle() {
         if (!header.classList.contains('is-active')) return;
         if (header.contains(e.target)) return;
         closeHeader();
+    });
+
+    // 모바일 메뉴 항목·팝업 여는 버튼을 누르면 닫힘
+    header.querySelectorAll('.header_mobile_nav a').forEach((link) => link.addEventListener('click', closeHeader));
+    document.querySelectorAll('[data-popup-open]').forEach((button) => button.addEventListener('click', closeHeader));
+
+    // PC 폭으로 넓어지면 닫힘
+    window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+        if (e.matches) closeHeader();
     });
 
     // ESC 키로도 닫히게 (선택사항이지만 접근성에 좋음)
@@ -133,6 +146,61 @@ function initPopup() {
         if (e.key !== 'Escape') return;
         closePopup(document.querySelector('[data-popup].is-active'));
     });
+
+    // data-popup-auto 팝업은 첫 진입 때 한 번 자동으로 열기 (뒤로가기 복원 때는 다시 열지 않음)
+    const autoPopup = document.querySelector('[data-popup-auto]');
+    if (autoPopup && !autoPopupShown) {
+        autoPopupShown = true;
+        // #sec_people 처럼 해시로 들어오면 그 영역까지 스크롤이 끝난 뒤 팝업 (닫으면 그 위치에 남음)
+        const hashTarget = location.hash && document.getElementById(location.hash.slice(1));
+        if (hashTarget) {
+            let opened = false;
+            const openAuto = () => {
+                if (opened) return;
+                opened = true;
+                openPopup(autoPopup);
+            };
+            window.addEventListener('scrollend', openAuto, { once: true });
+            setTimeout(openAuto, 1500); // scrollend 미지원 브라우저·이미 그 위치일 때 대비
+            hashTarget.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            openPopup(autoPopup);
+        }
+    }
+}
+let autoPopupShown = false;
+
+// 설명회 신청 오픈 시각 (한국 시간) : 년, 월, 일, 시, 분
+const BRIEFING_OPEN = [2026, 10, 15, 15, 0];
+// 설명회 신청 링크 : HTML에 미리 두지 않고 오픈 시각이 되면 넣음 (Elements 탭에서 미리 안 보이게)
+const BRIEFING_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeoZ7pw0ZPJbXRhdoCLTacCkqwYVAU2M2Jb01qN5VpnCpkvQA/viewform?pli=1';
+
+// 오픈 시각이 되면 안내 문구·확인 버튼 → 신청 링크
+// 서버 응답의 Date 헤더 기준, 못 읽으면(파일로 열기·네트워크 오류) 사용자 PC 시계로 대신함
+async function initBriefingOpen() {
+    const popup = document.querySelector('[data-briefing-link]')?.closest('[data-popup]');
+    if (!popup || popup.dataset.briefingReady) return;
+    popup.dataset.briefingReady = 'true';
+
+    let serverNow = NaN;
+    try {
+        const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
+        serverNow = Date.parse(res.headers.get('Date'));
+    } catch (e) {}
+    if (Number.isNaN(serverNow)) serverNow = Date.now();
+
+    const show = () => {
+        popup.querySelector('.popup_note').hidden = true;
+        popup.querySelector('button.btn_popup_confirm').hidden = true;
+        const link = popup.querySelector('[data-briefing-link]');
+        link.href = BRIEFING_URL;
+        link.hidden = false;
+    };
+    const [year, month, day, hour, minute] = BRIEFING_OPEN;
+    const openAt = Date.UTC(year, month - 1, day, hour - 9, minute); // 한국 시간 = UTC+9
+    const wait = openAt - serverNow;
+    // ponytail: 탭이 오래 잠들면 타이머가 늦을 수 있음, 필요하면 visibilitychange 때 다시 확인
+    wait <= 0 ? show() : setTimeout(show, wait);
 }
 
 
@@ -141,6 +209,7 @@ function initApp() {
     initHeaderToggle();
     initExploreCardTap();
     initPopup()
+    initBriefingOpen();
 }
 
 // 일반 페이지 로드
