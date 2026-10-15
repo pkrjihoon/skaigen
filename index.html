@@ -87,13 +87,11 @@
 		<!-- sec_kv -->
 		<section class="sec_kv" aria-labelledby="kv_title" data-slide="0">
 			<div class="kv_stage">
-				<!-- PC는 배경 영상(JS가 PC에서만 data-src로 불러옴), 모바일(768 이하)은 01 → 02 → 03 장면 전환 -->
+				<!-- PC는 배경 이미지(2560 × 760), 모바일(768 이하)은 01 → 02 → 03 장면 전환 -->
 				<div class="kv_art" aria-hidden="true">
-					<video class="kv_video" data-src="./video/short_kv_pc.mp4" width="2560" height="760" muted playsinline
-						preload="none" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
 					<picture class="kv_base">
 						<source srcset="./img/short_kv_01_mo.webp" width="880" height="1564" media="(max-width: 768px)">
-						<img src="./img/short_kv_bg_pc.webp" class="kv_base_img" width="2560" height="760" alt=""
+						<img src="./img/kv_v2_pc.jpg" class="kv_base_img" width="2560" height="760" alt=""
 							fetchpriority="high" decoding="async">
 					</picture>
 					<img class="kv_frame" data-src="./img/short_kv_02_mo.webp" width="880" height="1564" alt=""
@@ -575,7 +573,7 @@
 								aria-controls="faq_a1">누가 지원할 수 있나요?<span class="ico_plus"
 									aria-hidden="true"></span></button>
 							<div class="faq_answer" id="faq_a1" role="region" aria-labelledby="faq_q1" hidden>
-								<p>대한민국 국적의 만 19~34세 청년 중 <br class="mo_show">약 2년 Full Time(22개월) 참여가 가능한 분을 대상으로 합니다.</p>
+								<p>대한민국 국적의 청년으로, 2027년 3월 1일 기준 <br class="mo_show">만 19세 이상 만 34세 이하인 분이 지원할 수 있습니다. <br>또한, 약 2년 Full Time(22개월) 참여가 가능해야 합니다.</p>
 							</div>
 						</div>
 						<div class="faq_item">

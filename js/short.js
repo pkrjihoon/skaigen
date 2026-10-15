@@ -1,4 +1,4 @@
-// 키비주얼: PC는 배경 영상(initKvVideo), 모바일은 01 → 02 → 03 장면 자동 전환 후 마지막 장면에서 멈춤(이전·다음·스와이프로 넘기면 자동 전환 멈춤)
+// 키비주얼: PC는 배경 이미지, 모바일은 01 → 02 → 03 장면 자동 전환 후 마지막 장면에서 멈춤(이전·다음·스와이프로 넘기면 자동 전환 멈춤)
 // 화면 밖·다른 탭에서는 멈추고, 동작 줄이기 설정이면 자동 전환 없이 정지 화면
 function initKvMotion() {
 	const section = document.querySelector('.sec_kv');
@@ -226,66 +226,6 @@ function initKvMotion() {
 		section.dataset.visible = 'false';
 	});
 	window.addEventListener('pageshow', sync);
-	if ('IntersectionObserver' in window) {
-		new IntersectionObserver((entries) => {
-			inView = entries[0].isIntersecting;
-			sync();
-		}, { threshold: .1 }).observe(section);
-	}
-	sync();
-}
-
-// PC 키비주얼 영상: PC(769 이상)에서만 data-src 영상을 불러와 한 번 재생하고 마지막 장면에서 멈춤
-// 화면 밖·다른 탭에서는 멈췄다가 돌아오면 이어서 재생, 동작 줄이기 설정이면 재생 없이 마지막 장면만 보여줌
-// 영상을 불러오지 못하면 is-video를 빼서 기존 배경 이미지(kv_base)로 대체
-function initKvVideo() {
-	const section = document.querySelector('.sec_kv');
-	const video = section && section.querySelector('.kv_video');
-	if (!video) return;
-	const mobile = window.matchMedia('(max-width: 768px)');
-	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-	let inView = true;
-
-	function showLast() {
-		if (video.duration) video.currentTime = Math.max(0, video.duration - .05);
-	}
-
-	function sync() {
-		if (mobile.matches) {
-			video.pause();
-			return;
-		}
-		if (!video.getAttribute('src')) {
-			section.classList.add('is-video');
-			video.muted = true;
-			video.preload = 'auto';
-			video.src = video.dataset.src;
-		}
-		if (reduced.matches) {
-			video.pause();
-			if (video.readyState >= 1) showLast();
-			return;
-		}
-		if (inView && !document.hidden && !video.ended) {
-			const playing = video.play();
-			// 자동 재생이 막히면(저전력 모드 등) 영상 대신 기존 배경 이미지를 보여줘 재생 버튼이 뜨지 않게 함
-			if (playing) playing.catch((e) => {
-				if (e && e.name === 'NotAllowedError') section.classList.remove('is-video'); // 화면 밖으로 나가 멈춘 경우(AbortError)는 그대로 둠
-			});
-		} else {
-			video.pause();
-		}
-	}
-
-	// 첫 장면이 준비되면 부드럽게 나타냄 (빈 화면 → 영상 전환 시 깜빡임 방지)
-	video.addEventListener('loadeddata', () => video.classList.add('is-ready'));
-	video.addEventListener('loadedmetadata', () => {
-		if (reduced.matches) showLast();
-	});
-	video.addEventListener('error', () => section.classList.remove('is-video'));
-	mobile.addEventListener('change', sync);
-	reduced.addEventListener('change', sync);
-	document.addEventListener('visibilitychange', sync);
 	if ('IntersectionObserver' in window) {
 		new IntersectionObserver((entries) => {
 			inView = entries[0].isIntersecting;
@@ -594,7 +534,6 @@ function initScrollReveal() {
 
 document.addEventListener('DOMContentLoaded', () => {
 	initKvMotion();
-	initKvVideo();
 	initMovie();
 	initTopButton();
 	initAnchorNav();
