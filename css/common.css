@@ -72,6 +72,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 .popup .popup_note {margin-top:2rem; padding:1.2rem; border-radius:.3rem; background-color:#FAF5F0; color:#5F5A55; font-size:1.5rem; line-height:2.4rem;}
 .popup .popup_facts + .popup_note {margin-top:2.4rem;}
 .popup .btn_popup_confirm {display:block; width:100%; box-sizing:border-box; margin-top:3.2rem; padding:1.6rem 4rem; border-radius:.3rem; background-color:#DE4B55; color:#FFFFFF; font-size:2rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
+.popup .btn_popup_confirm:disabled {background-color:#D6D0CA; color:#FFFFFF; cursor:not-allowed;} /* 신청 오픈 전 */
 @media all and (min-width:769px) {
 	/* PC는 화면 폭(1680 기준 rem)에 따라 작아지지 않도록 Figma 480 기준 px 고정 */
 	.popup {padding:20px;}
