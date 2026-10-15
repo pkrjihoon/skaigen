@@ -185,7 +185,8 @@ async function initBriefingOpen() {
     let serverNow = NaN;
     try {
         const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
-        serverNow = Date.parse(res.headers.get('Date'));
+        // CloudFront 캐시 응답은 Date가 캐시된 시각이라, 캐시된 뒤 지난 초(Age)를 더해야 지금 시각
+        serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
     } catch (e) {}
     if (Number.isNaN(serverNow)) serverNow = Date.now();
 
