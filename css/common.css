@@ -16,7 +16,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 /* header */
 .header {position:sticky; top:0; left:0; width:100%; z-index:999; border-bottom:1px solid #ECE5DE; background-color:#FFFFFF;}
 .header .inner_1680 {display:flex; align-items:center; gap:4rem; height:9.2rem;}
-.header .header_logo {display:block; flex-shrink:0; width:19.2rem; height:4.3rem;}
+.header .header_logo {display:block; flex-shrink:0; width:19.05rem; height:3rem;} /* 로고 칸 = 로고 비율(235:37), 높이는 정수 px로 해서 흐려지지 않게 */
 .header .header_logo img {object-fit:contain; object-position:left center;}
 .header .header_nav {flex:1; display:flex; justify-content:flex-end; gap:4rem;}
 .header .header_nav a {padding:1.6rem 0; color:#1A1A1A; font-size:1.4rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; transition:color .2s;}
@@ -33,17 +33,23 @@ html:has(.popup.is-active) {overflow:hidden;}
 .header .header_toggle .ico_close,
 .header .header_mobile_nav {display:none;}
 
-/* footer */
-.footer {padding:4.8rem 0 4rem; background-color:#FFFFFF;}
-.footer .footer_main {display:flex; align-items:center; justify-content:space-between; gap:4rem;}
-.footer .footer_logo {display:block; flex-shrink:0; width:19.2rem; height:4.3rem;}
-.footer .footer_logo img {object-fit:contain; object-position:left center;}
-.footer .footer_contact {display:flex; align-items:center; gap:1.4rem;}
-.footer .footer_mysuni {width:10.4rem; height:4rem;}
-.footer .footer_mysuni img {object-fit:contain; object-position:left center;}
-.footer .footer_mail {color:#DE4B55; font-size:1.8rem; line-height:2.7rem; letter-spacing:-.02em;}
-.footer .footer_bottom {margin-top:3.2rem; padding-top:2rem; border-top:1px solid #ECE5DE;}
-.footer .footer_copy {color:#8A847D; font-size:1.2rem; line-height:2rem; letter-spacing:-.02em;}
+/* footer : 위 주최·후원 | SK AIGEN 로고(아래 맞춤), 아래 저작권 | 이메일 (Figma 1802:7729, 내용 폭 1472) */
+.footer {padding:4.8rem 0 2.08rem; background-color:#FFFFFF;}
+.footer .inner_1680 {padding:0 10.4rem;}
+.footer .footer_main {display:flex; align-items:flex-end; justify-content:space-between; gap:4rem;}
+.footer .footer_org {display:flex; align-items:flex-end; gap:4rem;}
+.footer .footer_org > div {display:flex; align-items:flex-end; gap:.8rem;}
+.footer .footer_org dt {color:#000000; font-size:1.8rem; font-weight:600; line-height:1.6; letter-spacing:-.025em; white-space:nowrap;}
+.footer .footer_mysuni {width:10.4rem; height:4rem; margin:0 .2rem .07rem 0;}
+.footer .footer_hynix {width:9.6rem; height:4.3rem; margin:0 .4rem .24rem;} /* 로고 속 글자 밑선을 '주최 |' 글자 밑선에 맞춤 (mySUNI .07, SK hynix .24 올림) */
+.footer .footer_mysuni img,
+.footer .footer_hynix img {object-fit:contain;}
+.footer .footer_logo {display:block; flex-shrink:0; width:19.05rem; height:3rem; margin-bottom:.4rem;} /* 헤더와 같은 로고 칸 */
+.footer .footer_logo img {object-fit:contain; object-position:right center;}
+.footer .footer_bottom {position:relative; display:flex; align-items:flex-start; justify-content:space-between; gap:4rem; margin-top:3.2rem; padding-top:1.92rem;}
+.footer .footer_bottom:before {content:''; position:absolute; top:0; left:10.4rem; right:10.4rem; border-top:1px solid #ECE5DE;} /* 선은 내용 폭(1472)만 */
+.footer .footer_copy {padding-top:0; color:#8A847D; font-size:1.2rem; line-height:2rem; letter-spacing:-.02em;}
+.footer .footer_mail {color:#DE4B55; font-size:1.8rem; line-height:2.72rem; letter-spacing:-.02em;}
 
 /* popup : 모바일은 rem(440 기준으로 화면에 맞춰 늘고 줄음), PC(769 이상)는 아래에서 px 고정 */
 .popup {position:fixed; top:0; left:0; z-index:1000; display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2rem; visibility:hidden; opacity:0; transition:opacity .25s ease, visibility .25s ease;}
@@ -101,7 +107,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 
 	/* header */
 	.header .inner_1680 {gap:.4rem; height:6.8rem; padding:0 1rem;}
-	.header .header_logo {width:10.6rem; height:2.4rem; margin-right:auto;}
+	.header .header_logo {width:11.2rem; height:2.4rem; margin-right:auto;}
 	.header .header_nav {display:none;}
 	.header .header_actions {gap:.4rem;}
 	.header .header_briefing,
@@ -118,11 +124,18 @@ html:has(.popup.is-active) {overflow:hidden;}
 	html:has(.header.is-active .header_mobile_nav[backdrop]) {overflow:hidden;}
 	html:has(.header.is-active .header_mobile_nav[backdrop]) body {height:auto !important;}
 
-	/* footer */
-	.footer {padding:3.2rem 0 2.8rem;}
-	.footer .footer_main {flex-direction:column; align-items:stretch; gap:2rem;}
-	.footer .footer_logo {width:14.4rem; height:3.3rem;}
-	.footer .footer_contact {justify-content:space-between;}
-	.footer .footer_bottom {position:relative; margin-top:2.4rem; padding-top:2.1rem; border-top:0;}
-	.footer .footer_bottom:before {content:''; position:absolute; top:0; left:2rem; right:2rem; border-top:1px solid #ECE5DE;}
+	/* footer : 주최·후원(아래 선) → 로고 → 이메일 → 저작권 (Figma 1802:5557) */
+	.footer {padding:6rem 0;}
+	.footer .footer_main {flex-direction:column; align-items:stretch; gap:2.4rem;}
+	.footer .footer_org {gap:1.6rem; padding-bottom:2.4rem; border-bottom:1px solid rgba(133,136,154,.3);}
+	.footer .inner_1680 {padding:0 2rem;}
+	.footer .footer_org > div {gap:.5rem;}
+	.footer .footer_org dt {font-size:1.2rem; font-weight:700;}
+	.footer .footer_mysuni {width:6.8rem; height:2.6rem; margin:0 0 .06rem;}
+	.footer .footer_hynix {width:6.2rem; height:2.8rem; margin:0 0 .17rem;}
+	.footer .footer_logo {width:13.97rem; height:2.2rem; margin:0;}
+	.footer .footer_logo img {object-position:left center;}
+	.footer .footer_bottom {flex-direction:column; align-items:flex-start; gap:1.2rem; margin-top:1.2rem; padding-top:0;}
+	.footer .footer_bottom:before {display:none;}
+	.footer .footer_mail {order:-1; font-size:1.2rem; line-height:1.7rem;}
 }

@@ -48,7 +48,7 @@
 		<header class="header">
 			<div class="inner_1680">
 				<a href="./index.html" class="header_logo">
-					<img src="./img/short_logo_aigen.svg" alt="SK AIGEN">
+					<img src="./img/short_logo_aigen_type.svg" alt="SK AIGEN">
 				</a>
 				<nav class="header_nav" aria-label="주 메뉴">
 					<a href="#sec_about">소개</a>
@@ -90,7 +90,7 @@
 				<!-- PC는 배경 영상(JS가 PC에서만 data-src로 불러옴), 모바일(768 이하)은 01 → 02 → 03 장면 전환 -->
 				<div class="kv_art" aria-hidden="true">
 					<video class="kv_video" data-src="./video/kv_pc.mp4" width="2560" height="760" muted playsinline
-						preload="none" tabindex="-1" disablepictureinpicture disableremoteplayback loop ></video>
+						preload="none" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
 					<picture class="kv_base">
 						<source srcset="./img/short_kv_01_mo.webp" width="880" height="1564" media="(max-width: 768px)">
 						<img src="./img/kv_v2_pc.jpg" class="kv_base_img" width="2560" height="760" alt=""
@@ -662,16 +662,23 @@
 		<!-- sec_footer -->
 		<footer class="footer">
 			<div class="inner_1680 footer_main">
+				<dl class="footer_org">
+					<div>
+						<dt>주최 |</dt>
+						<dd><span class="img_box footer_mysuni"><img src="./img/short_logo_mysuni.webp" alt="mySUNI"></span></dd>
+					</div>
+					<div>
+						<dt>후원 | SK 하이닉스</dt>
+						<dd><span class="img_box footer_hynix"><img src="./img/short_logo_skhynix.svg" alt=""></span></dd>
+					</div>
+				</dl>
 				<a href="#" class="footer_logo">
-					<img src="./img/short_logo_aigen.svg" alt="SK AIGEN 맨 위로">
+					<img src="./img/short_logo_aigen_type.svg" alt="SK AIGEN 맨 위로">
 				</a>
-				<div class="footer_contact">
-					<span class="img_box footer_mysuni"><img src="./img/short_logo_mysuni.webp" alt="mySUNI 로고"></span>
-					<a href="mailto:aigen@sk.com" class="footer_mail">aigen@sk.com</a>
-				</div>
 			</div>
 			<div class="inner_1680 footer_bottom">
 				<p class="footer_copy">© 2026 SK AIGEN</p>
+				<a href="mailto:aigen@sk.com" class="footer_mail">aigen@sk.com</a>
 			</div>
 			<!-- 맨 위로 : 인재상 섹션부터 나타남 (short.js initTopButton) -->
 			<a href="#" class="btn_top"><span class="blind">맨 위로</span></a>
