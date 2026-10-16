@@ -1,4 +1,4 @@
-// 키비주얼: PC는 배경 이미지, 모바일은 01 → 02 → 03 장면 자동 전환 후 마지막 장면에서 멈춤(이전·다음·스와이프로 넘기면 자동 전환 멈춤)
+// 키비주얼: PC는 배경 영상(initKvVideo), 모바일은 01 → 02 → 03 장면 자동 전환 후 마지막 장면에서 멈춤(이전·다음·스와이프로 넘기면 자동 전환 멈춤)
 // 화면 밖·다른 탭에서는 멈추고, 동작 줄이기 설정이면 자동 전환 없이 정지 화면
 function initKvMotion() {
 	const section = document.querySelector('.sec_kv');
@@ -235,62 +235,66 @@ function initKvMotion() {
 	sync();
 }
 
-// 아이젠을 닮은 사람들 영상 (index.html에서 주석 처리 중, 주석을 풀면 바로 동작 / 영상이 없으면 아무것도 안 함)
-// 화면에 30% 이상 들어오면 소리 끈 채 자동 재생, 벗어나면 멈춤. 사용자가 직접 재생·정지하면 그 뒤로는 스크롤 자동 재생 안 함
-// 멈춰 있을 때는 컨트롤바를 숨기고 가운데 재생 버튼만 보임(스크립트가 없으면 기본 컨트롤바 그대로), 동작 줄이기 설정이면 자동 재생 없음
-function initMovie() {
-	const video = document.querySelector('.sec_people .movie_video');
+// PC 키비주얼 영상: PC(769 이상)에서만 data-src 영상을 불러와 한 번 재생하고 마지막 장면에서 멈춤
+// 화면 밖·다른 탭에서는 멈췄다가 돌아오면 이어서 재생, 동작 줄이기 설정이면 재생 없이 마지막 장면만 보여줌
+// 영상을 불러오지 못하면 is-video를 빼서 기존 배경 이미지(kv_base)로 대체
+function initKvVideo() {
+	const section = document.querySelector('.sec_kv');
+	const video = section && section.querySelector('.kv_video');
 	if (!video) return;
-	const button = video.parentElement.querySelector('.movie_play');
+	const mobile = window.matchMedia('(max-width: 768px)');
 	const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-	let auto = true;
-	let byScript = ''; // 스크립트가 부른 play/pause를 사용자 조작과 구분
+	let inView = true;
 
-	function run(action) {
-		byScript = action;
-		if (action === 'pause') {
+	function showLast() {
+		if (video.duration) video.currentTime = Math.max(0, video.duration - .05);
+	}
+
+	function sync() {
+		if (mobile.matches) {
 			video.pause();
 			return;
 		}
-		const playing = video.play();
-		if (playing) playing.catch(() => { byScript = ''; });
-	}
-
-	function update() {
-		const stopped = video.paused || video.ended;
-		video.controls = !stopped;
-		if (button) button.hidden = !stopped;
-	}
-
-	video.addEventListener('play', () => {
-		if (byScript === 'play') byScript = '';
-		else auto = false;
-		update();
-	});
-	video.addEventListener('pause', () => {
-		if (!video.ended) {
-			if (byScript === 'pause') byScript = '';
-			else auto = false;
+		if (!video.getAttribute('src')) {
+			section.classList.add('is-video');
+			video.muted = true;
+			video.preload = 'auto';
+			video.src = video.dataset.src;
 		}
-		update();
-	});
-	video.addEventListener('ended', update);
-	if (button) {
-		button.addEventListener('click', () => {
-			// 버튼이 사라진 뒤 키보드 포커스는 컨트롤바가 생긴 영상으로
-			video.addEventListener('play', () => video.focus(), { once: true });
+		if (reduced.matches) {
+			video.pause();
+			if (video.readyState >= 1) showLast();
+			return;
+		}
+		// 팝업(첫 진입 설명회 안내 등)이 떠 있는 동안은 멈춰 두고, 닫히면 재생
+		if (inView && !document.hidden && !video.ended && !document.body.classList.contains('is-popup-open')) {
 			const playing = video.play();
-			if (playing) playing.catch(() => {});
-		});
+			// 자동 재생이 막히면(저전력 모드 등) 영상 대신 기존 배경 이미지를 보여줘 재생 버튼이 뜨지 않게 함
+			if (playing) playing.catch((e) => {
+				if (e && e.name === 'NotAllowedError') section.classList.remove('is-video'); // 화면 밖으로 나가 멈춘 경우(AbortError)는 그대로 둠
+			});
+		} else {
+			video.pause();
+		}
 	}
-	update();
 
-	if (!('IntersectionObserver' in window)) return;
-	new IntersectionObserver((entries) => {
-		if (!auto || reduced.matches) return;
-		if (entries[0].isIntersecting && video.paused && !video.ended) run('play');
-		else if (!entries[0].isIntersecting && !video.paused) run('pause');
-	}, { threshold: .3 }).observe(video);
+	// 첫 장면이 준비되면 부드럽게 나타냄 (빈 화면 → 영상 전환 시 깜빡임 방지)
+	video.addEventListener('loadeddata', () => video.classList.add('is-ready'));
+	video.addEventListener('loadedmetadata', () => {
+		if (reduced.matches) showLast();
+	});
+	video.addEventListener('error', () => section.classList.remove('is-video'));
+	mobile.addEventListener('change', sync);
+	reduced.addEventListener('change', sync);
+	document.addEventListener('visibilitychange', sync);
+	new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] }); // 팝업 열림·닫힘(body.is-popup-open)
+	if ('IntersectionObserver' in window) {
+		new IntersectionObserver((entries) => {
+			inView = entries[0].isIntersecting;
+			sync();
+		}, { threshold: .1 }).observe(section);
+	}
+	sync();
 }
 
 // 맨 위로: 인재상 섹션이 화면에 들어온 뒤부터(그 아래로 내려가도 계속) 나타남, 누르면 맨 위로 이동 후 헤더 로고에 포커스
@@ -534,7 +538,7 @@ function initScrollReveal() {
 
 document.addEventListener('DOMContentLoaded', () => {
 	initKvMotion();
-	initMovie();
+	initKvVideo();
 	initTopButton();
 	initAnchorNav();
 	initAccordion('.sec_journey .year_list', '.year_item');
