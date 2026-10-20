@@ -170,47 +170,39 @@ function initPopup() {
 }
 let autoPopupShown = false;
 
-// // 설명회 신청 오픈 시각 (한국 시간) : 년, 월, 일, 시, 분
-// const BRIEFING_OPEN = [2026, 10, 15, 15, 0];
-// // 설명회 신청 링크 : HTML에 미리 두지 않고 오픈 시각이 되면 넣음 (Elements 탭에서 미리 안 보이게)
-// const BRIEFING_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeoZ7pw0ZPJbXRhdoCLTacCkqwYVAU2M2Jb01qN5VpnCpkvQA/viewform?pli=1';
+// 설명회 신청 마감 시각 (한국 시간) : 년, 월, 일, 시, 분
+const BRIEFING_CLOSE = [2026, 10, 20, 10, 0];
 
-// // 오픈 시각이 되면 안내 문구·확인 버튼 → 신청 링크
-// // 서버 응답의 Date 헤더 기준, 못 읽으면(파일로 열기·네트워크 오류) 사용자 PC 시계로 대신함
-// async function initBriefingOpen() {
-//     const popup = document.querySelector('[data-briefing-link]')?.closest('[data-popup]');
-//     if (!popup || popup.dataset.briefingReady) return;
-//     popup.dataset.briefingReady = 'true';
+// 마감 시각이 되면 신청 링크를 지우고(DOM에서 제거) 비활성 '신청이 완료되었습니다' 버튼을 보여줌
+// 서버 응답의 Date 헤더 기준, 못 읽으면(파일로 열기·네트워크 오류) 사용자 PC 시계로 대신함
+async function initBriefingClose() {
+    const link = document.querySelector('[data-briefing-link]');
+    const popup = link?.closest('[data-popup]');
+    if (!popup || popup.dataset.briefingReady) return;
+    popup.dataset.briefingReady = 'true';
 
-//     let serverNow = NaN;
-//     try {
-//         const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
-//         // CloudFront 캐시 응답은 Date가 캐시된 시각이라, 캐시된 뒤 지난 초(Age)를 더해야 지금 시각
-//         serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
-//     } catch (e) {}
-//     if (Number.isNaN(serverNow)) serverNow = Date.now();
+    let serverNow = NaN;
+    try {
+        const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
+        // CloudFront 캐시 응답은 Date가 캐시된 시각이라, 캐시된 뒤 지난 초(Age)를 더해야 지금 시각
+        serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
+    } catch (e) {}
+    if (Number.isNaN(serverNow)) serverNow = Date.now();
 
-//     const show = () => {
-//         popup.querySelector('.popup_note').hidden = true;
-//         popup.querySelector('button.btn_popup_confirm').hidden = true;
-//         const link = popup.querySelector('[data-briefing-link]');
-//         link.href = BRIEFING_URL;
-//         link.hidden = false;
-//     };
-//     const [year, month, day, hour, minute] = BRIEFING_OPEN;
-//     const openAt = Date.UTC(year, month - 1, day, hour - 9, minute); // 한국 시간 = UTC+9
-//     const wait = openAt - serverNow;
-//     // ponytail: 탭이 오래 잠들면 타이머가 늦을 수 있음, 필요하면 visibilitychange 때 다시 확인
-//     wait <= 0 ? show() : setTimeout(show, wait);
-// }
-
-
+    const close = () => {
+        link.remove();
+        popup.querySelector('button.btn_popup_confirm').hidden = false;
+    };
+    const [year, month, day, hour, minute] = BRIEFING_CLOSE;
+    const wait = Date.UTC(year, month - 1, day, hour - 9, minute) - serverNow; // 한국 시간 = UTC+9
+    wait <= 0 ? close() : setTimeout(close, wait);
+}
 
 function initApp() {
     initHeaderToggle();
     initExploreCardTap();
     initPopup()
-    // initBriefingOpen();
+    initBriefingClose();
 }
 
 // 일반 페이지 로드
