@@ -171,7 +171,7 @@ function initPopup() {
 let autoPopupShown = false;
 
 // 설명회 신청 마감 시각 (한국 시간) : 년, 월, 일, 시, 분
-const BRIEFING_CLOSE = [2026, 10, 20, 10, 0];
+const BRIEFING_CLOSE = [2026, 10, 20, 11, 21];
 
 // 마감 시각이 되면 신청 링크를 지우고(DOM에서 제거) 비활성 '신청이 완료되었습니다' 버튼을 보여줌
 // 서버 응답의 Date 헤더 기준, 못 읽으면(파일로 열기·네트워크 오류) 사용자 PC 시계로 대신함
@@ -191,6 +191,7 @@ async function initBriefingClose() {
 
     const close = () => {
         link.remove();
+        popup.querySelector('.popup_deadline')?.remove(); // '설명회 지원 마감 …' 안내도 함께 지움
         popup.querySelector('button.btn_popup_confirm').hidden = false;
     };
     const [year, month, day, hour, minute] = BRIEFING_CLOSE;
