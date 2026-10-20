@@ -206,10 +206,35 @@ let autoPopupShown = false;
 
 
 
+// 푸터 SNS(유튜브·인스타그램) 공개 시각 (한국 시간) : 년, 월, 일, 시, 분
+const SNS_OPEN = [2026, 10, 21, 14, 0];
+
+// 공개 시각이 되면 [data-sns-open]의 hidden을 풀어 보여줌
+// 서버 응답의 Date 헤더 기준(CloudFront 캐시면 Age만큼 더함), 못 읽으면 사용자 PC 시계로 대신함
+async function initSnsOpen() {
+    const sns = document.querySelector('[data-sns-open]');
+    if (!sns || sns.dataset.snsReady) return;
+    sns.dataset.snsReady = 'true';
+
+    let serverNow = NaN;
+    try {
+        const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
+        serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
+    } catch (e) {}
+    if (Number.isNaN(serverNow)) serverNow = Date.now();
+
+    const show = () => { sns.hidden = false; };
+    const [year, month, day, hour, minute] = SNS_OPEN;
+    const wait = Date.UTC(year, month - 1, day, hour - 9, minute) - serverNow; // 한국 시간 = UTC+9
+    // ponytail: 탭이 오래 잠들면 타이머가 늦을 수 있음, 필요하면 visibilitychange 때 다시 확인
+    wait <= 0 ? show() : setTimeout(show, wait);
+}
+
 function initApp() {
     initHeaderToggle();
     initExploreCardTap();
     initPopup()
+    initSnsOpen();
     // initBriefingOpen();
 }
 
