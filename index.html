@@ -697,8 +697,7 @@
 				<p class="footer_copy">© 2026 SK AIGEN</p>
 				<div class="footer_links">
 					<a href="mailto:aigen@sk.com" class="footer_mail">aigen@sk.com</a>
-					<!-- SNS : common.js SNS_OPEN 시각부터 보임 -->
-					<div class="footer_sns" data-sns-open hidden>
+					<div class="footer_sns">
 						<a href="mailto:aigen@sk.com" class="sns_mail"><img src="./img/short_ico_mail_line.svg" alt="이메일 문의"></a>
 						<a href="https://www.youtube.com/@SKAIGEN_OFFICIAL" target="_blank" rel="noopener" class="sns_youtube"><img src="./img/short_ico_youtube.svg" alt="SK AIGEN 유튜브"></a>
 						<a href="https://www.instagram.com/skaigen_official/" target="_blank" rel="noopener" class="sns_instagram"><img src="./img/short_ico_instagram.svg" alt="SK AIGEN 인스타그램"></a>
@@ -763,7 +762,9 @@
 					<p class="popup_deadline"><strong>설명회 지원 마감</strong>10월 22일 23시 59분</p>
 					<a href="https://docs.google.com/forms/d/e/1FAIpQLSeoZ7pw0ZPJbXRhdoCLTacCkqwYVAU2M2Jb01qN5VpnCpkvQA/viewform?pli=1"
 						id="btn_briefing_apply" target="_blank" rel="noopener" class="btn_popup_confirm"
-						data-popup-close>설명회 신청하기</a>
+						data-briefing-link data-popup-close>설명회 신청하기</a>
+					<!-- 설명회 신청 마감(common.js BRIEFING_CLOSE) 후 위 링크 대신 보임 -->
+					<button type="button" class="btn_popup_confirm" disabled hidden>신청이 완료되었습니다</button>
 				</div>
 			</div>
 		</div>

@@ -53,7 +53,6 @@ html:has(.popup.is-active) {overflow:hidden;}
 /* 이메일 옆 SNS (Figma 1827:10399 : 유튜브 56×38, 인스타그램 38×38, 간격 10) */
 .footer .footer_links {display:flex; align-items:center; gap:1rem;}
 .footer .footer_sns {display:flex; align-items:center; gap:1rem;}
-.footer .footer_sns[hidden] {display:none;}
 .footer .footer_sns a {display:block; height:3.8rem; transition:opacity .18s;}
 .footer .footer_sns .sns_youtube {width:5.6rem;}
 .footer .footer_sns .sns_instagram {width:3.8rem;}
@@ -87,6 +86,7 @@ html:has(.popup.is-active) {overflow:hidden;}
 .popup .popup_note {margin-top:2rem; padding:1.2rem; border-radius:.3rem; background-color:#FAF5F0; color:#5F5A55; font-size:1.5rem; line-height:2.4rem;}
 .popup .popup_facts + .popup_note {margin-top:2.4rem;}
 .popup .btn_popup_confirm {display:block; width:100%; box-sizing:border-box; margin-top:3.2rem; padding:1.6rem 4rem; border-radius:.3rem; background-color:#DE4B55; color:#FFFFFF; font-size:2rem; font-weight:600; line-height:1.6; letter-spacing:-.025em;}
+.popup .btn_popup_confirm:disabled {background-color:#D6D0CA; color:#FFFFFF; cursor:not-allowed;} /* 설명회 신청 마감 후 */
 @media all and (min-width:769px) {
 	/* PC는 화면 폭(1680 기준 rem)에 따라 작아지지 않도록 Figma 480 기준 px 고정 */
 	.popup {padding:20px;}

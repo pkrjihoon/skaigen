@@ -151,21 +151,24 @@ function initPopup() {
     const autoPopup = document.querySelector('[data-popup-auto]');
     if (autoPopup && !autoPopupShown) {
         autoPopupShown = true;
-        // #sec_people 처럼 해시로 들어오면 그 영역까지 스크롤이 끝난 뒤 팝업 (닫으면 그 위치에 남음)
-        const hashTarget = location.hash && document.getElementById(location.hash.slice(1));
-        if (hashTarget) {
-            let opened = false;
-            const openAuto = () => {
-                if (opened) return;
-                opened = true;
+        getBriefingWait().then((wait) => {
+            if (wait <= 0) return; // 설명회 신청 마감(BRIEFING_CLOSE) 후엔 자동으로 띄우지 않음
+            // #sec_people 처럼 해시로 들어오면 그 영역까지 스크롤이 끝난 뒤 팝업 (닫으면 그 위치에 남음)
+            const hashTarget = location.hash && document.getElementById(location.hash.slice(1));
+            if (hashTarget) {
+                let opened = false;
+                const openAuto = () => {
+                    if (opened) return;
+                    opened = true;
+                    openPopup(autoPopup);
+                };
+                window.addEventListener('scrollend', openAuto, { once: true });
+                setTimeout(openAuto, 1500); // scrollend 미지원 브라우저·이미 그 위치일 때 대비
+                hashTarget.scrollIntoView({ behavior: 'smooth' });
+            } else {
                 openPopup(autoPopup);
-            };
-            window.addEventListener('scrollend', openAuto, { once: true });
-            setTimeout(openAuto, 1500); // scrollend 미지원 브라우저·이미 그 위치일 때 대비
-            hashTarget.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            openPopup(autoPopup);
-        }
+            }
+        });
     }
 }
 let autoPopupShown = false;
@@ -206,35 +209,48 @@ let autoPopupShown = false;
 
 
 
-// 푸터 SNS(유튜브·인스타그램) 공개 시각 (한국 시간) : 년, 월, 일, 시, 분
-const SNS_OPEN = [2026, 10, 21, 14, 0];
+// 설명회 신청 마감 시각 (한국 시간) : 년, 월, 일, 시, 분
+// 이 시각부터 첫 진입 자동 팝업 안 뜸 + 신청 링크 제거 → 비활성 '신청이 완료되었습니다' 버튼
+const BRIEFING_CLOSE = [2026, 10, 23, 0, 0];
 
-// 공개 시각이 되면 [data-sns-open]의 hidden을 풀어 보여줌
+// 마감까지 남은 ms (0 이하면 마감). 자동 팝업·마감 처리가 같이 쓰도록 서버 요청은 한 번만
 // 서버 응답의 Date 헤더 기준(CloudFront 캐시면 Age만큼 더함), 못 읽으면 사용자 PC 시계로 대신함
-async function initSnsOpen() {
-    const sns = document.querySelector('[data-sns-open]');
-    if (!sns || sns.dataset.snsReady) return;
-    sns.dataset.snsReady = 'true';
+let briefingWaitPromise = null;
+function getBriefingWait() {
+    briefingWaitPromise = briefingWaitPromise || (async () => {
+        let serverNow = NaN;
+        try {
+            const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
+            serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
+        } catch (e) {}
+        if (Number.isNaN(serverNow)) serverNow = Date.now();
+        const [year, month, day, hour, minute] = BRIEFING_CLOSE;
+        return Date.UTC(year, month - 1, day, hour - 9, minute) - serverNow; // 한국 시간 = UTC+9
+    })();
+    return briefingWaitPromise;
+}
 
-    let serverNow = NaN;
-    try {
-        const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
-        serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
-    } catch (e) {}
-    if (Number.isNaN(serverNow)) serverNow = Date.now();
+async function initBriefingClose() {
+    const link = document.querySelector('[data-briefing-link]');
+    const popup = link?.closest('[data-popup]');
+    if (!popup || popup.dataset.briefingReady) return;
+    popup.dataset.briefingReady = 'true';
 
-    const show = () => { sns.hidden = false; };
-    const [year, month, day, hour, minute] = SNS_OPEN;
-    const wait = Date.UTC(year, month - 1, day, hour - 9, minute) - serverNow; // 한국 시간 = UTC+9
+    const close = () => {
+        link.remove(); // 숨기지 않고 지움 (Elements 탭에서 링크가 안 보이게)
+        popup.querySelector('.popup_deadline')?.remove();
+        popup.querySelector('button.btn_popup_confirm').hidden = false;
+    };
+    const wait = await getBriefingWait();
     // ponytail: 탭이 오래 잠들면 타이머가 늦을 수 있음, 필요하면 visibilitychange 때 다시 확인
-    wait <= 0 ? show() : setTimeout(show, wait);
+    wait <= 0 ? close() : setTimeout(close, wait);
 }
 
 function initApp() {
     initHeaderToggle();
     initExploreCardTap();
     initPopup()
-    initSnsOpen();
+    initBriefingClose();
     // initBriefingOpen();
 }
 
