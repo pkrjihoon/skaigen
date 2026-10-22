@@ -79,7 +79,8 @@ html:has(.popup.is-active) {overflow:hidden;}
 .popup .popup_facts {margin-top:2.4rem; padding:1.2rem 0; border-top:1px solid #ECE5DE; border-bottom:1px solid #ECE5DE; text-align:left;}
 .popup .popup_facts > li {display:flex; gap:1.2rem; padding:.8rem 0; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 .popup .popup_facts + .popup_txt {margin-top:2rem;}
-.popup .popup_facts .fact_label {flex-shrink:0; width:5rem; color:#8A847D;}
+.popup .popup_facts .fact_label {flex-shrink:0; width:8rem; color:#8A847D;}
+.popup .popup_facts .fact_label.type01 {width:5rem;}
 .popup .popup_facts .fact_value {color:#1A1A1A;}
 .popup .popup_deadline {margin-top:2rem; color:#5F5A55; font-size:1.6rem; line-height:1.6; letter-spacing:-.025em;}
 .popup .popup_deadline strong {display:block; font-size:1.8rem; font-weight:600;}
@@ -101,7 +102,8 @@ html:has(.popup.is-active) {overflow:hidden;}
 	.popup .popup_facts {margin-top:24px; padding:12px 0;}
 	.popup .popup_facts > li {gap:12px; padding:8px 0; font-size:16px;}
 	.popup .popup_facts + .popup_txt {margin-top:20px;}
-	.popup .popup_facts .fact_label {width:50px;}
+	.popup .popup_facts .fact_label {width:80px;}
+	.popup .popup_facts .fact_label.type01 {width:50px;}
 	.popup .popup_deadline {margin-top:20px; font-size:16px;}
 	.popup .popup_deadline strong {font-size:18px;}
 	.popup .popup_note {margin-top:20px; padding:12px; border-radius:3px; font-size:15px; line-height:24px;}
