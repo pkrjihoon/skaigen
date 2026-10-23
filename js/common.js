@@ -170,19 +170,6 @@ function initPopup() {
 }
 let autoPopupShown = false;
 
-// ===== 설명회 신청 마감 타이머 (2026-10-23 00:00 마감 완료 → 마감 상태는 index.html에 직접 반영, 다음에 쓸 때 주석 해제) =====
-// 다시 쓸 때 같이 되돌릴 것
-//  1) initApp()의 // initBriefingClose(); 주석 해제
-//  2) 마감 시각 전엔 자동 팝업을 띄우지 않으려면 initPopup()의 자동 팝업 부분을 아래처럼 감싸기
-//       getBriefingWait().then((wait) => { if (wait <= 0) return; ...기존 자동 팝업 코드... });
-//  3) index.html 설명회 팝업(data-popup="briefing")에 data-popup-auto 다시 넣고, 버튼 자리를 아래로 되돌리기
-//       <p class="popup_deadline"><strong>설명회 지원 마감</strong>10월 22일 23시 59분</p>
-//       <a href="(구글폼 링크)" id="btn_briefing_apply" target="_blank" rel="noopener" class="btn_popup_confirm"
-//           data-briefing-link data-popup-close>설명회 신청하기</a>
-//       <button type="button" class="btn_popup_confirm" disabled hidden>설명회 신청 마감</button>
-
-// // 설명회 신청 마감 시각 (한국 시간) : 년, 월, 일, 시, 분
-// // 이 시각부터 첫 진입 자동 팝업 안 뜸 + 신청 링크 제거 → 비활성 '설명회 신청 마감' 버튼
 // const BRIEFING_CLOSE = [2026, 10, 23, 0, 0];
 
 // // 마감까지 남은 ms (0 이하면 마감). 자동 팝업·마감 처리가 같이 쓰도록 서버 요청은 한 번만
