@@ -151,107 +151,78 @@ function initPopup() {
     const autoPopup = document.querySelector('[data-popup-auto]');
     if (autoPopup && !autoPopupShown) {
         autoPopupShown = true;
-        getBriefingWait().then((wait) => {
-            if (wait <= 0) return; // 설명회 신청 마감(BRIEFING_CLOSE) 후엔 자동으로 띄우지 않음
-            // #sec_people 처럼 해시로 들어오면 그 영역까지 스크롤이 끝난 뒤 팝업 (닫으면 그 위치에 남음)
-            const hashTarget = location.hash && document.getElementById(location.hash.slice(1));
-            if (hashTarget) {
-                let opened = false;
-                const openAuto = () => {
-                    if (opened) return;
-                    opened = true;
-                    openPopup(autoPopup);
-                };
-                window.addEventListener('scrollend', openAuto, { once: true });
-                setTimeout(openAuto, 1500); // scrollend 미지원 브라우저·이미 그 위치일 때 대비
-                hashTarget.scrollIntoView({ behavior: 'smooth' });
-            } else {
+        // #sec_people 처럼 해시로 들어오면 그 영역까지 스크롤이 끝난 뒤 팝업 (닫으면 그 위치에 남음)
+        const hashTarget = location.hash && document.getElementById(location.hash.slice(1));
+        if (hashTarget) {
+            let opened = false;
+            const openAuto = () => {
+                if (opened) return;
+                opened = true;
                 openPopup(autoPopup);
-            }
-        });
+            };
+            window.addEventListener('scrollend', openAuto, { once: true });
+            setTimeout(openAuto, 1500); // scrollend 미지원 브라우저·이미 그 위치일 때 대비
+            hashTarget.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            openPopup(autoPopup);
+        }
     }
 }
 let autoPopupShown = false;
 
-// // 설명회 신청 오픈 시각 (한국 시간) : 년, 월, 일, 시, 분
-// const BRIEFING_OPEN = [2026, 10, 15, 15, 0];
-// // 설명회 신청 링크 : HTML에 미리 두지 않고 오픈 시각이 되면 넣음 (Elements 탭에서 미리 안 보이게)
-// const BRIEFING_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeoZ7pw0ZPJbXRhdoCLTacCkqwYVAU2M2Jb01qN5VpnCpkvQA/viewform?pli=1';
+// ===== 설명회 신청 마감 타이머 (2026-10-23 00:00 마감 완료 → 마감 상태는 index.html에 직접 반영, 다음에 쓸 때 주석 해제) =====
+// 다시 쓸 때 같이 되돌릴 것
+//  1) initApp()의 // initBriefingClose(); 주석 해제
+//  2) 마감 시각 전엔 자동 팝업을 띄우지 않으려면 initPopup()의 자동 팝업 부분을 아래처럼 감싸기
+//       getBriefingWait().then((wait) => { if (wait <= 0) return; ...기존 자동 팝업 코드... });
+//  3) index.html 설명회 팝업(data-popup="briefing")에 data-popup-auto 다시 넣고, 버튼 자리를 아래로 되돌리기
+//       <p class="popup_deadline"><strong>설명회 지원 마감</strong>10월 22일 23시 59분</p>
+//       <a href="(구글폼 링크)" id="btn_briefing_apply" target="_blank" rel="noopener" class="btn_popup_confirm"
+//           data-briefing-link data-popup-close>설명회 신청하기</a>
+//       <button type="button" class="btn_popup_confirm" disabled hidden>설명회 신청 마감</button>
 
-// // 오픈 시각이 되면 안내 문구·확인 버튼 → 신청 링크
-// // 서버 응답의 Date 헤더 기준, 못 읽으면(파일로 열기·네트워크 오류) 사용자 PC 시계로 대신함
-// async function initBriefingOpen() {
-//     const popup = document.querySelector('[data-briefing-link]')?.closest('[data-popup]');
+// // 설명회 신청 마감 시각 (한국 시간) : 년, 월, 일, 시, 분
+// // 이 시각부터 첫 진입 자동 팝업 안 뜸 + 신청 링크 제거 → 비활성 '설명회 신청 마감' 버튼
+// const BRIEFING_CLOSE = [2026, 10, 23, 0, 0];
+
+// // 마감까지 남은 ms (0 이하면 마감). 자동 팝업·마감 처리가 같이 쓰도록 서버 요청은 한 번만
+// // 서버 응답의 Date 헤더 기준(CloudFront 캐시면 Age만큼 더함), 못 읽으면 사용자 PC 시계로 대신함
+// let briefingWaitPromise = null;
+// function getBriefingWait() {
+//     briefingWaitPromise = briefingWaitPromise || (async () => {
+//         let serverNow = NaN;
+//         try {
+//             const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
+//             serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
+//         } catch (e) {}
+//         if (Number.isNaN(serverNow)) serverNow = Date.now();
+//         const [year, month, day, hour, minute] = BRIEFING_CLOSE;
+//         return Date.UTC(year, month - 1, day, hour - 9, minute) - serverNow; // 한국 시간 = UTC+9
+//     })();
+//     return briefingWaitPromise;
+// }
+
+// async function initBriefingClose() {
+//     const link = document.querySelector('[data-briefing-link]');
+//     const popup = link?.closest('[data-popup]');
 //     if (!popup || popup.dataset.briefingReady) return;
 //     popup.dataset.briefingReady = 'true';
 
-//     let serverNow = NaN;
-//     try {
-//         const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
-//         // CloudFront 캐시 응답은 Date가 캐시된 시각이라, 캐시된 뒤 지난 초(Age)를 더해야 지금 시각
-//         serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
-//     } catch (e) {}
-//     if (Number.isNaN(serverNow)) serverNow = Date.now();
-
-//     const show = () => {
-//         popup.querySelector('.popup_note').hidden = true;
-//         popup.querySelector('button.btn_popup_confirm').hidden = true;
-//         const link = popup.querySelector('[data-briefing-link]');
-//         link.href = BRIEFING_URL;
-//         link.hidden = false;
+//     const close = () => {
+//         link.remove(); // 숨기지 않고 지움 (Elements 탭에서 링크가 안 보이게)
+//         popup.querySelector('.popup_deadline')?.remove();
+//         popup.querySelector('button.btn_popup_confirm').hidden = false;
 //     };
-//     const [year, month, day, hour, minute] = BRIEFING_OPEN;
-//     const openAt = Date.UTC(year, month - 1, day, hour - 9, minute); // 한국 시간 = UTC+9
-//     const wait = openAt - serverNow;
+//     const wait = await getBriefingWait();
 //     // ponytail: 탭이 오래 잠들면 타이머가 늦을 수 있음, 필요하면 visibilitychange 때 다시 확인
-//     wait <= 0 ? show() : setTimeout(show, wait);
+//     wait <= 0 ? close() : setTimeout(close, wait);
 // }
-
-
-
-// 설명회 신청 마감 시각 (한국 시간) : 년, 월, 일, 시, 분
-// 이 시각부터 첫 진입 자동 팝업 안 뜸 + 신청 링크 제거 → 비활성 '설명회 신청 마감' 버튼
-const BRIEFING_CLOSE = [2026, 10, 23, 0, 0];
-
-// 마감까지 남은 ms (0 이하면 마감). 자동 팝업·마감 처리가 같이 쓰도록 서버 요청은 한 번만
-// 서버 응답의 Date 헤더 기준(CloudFront 캐시면 Age만큼 더함), 못 읽으면 사용자 PC 시계로 대신함
-let briefingWaitPromise = null;
-function getBriefingWait() {
-    briefingWaitPromise = briefingWaitPromise || (async () => {
-        let serverNow = NaN;
-        try {
-            const res = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
-            serverNow = Date.parse(res.headers.get('Date')) + (Number(res.headers.get('Age')) || 0) * 1000;
-        } catch (e) {}
-        if (Number.isNaN(serverNow)) serverNow = Date.now();
-        const [year, month, day, hour, minute] = BRIEFING_CLOSE;
-        return Date.UTC(year, month - 1, day, hour - 9, minute) - serverNow; // 한국 시간 = UTC+9
-    })();
-    return briefingWaitPromise;
-}
-
-async function initBriefingClose() {
-    const link = document.querySelector('[data-briefing-link]');
-    const popup = link?.closest('[data-popup]');
-    if (!popup || popup.dataset.briefingReady) return;
-    popup.dataset.briefingReady = 'true';
-
-    const close = () => {
-        link.remove(); // 숨기지 않고 지움 (Elements 탭에서 링크가 안 보이게)
-        popup.querySelector('.popup_deadline')?.remove();
-        popup.querySelector('button.btn_popup_confirm').hidden = false;
-    };
-    const wait = await getBriefingWait();
-    // ponytail: 탭이 오래 잠들면 타이머가 늦을 수 있음, 필요하면 visibilitychange 때 다시 확인
-    wait <= 0 ? close() : setTimeout(close, wait);
-}
 
 function initApp() {
     initHeaderToggle();
     initExploreCardTap();
     initPopup()
-    initBriefingClose();
-    // initBriefingOpen();
+    // initBriefingClose();
 }
 
 // 일반 페이지 로드

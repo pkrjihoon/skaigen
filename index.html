@@ -739,7 +739,8 @@
 			</div>
 		</div>
 
-		<div class="popup" data-popup="briefing" data-popup-auto role="dialog" aria-hidden="true"
+		<!-- 설명회 신청 마감(2026-10-23 00:00) 후 상태 : 자동 팝업(data-popup-auto) 뺌, 신청 링크 → 비활성 버튼 (타이머 코드는 common.js에 주석으로 보관) -->
+		<div class="popup" data-popup="briefing" role="dialog" aria-hidden="true"
 			aria-labelledby="popup_briefing_title">
 			<div class="popup_dim" data-popup-close></div>
 			<div class="popup_inner">
@@ -760,12 +761,7 @@
 						</li>
 					</ul>
 					<p class="popup_txt">프로그램 지원 과정의 안내를 듣고, <br>궁금한 점을 직접 질문하는 자리입니다.</p>
-					<p class="popup_deadline"><strong>설명회 지원 마감</strong>10월 22일 23시 59분</p>
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSeoZ7pw0ZPJbXRhdoCLTacCkqwYVAU2M2Jb01qN5VpnCpkvQA/viewform?pli=1"
-						id="btn_briefing_apply" target="_blank" rel="noopener" class="btn_popup_confirm"
-						data-briefing-link data-popup-close>설명회 신청하기</a>
-					<!-- 설명회 신청 마감(common.js BRIEFING_CLOSE) 후 위 링크 대신 보임 -->
-					<button type="button" class="btn_popup_confirm" disabled hidden>설명회 신청 마감</button>
+					<button type="button" class="btn_popup_confirm" disabled>설명회 신청 마감</button>
 				</div>
 			</div>
 		</div>
